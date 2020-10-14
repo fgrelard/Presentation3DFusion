@@ -104,36 +104,229 @@
 
 
 \section{Chaîne de traitement}
-\begin{frame}{Chaîne de traitement}
+
+\begin{frame}{Chaîne de traitement 3D}
+
 
   \begin{enumerate}
-  \item<2-> Pré-traitement des images \textbf{IRM} : détermination d'une image de la distribution de l'eau
-  \item<3-> Pré-traitement de l'image \textbf{MALDI} : réduction, segmentation
-  \item<4-> Fusion:
-    \begin{enumerate}
-    \item<4-> \textbf{Recalage}
-    \item<5-> \textbf{Analyse statistique} : réduction et mise en correspondance d'images
-    \end{enumerate}
+  \item<2-> IRM: ajustement de \textbf{fonctions exponentielles}
+  \item<3-> MALDI: \textbf{normalisation} des images
+  \item<4-> Détermination des \textbf{correspondances} et \textbf{recalage 3D}
+  \item<5-> \textbf{Visualisation} d'images MS en 3D
   \end{enumerate}
-  \vspace{-0.2cm}
 
   \begin{figure}[ht]
     \centering
-    \includegraphics<1>[width=0.8\textwidth]{fig/workflow1}%
-    \includegraphics<2>[width=0.8\textwidth]{fig/workflow22}%
-    \includegraphics<3>[width=0.8\textwidth]{fig/workflow2}%
-    \includegraphics<4>[width=0.8\textwidth]{fig/workflow3}%
-    \includegraphics<5>[width=0.8\textwidth]{fig/workflow4}%
+    \includegraphics<1>[width=0.8\textwidth]{fig/workflow3D_0}%
+    \includegraphics<2>[width=0.8\textwidth]{fig/workflow3D_1}%
+    \includegraphics<3>[width=0.8\textwidth]{fig/workflow3D_2}%
+    \includegraphics<4>[width=0.8\textwidth]{fig/workflow3D_3}%
+    \includegraphics<5>[width=0.8\textwidth]{fig/workflow3D_4}%
   \end{figure}
 \end{frame}
 
-\section{Traitement des images IRM}
 
-\section{Traitement des images MALDI}
-\begin{frame}{Normalisation}
-  \cite{Deininger_2011}
+
+\begin{frame}{Ajustement de fonctions exponentielles}
+  
+  \textbf{Précédemment}: trop peu d'échos $\Rightarrow$ surajustement, décroissance incomplète
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.8\textwidth]{fig/wrongfit_overfitting}
+      \caption{Surajustement}
+      \label{subfig:wrongfit_overfitting}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.8\textwidth]{fig/wrongfit_missing}
+      \caption{Décroissance incomplète}
+      \label{subfig:wrongfit_missing}
+    \end{subfigure}%
+
+  \end{figure}
+
+
+  Nouvelles images: \textbf{plus d'échos} (8 $\rightarrow$ 16)
+
+  \underline{Objectif :} modélisation \textbf{plus précise} de la décroissance du signal  
 \end{frame}
 
+\begin{frame}{Ajustement par morceaux}
+  Modélisation par une \textbf{somme de fonctions exponentielles} (bi-exponentielle)
+
+  Ajustement de \textbf{deux droites} sur le logarithme des intensités \textbf{par morceaux} :
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics<1-3>[width=0.95\textwidth]{fig/biexponential}%
+      \includegraphics<4>[width=0.95\textwidth]{fig/biexponential_fitted}%
+      \caption{Intensités}
+      \label{subfig:}
+    \end{subfigure}%
+    \onslide<2->
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics<2>[width=0.95\textwidth]{fig/biexponential_log}%
+      \includegraphics<3->[width=0.95\textwidth]{fig/biexponential_log_piecewise}
+      \caption{Log des intensités}
+      \label{subfig:}
+    \end{subfigure}%
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}{Ajustement par morceaux}
+  \textbf{Problème :} profils \textbf{mono-exponentiels} dans la cavité $\Rightarrow$ surajustements
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics<1>[width=0.9\textwidth]{fig/piecewise}%
+      \includegraphics<2->[width=0.9\textwidth]{fig/piecewise_circled}
+      \caption{Densité}
+      \label{subfig:piecewise}
+    \end{subfigure}%
+    \onslide<3>
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/piecewise_defect}
+      \caption{Surajustement}
+      \label{subfig:piecewise_defect}
+    \end{subfigure}%
+
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}{Ajustement de fonction mono-exponentielle}
+
+  Deux approches:
+  \begin{enumerate}
+  \item ajustement par \textbf{régression linéaire} sur le logarithme des intensités (avec pondération)
+  \item ajustement par \textbf{moindres carrés} sur les intensités (sans pondération)
+  \end{enumerate}
+
+  Exemples de pondérations:
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.7\textwidth]{fig/poids_sqrt}
+      \caption{Racines carrées des intensités}
+      \label{subfig:poids_sqrt}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.7\textwidth]{fig/poids_triangle}
+      \caption{Fonction triangulaire}
+      \label{subfig:poids_triangle}
+    \end{subfigure}%
+
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}{Ajustement : comparaison}
+  \vspace{-0.4cm}
+  \begin{columns}
+    \begin{column}[c]{0.2\textwidth}
+      \begin{figure}[ht]
+        \centering
+        Premier écho
+        \includegraphics[width=0.9\linewidth]{fig/firstecho}
+      \end{figure}
+    \end{column}
+    
+    \begin{column}[c]{0.8\textwidth}
+      \begin{figure}[ht]
+    \begin{flushleft}
+      Régression ($\sqrt{I})$
+      \vspace{-0.1cm}
+    \end{flushleft}
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.5\textwidth]{fig/linear_regression_old}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.5\textwidth]{fig/linear_regression_old_t2}
+    \end{subfigure}%
+    \begin{flushleft}
+      Régression (triangulaire)
+      \vspace{-0.25cm}
+    \end{flushleft}
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.5\textwidth]{fig/linear_regression_new}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.5\textwidth]{fig/linear_regression_new_t2}
+    \end{subfigure}
+    \begin{flushleft}
+      Moindres carrés
+      \vspace{-0.25cm}
+    \end{flushleft}
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.5\textwidth]{fig/nnls}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.5\textwidth]{fig/nnls_t2}
+    \end{subfigure}%
+      \end{figure}
+
+    \end{column}
+  \end{columns}
+  
+
+
+\end{frame}
+
+
+\begin{frame}{Ajustement : évaluation quantitative}
+
+  Erreurs résiduelles moyennes et temps de calcul:
+  \vspace{-0.4cm}
+
+  
+  \begin{table}[]
+    \begin{adjustbox}{max width=1\textwidth}
+      \begin{tabular}{lllll}
+        \hline
+        & Par morceaux & \begin{tabular}[c]{@{}l@{}}Régression\\ ($\sqrt{I}$)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Régression\\ (triangulaire)\end{tabular} & Moindres carrés \\ \hline
+        Résidus (\%) & 1.09         & 1.21                                                            & 0.986                                                               & \textbf{0.941 }          \\
+        t (s)   & 171          & \textbf{34}                                                              & \textbf{35}                                                                  & 261             \\ \hline
+      \end{tabular}
+  \end{adjustbox}
+\end{table}
+
+\vspace{0.2cm}
+
+\textbf{Régression linéaire} : bonne approximation, temps de calcul court
+
+\textbf{Moindres carrés} : plus précis, temps de calcul long
+
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}{Normalisation d'images de spectrométrie de masse}
+  \cite{Deininger_2011}
+\end{frame}
 
 
 

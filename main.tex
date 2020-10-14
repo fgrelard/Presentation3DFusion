@@ -1,0 +1,174 @@
+%%%%%%%%%%%%%%%%%%%%%%%%% 
+%% SITE A GARDER : http://titilog.free.fr/
+
+
+\documentclass[10pt]{beamer}
+% \includeonlyframes{yy}
+\usepackage[french]{babel}
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+\newcolumntype{g}{>{\columncolor{Gray}}c}
+\hypersetup{%
+  % pdfborder = {0 0 0},
+  colorlinks, urlcolor=blue, linkcolor=, }
+
+\makeatletter \let\@mycite\@cite
+\def\@cite#1#2{{\hypersetup{linkcolor=mLightBlue}[{#1\if@tempswa ,
+      #2\fi}]}} \makeatother
+
+\usetheme{m} %%%%%
+% \usepackage[version=3]{mhchem}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{siunitx}
+% \usepackage[backend=bibtex]{biblatex} \usepackage[square]{natbib}
+% \bibliography{main}
+\usepackage[]{algorithm2e}
+\usefonttheme[onlymath]{serif} \usepackage{amsmath}
+\usepackage{subcaption} \usepackage{appendixnumberbeamer}
+\usepackage{tabularx, booktabs} \usepackage{multirow}
+\usepackage{multicol} \usepackage{array} \usepackage{pbox}
+\usepackage{mathtools}
+\usepackage{adjustbox}
+\definecolor{darkred}{HTML}{D38989}
+\definecolor{darkgreen}{HTML}{66D191}
+\PassOptionsToPackage{enumerate}{shortlabels} \newcommand\ExtraSep
+{\dimexpr\cmidrulewidth\relax}
+\captionsetup{font=scriptsize,labelfont=scriptsize}
+% \addtobeamertemplate{background canvas}{\transfade[duration=0.05]}{}
+
+
+\title{Fusion d'images IRM et MALDI en 3D}
+\subtitle{Dernières avancées}
+
+\author{{Florent \textsc{Grélard}\\
+    David \textsc{Legland}, Mathieu \textsc{Fanuel}, Loïc \textsc{Foucat}, Hélène \textsc{Rogniaux}}} \titlegraphic{\hspace*{0.18\textwidth}~%
+  \includegraphics[width=0.26\textwidth]{fig/logo-inrae}\hspace*{0.18\textwidth}~%
+  \includegraphics[width=0.26\textwidth]{fig/logo-bibs.png}\hspace*{0.1\textwidth}~%
+} \setbeamercolor{bbb}{fg=red}
+
+\let\oldfootnotesize\footnotesize
+\renewcommand*{\footnotesize}{\oldfootnotesize\tiny}
+\newcommand\labelitemi{$\bullet$}
+\renewcommand{\thefootnote}{[\arabic{footnote}]}
+% \newrobustcmd*{\footlessfullcite}{\AtNextCite{\renewbibmacro{in:}{}\renewbibmacro{year:}{}}\footfullcite}
+% \newrobustcmd*{\lessfullcite}{\AtNextCite{\renewbibmacro{in:}{}\renewbibmacro{year:}{}}\fullcite}
+
+\newcommand{\cfbox}[2]{%
+    \colorlet{currentcolor}{.}%
+    {\color{#1}%
+    \fbox{\color{currentcolor}#2}}%
+}
+
+
+\newcommand{\backupbegin}{ \newcounter{framenumberappendix}
+  \setcounter{framenumberappendix}{\value{framenumber}} }
+\newcommand{\backupend}{
+  \addtocounter{framenumberappendix}{-\value{framenumber}}
+  \addtocounter{framenumber}{\value{framenumberappendix}} }
+% http://mcclinews.free.fr/latex/introbeamer/les_couleurs.html
+\begin{document}
+
+% affiche le logo en bas à droite
+% \logo{\includegraphics[height=0.5cm]{fig/logo-inra}}
+% enlève la barre de navigation
+\setbeamertemplate{navigation symbols}{ }
+\setbeamertemplate{blocks}[rounded][shadow=false]
+% Ombre aux blocks
+\setbeamertemplate{caption}{\insertcaption}
+
+\date{15 octobre 2020} % set the Date
+% \AtBeginSection[]{
+%	\begin{frame}[plain]{Sommaire}
+%   \tableofcontents[currentsection, hideothersubsections]
+%	\end{frame}
+% } \renewcommand{\insertnavigation}[1]{}
+
+% \AtBeginSection[]{
+
+% }
+
+% \institute{INRAE de Nantes}
+\makeatletter
+\AtBeginPart{%
+  \beamer@tocsectionnumber=0\relax
+  \setcounter{section}{0}
+}
+\makeatother
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+
+\section{Chaîne de traitement}
+\begin{frame}{Chaîne de traitement}
+
+  \begin{enumerate}
+  \item<2-> Pré-traitement des images \textbf{IRM} : détermination d'une image de la distribution de l'eau
+  \item<3-> Pré-traitement de l'image \textbf{MALDI} : réduction, segmentation
+  \item<4-> Fusion:
+    \begin{enumerate}
+    \item<4-> \textbf{Recalage}
+    \item<5-> \textbf{Analyse statistique} : réduction et mise en correspondance d'images
+    \end{enumerate}
+  \end{enumerate}
+  \vspace{-0.2cm}
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics<1>[width=0.8\textwidth]{fig/workflow1}%
+    \includegraphics<2>[width=0.8\textwidth]{fig/workflow22}%
+    \includegraphics<3>[width=0.8\textwidth]{fig/workflow2}%
+    \includegraphics<4>[width=0.8\textwidth]{fig/workflow3}%
+    \includegraphics<5>[width=0.8\textwidth]{fig/workflow4}%
+  \end{figure}
+\end{frame}
+
+\section{Traitement des images IRM}
+
+\section{Traitement des images MALDI}
+\begin{frame}{Normalisation}
+  \cite{Deininger_2011}
+\end{frame}
+
+
+
+
+
+\appendix
+\setbeamertemplate{headline}{%
+  % \nointerlineskip
+  % \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.5cm,ht=0pt,dp=0pt]{block title}%
+  %   \usebeamerfont{page number in head/foot}{\insertsection}
+  % \end{beamercolorbox}%
+  % \if@useTitleProgressBar
+  % \nointerlineskip
+  % % \vspace{-0.7cm}
+  % \begin{beamercolorbox}[wd=\paperwidth,ht=0pt,dp=5pt]{section}
+  %   \progressbar@titleprogressbar
+  % \end{beamercolorbox}
+  % \fi
+  % \nointerlineskip
+}
+
+% \setbeamertemplate{frametitle}{%
+%   \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.7cm,rightskip=0.3cm,ht=0pt,dp=0pt]{frametitle}
+%     \usebeamerfont{frametitle}\MakeLowercase{\protect\insertframetitle}
+%   \end{beamercolorbox}
+% }
+
+\begin{frame}[allowframebreaks]
+  \frametitle{Références}
+  \setbeamertemplate{bibliography item}{$\bullet$}
+  \bibliographystyle{apalike}
+  \scriptsize{
+    \bibliography{main}
+  }
+\end{frame}
+
+
+
+\end{document}

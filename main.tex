@@ -80,11 +80,7 @@
 \setbeamertemplate{caption}{\insertcaption}
 
 \date{15 octobre 2020} % set the Date
-% \AtBeginSection[]{
-%	\begin{frame}[plain]{Sommaire}
-%   \tableofcontents[currentsection, hideothersubsections]
-%	\end{frame}
-% } \renewcommand{\insertnavigation}[1]{}
+% \renewcommand{\insertnavigation}[1]{}
 
 % \AtBeginSection[]{
 
@@ -102,8 +98,6 @@
   \titlepage
 \end{frame}
 
-
-\section{Chaîne de traitement}
 
 \begin{frame}{Chaîne de traitement 3D}
 
@@ -126,7 +120,29 @@
 \end{frame}
 
 
+\AtBeginSection[]{
+  \begingroup
+  \setbeamercolor{background canvas}{bg=mLightBlue}
+  
+  \setbeamertemplate{subsection in toc}
+  {\leavevmode\leftskip=2em$\bullet$\hskip1em\inserttocsubsection\par}
+  \setbeamercolor{section in toc}{fg=paleGrey, bg=mLightBlue}
+  \setbeamercolor{local structure}{fg=mLightBlueLighter,bg=mLightBlue}
+  \setbeamercolor{section in toc shaded}{fg=mLightBlue, bg=mLightBlue}
+  \setbeamertemplate{section in toc}[circle]
+  \setbeamertemplate{section in toc shaded}[default][80]
+  \setbeamertemplate{section in toc}{\hspace*{1em}\inserttocsection}
 
+  \setbeamercolor{subsection in toc}{fg=paleGrey, bg=mLightBlue}
+  \begin{frame}[noframenumbering,plain]
+    \frametitle{\textcolor{paleGrey}{Table des matières}}
+
+    \tableofcontents[currentsection, sectionstyle=show/hide, hideothersubsections]
+  \end{frame}
+  \endgroup
+}
+
+\section{Ajustement de fonctions exponentielles}
 \begin{frame}{Ajustement de fonctions exponentielles}
   
   \textbf{Précédemment}: trop peu d'échos $\Rightarrow$ surajustement, décroissance incomplète
@@ -323,10 +339,357 @@
 
 
 
+\section{Normalisation d'images de spectrométrie de masse}
+\begin{frame}{Normalisation}
 
-\begin{frame}{Normalisation d'images de spectrométrie de masse}
-  \cite{Deininger_2011}
+  Facteurs de normalisation :
+  \begin{enumerate}
+  \item Total ion count (TIC) : somme des intensités du spectre
+  \item Intensité d'une espèce de référence
+  \item Médiane
+  \end{enumerate}
+
+  \vspace{0.2cm}
+
+  Généralement, utilisation du \textbf{TIC}: compense les différences de mesure entre deux spectres
 \end{frame}
+
+
+\begin{frame}{TIC: problème}
+  Variation d'intensité de pics entre deux spectres $\Rightarrow$ facteurs TIC différents
+  
+  \begin{figure}[ht]
+    \centering
+    \includegraphics<1>[width=0.7\textwidth]{fig/normalization1}%
+    \includegraphics<2>[width=0.7\textwidth]{fig/normalization2}%
+    \includegraphics<3>[width=0.7\textwidth]{fig/normalization3}%
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}{TIC: problème}
+
+  \underline{Exemple:} intensité très élevée du pic d'insuline dans le pancréas de souris \cite{Deininger_2011}.
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig/normalization_defect}
+    \caption{}
+    \label{fig:normalization_defect}
+  \end{figure}
+
+\end{frame}
+
+
+\begin{frame}{Selective Ion Count}
+
+  \textbf{Idée :} enlever la contribution des pics dans le facteur de normalisation.
+
+  \textbf{Calcul :} SIC = TIC - $\sum I_{\text{pics}}$
+
+  \vspace{0.4cm}
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics<1>[width=0.7\textwidth]{fig/normalization2}%
+    \includegraphics<2>[width=0.7\textwidth]{fig/normalization_sic1}%
+    \includegraphics<3>[width=0.7\textwidth]{fig/normalization_sic2}%
+    \includegraphics<4>[width=0.7\textwidth]{fig/normalization_sic3}%
+    \caption{}
+    \label{fig:normalization_sic1}
+  \end{figure}
+
+
+\end{frame}
+
+\section{Correspondances entre les coupes MALDI et IRM}
+\begin{frame}{Correspondances entre les coupes}
+
+  Deux approches :
+  \begin{itemize}
+  \item \textbf{manuelle}: à partir des métadonnées (espace inter-coupes, numéros de coupes)
+  \item \textbf{automatique}: à partir de la forme du grain dans les coupes
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Approche automatique}
+  \textbf{Idée :} associer les coupes où l'aire du grain est similaire en IRM et en MALDI.
+
+  \textbf{Métrique :} aire normalisée par rapport à l'aire maximale.
+
+  \textbf{Méthode :} Dynamic Time Warping (DTW): aligne deux séries en minimisant la somme des différences de la métrique.
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics<1>[width=0.6\textwidth]{fig/correspondances1}%
+    \includegraphics<2>[width=0.6\textwidth]{fig/correspondances2}%
+    \includegraphics<3>[width=0.6\textwidth]{fig/correspondances3}
+    \caption{}
+    \label{fig:correspondances1}
+  \end{figure}
+
+\end{frame}
+
+
+\begin{frame}{Approche automatique : problème}
+  Alignement \textbf{non-linéaire}: peut conduire à des compressions ou des expansions des coupes.
+
+  
+  En pratique, on opte pour une mise en \textbf{correspondance manuelle}.
+  
+\end{frame}
+
+\section{Recalage 3D}
+
+
+\begin{frame}{Recalage}
+  Deux images 3D non alignées.
+
+  \begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics<1>[width=0.65\textwidth]{fig/3D_density_aligned_manual0000}%
+    \includegraphics<2>[width=0.65\textwidth]{fig/3D_density_aligned_manual0003}%
+    \includegraphics<3>[width=0.65\textwidth]{fig/3D_density_aligned_manual0006}%
+    \includegraphics<4>[width=0.65\textwidth]{fig/3D_density_aligned_manual0009}
+  \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics<1>[width=0.65\textwidth]{fig/3D_segmentation0000}%
+    \includegraphics<2>[width=0.65\textwidth]{fig/3D_segmentation0003}%
+    \includegraphics<3>[width=0.65\textwidth]{fig/3D_segmentation0006}%
+    \includegraphics<4>[width=0.65\textwidth]{fig/3D_segmentation0009}
+  \end{subfigure}%
+\end{figure}
+
+Images MALDI avec des orientations non-homogènes.
+
+$\Rightarrow$ Recalage \textbf{rigide entre coupes 2D} puis recalage \textbf{non-rigide en 3D}.
+
+\end{frame}
+
+
+\begin{frame}{Problèmes}
+  \begin{enumerate}
+  \item Différences d'\textbf{intensités} dans certaines parties du grain
+  \item Différences d'\textbf{orientation}
+  \end{enumerate}
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.65\textwidth]{fig/mri_slice6.png}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.65\textwidth]{fig/maldi_slice6}
+    \end{subfigure}%
+
+  \end{figure}
+
+  \onslide<2->{
+  $\Rightarrow$ Difficile de choisir des \textbf{paramètres appropriés} pour recaler l'ensemble des coupes.
+  }
+\end{frame}
+
+\begin{frame}{Recalage robuste}
+
+  Abstraction des intensités : \textbf{transformée en distance}.
+
+  \alert{Transformée en distance} : on associe à chaque pixel sa distance au bord de l'objet.
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics<1>[width=0.65\textwidth]{fig/mri_slice6.png}%
+      \includegraphics<2>[width=0.65\textwidth]{fig/mri_slice6_dt.png}
+      \caption{}
+      \label{subfig:mri_slice6_dt.png}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics<1>[width=0.65\textwidth]{fig/maldi_slice6.png}%
+      \includegraphics<2>[width=0.65\textwidth]{fig/maldi_slice6_dt.png}
+      \caption{}
+      \label{subfig:maldi_slice6_dt.png}
+    \end{subfigure}%
+  \end{figure}
+
+  
+\end{frame}
+
+\begin{frame}{Recalage robuste}
+  Abstraction des différences d'orientation : recalage \textbf{exhaustif}, suivi du recalage habituel.
+
+  \alert{Recalage exhaustif} : paramètres de transformation \textbf{prédéfinis} $\Rightarrow$ évite de converger vers un \textbf{minimum local}.
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.4\textwidth]{fig/exhaustive_registration}
+    \caption{}
+    \label{fig:exhaustive_registration}
+  \end{figure}
+
+  
+\end{frame}
+
+\begin{frame}{Résultats}
+
+  Recalage exhaustif \textbf{(c)} sans ou \textbf{(d)} avec transformée en distance.
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.65\textwidth]{fig/mri_slice6}
+      \caption{}
+      \label{subfig:mri_slice6}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.7\textwidth]{fig/maldi_slice6}
+      \caption{}
+      \label{subfig:maldi_slice6}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.65\textwidth]{fig/registration_overlay_slice6.png}
+      \caption{}
+      \label{subfig:}
+    \end{subfigure}
+    \vspace{-0.2cm}
+    \begin{flushright}
+      \begin{subfigure}[t]{0.33\textwidth}
+        \centering
+        \includegraphics[width=0.65\textwidth]{fig/registration_overlay_slice6_dt}
+        \caption{}
+        \label{subfig:registration_overlay_slice6}
+      \end{subfigure}%
+
+    \end{flushright}
+  \end{figure}
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+\section{Visualisation}
+
+
+\begin{frame}{Visualisation 3D}
+  Outil pour la visualisation de fichiers imzML 3D:
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics<1>[width=0.95\textwidth]{fig/visu}%
+    \includegraphics<2>[width=0.95\textwidth]{fig/visu2}%
+    \includegraphics<3>[width=0.95\textwidth]{fig/visu3}
+    \caption{}
+    \label{fig:visu}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}{Visualisation 3D}
+  
+  Rendu volumique :
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/visu_3d.png}
+    \caption{}
+    \label{fig:visu_3d.png}
+  \end{figure}
+
+\end{frame}
+
+
+
+
+\section{Bilan}
+
+\begin{frame}{Bilan}
+
+  Chaîne de traitement \textbf{ajustée} pour le \textbf{traitement automatique} d'images 3D.
+
+  Résultats \textbf{préliminaires} au stade 250 DJ: confirment les \textbf{résultats précédents}.
+
+  \vspace{0.4cm}
+
+  Perspectives:
+  \begin{itemize}
+  \item Recalage \textbf{3D non-rigide}.
+  \item Mise en corrélation sur l'ensemble des stades.
+  \end{itemize}
+
+
+\end{frame}
+
+
+
+
+\section{Papier}
+
+\begin{frame}{Papier soumis}
+  
+  Remarques du relecteur de \textit{Bioinformatics} :
+  \begin{enumerate}
+  \item Application à un seul jeu de données $\Rightarrow$ \textbf{généralisable} ?
+  \item \textbf{Validation} de la mise en corrélation.
+  \end{enumerate}
+
+
+\end{frame}
+
+\begin{frame}{Généralisation}
+  Les méthodes ont été \textbf{validées} par comparaison aux méthodes de l'état de l'art.
+
+  Elles peuvent être appliquées sous réserve de satisfaire des \textit{a priori} assez larges.
+
+  \vspace{0.3cm}
+
+  Metaspace accepte depuis le 06/10 des \textbf{jeux de données imzML}.
+\end{frame}
+
+\begin{frame}{Mise en corrélation}
+  NMF appliquée aux images MALDI.
+  
+  \textbf{Reconstruction de l'image IRM} par NMF:
+  \begin{figure}[ht]
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.65\textwidth]{fig/mri_recital}
+      \caption{Image originale}
+      \label{subfig:}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.65\textwidth]{fig/mri_recital_reconstructed}
+      \caption{Reconstruction}
+      \label{subfig:mri_recital_reconstructed}
+    \end{subfigure}%
+  \end{figure}
+
+  \textbf{Différence moyenne d'intensité} = 20.7 $\pm$ 46.4
+\end{frame}
+
+\begin{frame}{Resoumission}
+  Journaux potentiels :
+  \begin{itemize}
+  \item \textit{BMC Bioinformatics} : \textbf{communauté} appropriée, problème du \textbf{prix} de l'open access.
+  \item \textit{Analytical Chemistry} : \textbf{travaux précédents} sur la fusion d'images MS.
+  \end{itemize}
+\end{frame}
+
+
+
 
 
 

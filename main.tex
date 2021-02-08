@@ -105,23 +105,25 @@
   Traitement des images :
   \begin{itemize}
   \item IRM : ajustement de fonctions exponentielles par \textbf{moindres carrés}.
-  \item MALDI : normalisation \textbf{SIC} (Selective Ion Count).
+  \item<2-> MALDI : normalisation \textbf{SIC} (Selective Ion Count).
   \end{itemize}
-  
-  \textbf{Calcul :} SIC = TIC - $\sum I_{\text{pics}}$
 
-  \vspace{0.4cm}
+  \visible<2-> {
+    \textbf{Calcul :} SIC = TIC - $\sum I_{\text{pics}}$
 
-  \begin{figure}[ht]
-    \centering
-    \includegraphics<1>[width=0.7\textwidth]{fig/normalization2}%
-    \includegraphics<2>[width=0.7\textwidth]{fig/normalization3}%
-    \includegraphics<3>[width=0.7\textwidth]{fig/normalization_sic1}%
-    \includegraphics<4>[width=0.7\textwidth]{fig/normalization_sic2}%
-    \includegraphics<5>[width=0.7\textwidth]{fig/normalization_sic3}%
-    \caption{}
-    \label{fig:normalization_sic1}
-  \end{figure}
+    \vspace{0.4cm}
+
+    \begin{figure}[ht]
+      \centering
+      \includegraphics<1>[width=0.7\textwidth]{fig/normalization2}%
+      \includegraphics<2>[width=0.7\textwidth]{fig/normalization3}%
+      \includegraphics<3>[width=0.7\textwidth]{fig/normalization_sic1}%
+      \includegraphics<4>[width=0.7\textwidth]{fig/normalization_sic2}%
+      \includegraphics<5>[width=0.7\textwidth]{fig/normalization_sic3}%
+      \caption{}
+      \label{fig:normalization_sic1}
+    \end{figure}
+  }
 \end{frame}
 
 
@@ -130,27 +132,30 @@
 \begin{frame}{Chaîne de traitement 3D : rappels}
   \begin{itemize}
   \item Détermination des \textbf{correspondances} entre coupes en exploitant les métadonnées.
-  \item Recalage 3D affine utilisant la \textbf{transformée en distance}.
+  \item<2-> Recalage 3D affine utilisant la \textbf{transformée en distance}.
   \end{itemize}
-  \alert{Transformée en distance} : on associe à chaque pixel sa distance au bord de l'objet.
 
-  \begin{figure}[ht]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
+  \visible<2-> {
+    \alert{Transformée en distance} : on associe à chaque pixel sa distance au bord de l'objet.
+
+    \begin{figure}[ht]
       \centering
-      \includegraphics<1>[width=0.65\textwidth]{fig/mri_slice6.png}%
-      \includegraphics<2>[width=0.65\textwidth]{fig/mri_slice6_dt.png}
-      \caption{}
-      \label{subfig:mri_slice6_dt.png}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics<1>[width=0.65\textwidth]{fig/maldi_slice6.png}%
-      \includegraphics<2>[width=0.65\textwidth]{fig/maldi_slice6_dt.png}
-      \caption{}
-      \label{subfig:maldi_slice6_dt.png}
-    \end{subfigure}%
-  \end{figure}
+      \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics<1>[width=0.65\textwidth]{fig/mri_slice6.png}%
+        \includegraphics<2>[width=0.65\textwidth]{fig/mri_slice6_dt.png}
+        \caption{}
+        \label{subfig:mri_slice6_dt.png}
+      \end{subfigure}%
+      \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics<1>[width=0.65\textwidth]{fig/maldi_slice6.png}%
+        \includegraphics<2>[width=0.65\textwidth]{fig/maldi_slice6_dt.png}
+        \caption{}
+        \label{subfig:maldi_slice6_dt.png}
+      \end{subfigure}%
+    \end{figure}
+  }
 \end{frame}
 
 \begin{frame}{Chaîne de traitement 3D : rappels}
@@ -172,18 +177,20 @@
 
 \begin{frame}{Chaîne de traitement 3D : dernières avancées}
   \begin{enumerate}
-  \item<2-> Recalage : méthodes variationnelles.
-  \item<3-> Analyse statistique : nouveaux outils.
+  \item<2-> Recalage : méthodes \textbf{variationnelles}.
+  \item<3-> Analyse statistique : \textbf{nouveaux outils}.
   \end{enumerate}
 
   \begin{figure}[ht]
     \centering
-    \includegraphics<1>[width=0.8\textwidth]{fig/workflow3D_0}%
+    \includegraphics<1>[width=0.8\textwidth]{fig/workflow3D_0bis}%
     \includegraphics<2>[width=0.8\textwidth]{fig/workflow3D_5}%
     \includegraphics<3>[width=0.8\textwidth]{fig/workflow3D_6}%
   \end{figure}
 
-  $\Rightarrow$ Résultats sur variété \textbf{Bobwhite}.
+  \visible<3-> {
+    $\Rightarrow$ Résultats sur variété \textbf{Bobwhite}.
+  }
 \end{frame}
 
 
@@ -217,12 +224,195 @@
   Recalage sur la \textbf{transformée en distance} des images originales.
 
   L'objet est modifié au cours du recalage $\Rightarrow$ les valeurs de transformée en distance sont \textbf{mises à jour}.
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/variational_dt}
+      \caption{Image mobile}
+      \label{subfig:variational_dt}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/variational_dt3}
+      \caption{Après déformation, sans MAJ}
+      \label{subfig:variational_dt2}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/variational_dt2}
+      \caption{Après déformation, avec MAJ}
+      \label{subfig:variational_dt3}
+    \end{subfigure}%
+
+  \end{figure}
 \end{frame}
+
+\begin{frame}{Structures sans correspondance}
+  Présence de \textbf{structures sans correspondance}.
+
+  \alert{Structures sans correspondances} : régions d'une image -- fixe ou mobile -- absentes de l'autre image.
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics<1>[width=0.6\textwidth]{fig/overlay_dt_variational}%
+      \includegraphics<2>[width=0.6\textwidth]{fig/overlay_dt_variational_circled}
+      \caption{}
+      \label{subfig:overlay_dt_variational}
+    \end{subfigure}%
+        \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics<1>[width=0.6\textwidth]{fig/overlay_dt_variational2}%
+      \includegraphics<2>[width=0.6\textwidth]{fig/overlay_dt_variational2_circled}
+      \caption{}
+      \label{subfig:overlay_dt_variational2}
+    \end{subfigure}%
+  \end{figure}
+
+  \vspace{-0.5cm}
+
+\end{frame}
+
+\begin{frame}{Recalage avec structures sans correspondance}
+
+
+  Dans le domaine médical : recalage en présence de \textbf{lésions} ou de \textbf{tumeurs}.
+
+  Recalage tenant compte des structures sans correspondance (\textbf{c}) \cite{Parisot_2012} :
+  \begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.33\textwidth}
+    \centering \includegraphics[width=0.9\textwidth]{fig/parisot_0}
+    \caption{}
+    \label{subfig:parisot_0}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.33\textwidth}
+    \centering \includegraphics[width=0.9\textwidth]{fig/parisot_1}
+    \caption{}
+    \label{subfig:parisot_1}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.33\textwidth}
+    \centering \includegraphics[width=0.9\textwidth]{fig/parisot_2}
+    \caption{}
+    \label{subfig:parisot_2}
+  \end{subfigure}%
+\end{figure}
+  
+\end{frame}
+
+\begin{frame}{Recalage avec structures sans correspondance}
+  \textbf{Principe :} verrouiller la position des pixels qui appartiennent à une structure sans correspondance.
+
+  \textbf{Idée :} pondération de la métrique de similarité (\textit{via }\textbf{segmentation})
+  
+  $\Rightarrow$ Poids = 0 dans une structure sans correspondance et 1 sinon.
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/slice_overlay_affine}
+      \caption{}
+      \label{subfig:slice_overlay_affine}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/slice_overlay_0weight}
+      \caption{}
+      \label{subfig:slice_overlay_0weight}
+    \end{subfigure}%
+
+  \end{figure}
+
+  \textbf{Problème :} pixels verrouillés.
+
+\end{frame}
+
+
+\begin{frame}{Recalage avec structures sans correspondance}
+  Grain de blé : la déformation doit être \textbf{plus importante}
+  dans les zones sans correspondance.
+
+  \textbf{Travaux en cours :}
+
+  \begin{enumerate}
+  \item Identification des zones sans correspondance : utilisation du
+    \textbf{champ de déformation}.
+  \item Pondération de la métrique de similarité avec un \textbf{poids
+      $> 1$} dans les zones sans correspondance.
+  \end{enumerate}
+
+
+\end{frame}
+
+\begin{frame}{Champ de déformation}
+
+  \textbf{Déterminant jacobien (c):} quantité reflétant les variations de volume du champ de vecteurs :
+  \begin{itemize}
+  \item $>1$ si agrandissement local (clair)
+  \item $<1$ si rétrécissement local (sombre)
+  \end{itemize}
+
+  
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/slice_overlay_affine}
+      \caption{}
+      \label{subfig:slice_overlay_affine}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/field_variational}
+      \caption{}
+      \label{subfig:field_variational}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/jacobien}
+      \caption{}
+      \label{subfig:jacobien}
+    \end{subfigure}%
+
+  \end{figure}
+  \vspace{-0.3cm}
+  $\Rightarrow$ structures sans correspondance = structures où le déterminant jacobien est $< 1$.
+
+\end{frame}
+
+\begin{frame}{Recalage sans correspondance}
+
+  Pondération avec des \textbf{valeurs supérieures à 1} dans les zones sans correspondance.
+  
+  $\Rightarrow$ favorise leur déformation.
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/slice_overlay_affine}
+      \caption{}
+      \label{subfig:slice_overlay_affine}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/slice_overlay_ssdweight.png}
+      \caption{}
+      \label{subfig:field_variational}
+    \end{subfigure}%
+  \end{figure}
+\end{frame}
+
+
 
 
 \section{Analyse statistique}
 
-\begin{frame}{Fusion}
+\begin{frame}{Bruit}
 
   \textbf{Analyse statistique :} identifier les molécules dans les images MS dont la distribution corrèle avec celle de l'eau en IRM \vspace{0.2cm}.
 
@@ -488,6 +678,89 @@
   \end{figure}
 
 \end{frame}
+
+\section{Résultats sur blé Bobwhite}
+
+\begin{frame}{Données}
+  IRM :
+  \begin{itemize}
+  \item \textbf{Six stades} : 250, 350, 420, 500, 500, 580, 650DJ.
+  \item \textbf{Six réplicats} par stade, en moyenne 14 coupes par stade.
+  \end{itemize}
+
+
+  Imagerie MS :
+  \begin{itemize}
+  \item  \textbf{Trois stades} : 250, 500 et 650 DJ
+  \item  \textbf{Deux réplicats} par stade, en moyenne \textbf{11 coupes} par stade.
+  \item  \textbf{Deux enzymes} utilisées : xylanase et lichenase.
+  \end{itemize}
+
+Ici : \textbf{un seul grain} étudié par stade.
+
+\end{frame}
+
+\begin{frame}{Traitement des images IRM}
+
+  \begin{enumerate}
+  \item \textbf{Débruitage}
+  \item Ajustement d'une fonction mono-exponentielle par moindres carrés $\Rightarrow$ \textbf{image en $T_2^*$}.
+  \item \textbf{Image en densité} $\Rightarrow$ premier écho.
+  \item \textbf{Segmentation} : plus grande composante connexe
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Traitement des images MS}
+  \begin{enumerate}
+  \item \textbf{Sélection de pics} basée sur la prominence locale
+  \item \textbf{Réalignement} des pics
+  \item \textbf{Segmentation} par la mesure de cohérence spatiale
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Clustering des images MS}
+  Stade 250 DJ
+  \begin{itemize}
+  \item \textbf{Xylanase :}
+    \begin{itemize}
+    \item \textbf{Haut du grain (brosse) }: arabinoxylanes (AX) avec un degré de polymérisation (DP) variable, proche de 10, sans modification.
+    \item \textbf{Milieu--bas du grain (vers embryon)}
+      
+      Sur le pourtour du grain : AX avec faibles DP (5--10), avec acétylations (de 1 à 3).
+      
+      Dans le milieu du grain (proche cavité) : AX avec DP de 9 à 11,
+      sans modification.
+      
+      Embryon: AX 4--9 sans modification.
+    \end{itemize}
+  \item \textbf{Lichenase :} BG DP 3-4-5 (+6) répartis uniformément
+    dans le grain, quelle que soit la hauteur.
+
+  \end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{Clustering des images MS}
+  Stades 500 et 650 DJ
+  \begin{itemize}
+  \item \textbf{Xylanase :} AX de DP 6 à 10, sans modification chimique, répartis uniformément dans le grain.
+  \item \textbf{Lichenase :} BG DP 3-4-5  (moins fréquemment BG 6 pour les deux stades, et BG 2 pour le stade 650DJ).
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Recalage}
+
+\end{frame}
+
+\begin{frame}{Analyse statistique}
+
+\end{frame}
+
+
 
 
 

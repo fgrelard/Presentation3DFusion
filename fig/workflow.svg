@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="288.409mm"
-   height="165.56567mm"
-   viewBox="0 0 288.40899 165.56568"
+   width="290.65765mm"
+   height="141.31367mm"
+   viewBox="0 0 290.65765 141.31368"
    version="1.1"
    id="svg1522"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
@@ -171,6 +171,13 @@
          transform="matrix(-0.4,0,0,-0.4,-4,0)"
          inkscape:connector-curvature="0" />
     </marker>
+    <clipPath
+       id="clip187">
+      <path
+         inkscape:connector-curvature="0"
+         d="M 673,0 H 821.28906 V 400.57422 H 673 Z m 0,0"
+         id="path9898" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -179,11 +186,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.25"
-     inkscape:cx="-481.59525"
-     inkscape:cy="459.89222"
+     inkscape:zoom="0.5"
+     inkscape:cx="874.35488"
+     inkscape:cy="-14.762833"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer10"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1007"
@@ -194,7 +201,8 @@
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
-     fit-margin-bottom="0" />
+     fit-margin-bottom="0"
+     units="pt" />
   <metadata
      id="metadata1519">
     <rdf:RDF>
@@ -212,7 +220,7 @@
      id="layer5"
      inkscape:label="first step"
      style="display:inline"
-     transform="translate(10.314141,-16.50709)">
+     transform="translate(10.314141,-12.990923)">
     <image
        width="29.944241"
        height="27.186218"
@@ -743,7 +751,7 @@
      id="layer6"
      inkscape:label="second step"
      style="display:inline"
-     transform="translate(10.314141,-16.50709)">
+     transform="translate(10.314141,-12.990923)">
     <rect
        y="132.8353"
        x="106.13982"
@@ -783,7 +791,7 @@
      id="layer9"
      inkscape:label="second step bis"
      style="display:inline"
-     transform="translate(5.4385701e-7,-3.1749978)">
+     transform="translate(7.2514268e-7,0.3411689)">
     <path
        transform="translate(10.314141,-13.332091)"
        inkscape:connector-curvature="0"
@@ -814,7 +822,7 @@
      id="layer7"
      inkscape:label="third step"
      style="display:inline"
-     transform="translate(10.314141,-16.50709)">
+     transform="translate(10.314141,-12.990923)">
     <path
        id="path5535"
        style="fill:none;stroke:#000000;stroke-width:2.86500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5540)"
@@ -852,7 +860,7 @@
      id="layer8"
      inkscape:label="fourth step"
      style="display:inline;opacity:0.95999995"
-     transform="translate(10.314141,-16.50709)">
+     transform="translate(10.314141,-12.990923)">
     <image
        width="29.944242"
        height="27.186218"
@@ -1339,7 +1347,8 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="next_frame"
-     style="display:none">
+     style="display:none"
+     transform="translate(1.8128567e-7,3.5161667)">
     <rect
        style="display:inline;opacity:1;vector-effect:none;fill:#ffb88c;fill-opacity:0.38613862;stroke:#ffb200;stroke-width:0.52999997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect1008"
@@ -1352,7 +1361,8 @@
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="next_frame1"
-     style="display:none">
+     style="display:none"
+     transform="translate(1.8128567e-7,3.5161667)">
     <rect
        style="display:inline;opacity:1;vector-effect:none;fill:#ffb88c;fill-opacity:0.38613862;stroke:#ffb200;stroke-width:0.53009516;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect1065"
@@ -1365,7 +1375,8 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="next_frame2"
-     style="display:none">
+     style="display:none"
+     transform="translate(1.8128567e-7,3.5161667)">
     <rect
        y="34.570988"
        x="170.37891"
@@ -1378,7 +1389,8 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="next_frame3"
-     style="display:none">
+     style="display:none"
+     transform="translate(1.8128567e-7,3.5161667)">
     <path
        style="fill:none;stroke:#000000;stroke-width:3.7650001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Sstart);marker-end:url(#marker1458)"
        d="M 141.55208,141.74 H 276.22499"
@@ -1403,5 +1415,23 @@
        width="166.75261"
        id="rect1920"
        style="display:inline;opacity:1;vector-effect:none;fill:#ffb88c;fill-opacity:0.38613862;stroke:#ffb200;stroke-width:0.49042714;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer10"
+     inkscape:label="next_frame4"
+     transform="translate(1.8128567e-7,3.5161667)"
+     style="display:none">
+    <g
+       transform="matrix(0.35277777,0,0,0.35277777,0.9260473,-3.5161667)"
+       style="clip-rule:nonzero;display:inline"
+       clip-path="url(#clip187)"
+       id="g10067">
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#ffb000;stroke-width:1.50263202;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
+         d="M 674.21484,0.75 H 820.53516 V 399.82422 H 674.21484 Z m 0,0"
+         id="path10065" />
+    </g>
   </g>
 </svg>

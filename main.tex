@@ -27,7 +27,7 @@
 % \bibliography{main}
 \usepackage[]{algorithm2e}
 \usefonttheme[onlymath]{serif} \usepackage{amsmath}
-\usepackage{subcaption} \usepackage{appendixnumberbeamer}
+\usepackage{appendixnumberbeamer}
 \usepackage{tabularx, booktabs} \usepackage{multirow}
 \usepackage{multicol} \usepackage{array} \usepackage{pbox}
 \usepackage{mathtools}
@@ -39,7 +39,8 @@
 \captionsetup{font=scriptsize,labelfont=scriptsize}
 % \addtobeamertemplate{background canvas}{\transfade[duration=0.05]}{}
 
-
+\usepackage[skip=3pt]{subcaption}
+\setlength{\belowcaptionskip}{2pt}
 \title{Fusion d'images IRM et MALDI en 3D}
 \subtitle{Dernières avancées}
 
@@ -79,7 +80,7 @@
 % Ombre aux blocks
 \setbeamertemplate{caption}{\insertcaption}
 
-\date{15 octobre 2020} % set the Date
+\date{08 février 2020} % set the Date
 % \renewcommand{\insertnavigation}[1]{}
 
 % \AtBeginSection[]{
@@ -99,24 +100,90 @@
 \end{frame}
 
 
-\begin{frame}{Chaîne de traitement 3D}
+\begin{frame}{Chaîne de traitement 3D : rappels}
+
+  Traitement des images :
+  \begin{itemize}
+  \item IRM : ajustement de fonctions exponentielles par \textbf{moindres carrés}.
+  \item MALDI : normalisation \textbf{SIC} (Selective Ion Count).
+  \end{itemize}
+  
+  \textbf{Calcul :} SIC = TIC - $\sum I_{\text{pics}}$
+
+  \vspace{0.4cm}
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics<1>[width=0.7\textwidth]{fig/normalization2}%
+    \includegraphics<2>[width=0.7\textwidth]{fig/normalization3}%
+    \includegraphics<3>[width=0.7\textwidth]{fig/normalization_sic1}%
+    \includegraphics<4>[width=0.7\textwidth]{fig/normalization_sic2}%
+    \includegraphics<5>[width=0.7\textwidth]{fig/normalization_sic3}%
+    \caption{}
+    \label{fig:normalization_sic1}
+  \end{figure}
+\end{frame}
 
 
+
+
+\begin{frame}{Chaîne de traitement 3D : rappels}
+  \begin{itemize}
+  \item Détermination des \textbf{correspondances} entre coupes en exploitant les métadonnées.
+  \item Recalage 3D affine utilisant la \textbf{transformée en distance}.
+  \end{itemize}
+  \alert{Transformée en distance} : on associe à chaque pixel sa distance au bord de l'objet.
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics<1>[width=0.65\textwidth]{fig/mri_slice6.png}%
+      \includegraphics<2>[width=0.65\textwidth]{fig/mri_slice6_dt.png}
+      \caption{}
+      \label{subfig:mri_slice6_dt.png}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics<1>[width=0.65\textwidth]{fig/maldi_slice6.png}%
+      \includegraphics<2>[width=0.65\textwidth]{fig/maldi_slice6_dt.png}
+      \caption{}
+      \label{subfig:maldi_slice6_dt.png}
+    \end{subfigure}%
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Chaîne de traitement 3D : rappels}
+
+  À l'issue du recalage : \textbf{images 3D}.
+
+  Outil de \textbf{visualisation} des images MS 3D.
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/visu}%
+    \caption{}
+    \label{fig:visu}
+  \end{figure}
+
+
+\end{frame}
+
+
+\begin{frame}{Chaîne de traitement 3D : dernières avancées}
   \begin{enumerate}
-  \item<2-> IRM: ajustement de \textbf{fonctions exponentielles}
-  \item<3-> MALDI: \textbf{normalisation} des images
-  \item<4-> Détermination des \textbf{correspondances} et \textbf{recalage 3D}
-  \item<5-> \textbf{Visualisation} d'images MS en 3D
+  \item<2-> Recalage : méthodes variationnelles.
+  \item<3-> Analyse statistique : nouveaux outils.
   \end{enumerate}
 
   \begin{figure}[ht]
     \centering
     \includegraphics<1>[width=0.8\textwidth]{fig/workflow3D_0}%
-    \includegraphics<2>[width=0.8\textwidth]{fig/workflow3D_1}%
-    \includegraphics<3>[width=0.8\textwidth]{fig/workflow3D_2}%
-    \includegraphics<4>[width=0.8\textwidth]{fig/workflow3D_3}%
-    \includegraphics<5>[width=0.8\textwidth]{fig/workflow3D_4}%
+    \includegraphics<2>[width=0.8\textwidth]{fig/workflow3D_5}%
+    \includegraphics<3>[width=0.8\textwidth]{fig/workflow3D_6}%
   \end{figure}
+
+  $\Rightarrow$ Résultats sur variété \textbf{Bobwhite}.
 \end{frame}
 
 
@@ -142,112 +209,505 @@
   \endgroup
 }
 
-\section{Ajustement de fonctions exponentielles}
-\begin{frame}{Ajustement de fonctions exponentielles}
+\section{Recalage}
+
+\begin{frame}{Recalage variationnel}
+  Adaptation de la méthode de \cite{Modersitzki09} pour images 3D.
+
+  Recalage sur la \textbf{transformée en distance} des images originales.
+
+  L'objet est modifié au cours du recalage $\Rightarrow$ les valeurs de transformée en distance sont \textbf{mises à jour}.
+\end{frame}
+
+
+\section{Analyse statistique}
+
+\begin{frame}{Fusion}
+
+  \textbf{Analyse statistique :} identifier les molécules dans les images MS dont la distribution corrèle avec celle de l'eau en IRM \vspace{0.2cm}.
+
+  \textbf{Méthode employée :} corrélations trouvées \textbf{pixel à pixel} dans un espace réduit.
+
+  \textbf{Problème :} images bruitées.
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/nmf_components_0}
+      \caption{}
+      \label{subfig:cluster0}
+    \end{subfigure}%
+     \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/nmf_components_2_closeup}
+      \caption{}
+      \label{subfig:cluster2}
+    \end{subfigure}%
+     \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.90\textwidth]{fig/nmf_components_2_closeup2}
+      \caption{}
+      \label{subfig:cluster1}
+    \end{subfigure}%
+  \end{figure}
+
+\end{frame}
+
+
+\begin{frame}{Corrélations spatiales floues}
+  \textbf{Idée :} considérer le \textbf{voisinage} du pixel pour s'abstraire du bruit
+
+  $\Rightarrow$ méthodes \textbf{floues} \vspace{0.4cm}
+
+  Papier de \cite{Alexandrov11} :
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig/article_front}
+    \caption{}
+    \label{fig:article_front}
+  \end{figure}
   
-  \textbf{Précédemment}: trop peu d'échos $\Rightarrow$ surajustement, décroissance incomplète
-
-  \begin{figure}[ht]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.8\textwidth]{fig/wrongfit_overfitting}
-      \caption{Surajustement}
-      \label{subfig:wrongfit_overfitting}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.8\textwidth]{fig/wrongfit_missing}
-      \caption{Décroissance incomplète}
-      \label{subfig:wrongfit_missing}
-    \end{subfigure}%
-
-  \end{figure}
-
-
-  Nouvelles images: \textbf{plus d'échos} (8 $\rightarrow$ 16)
-
-  \underline{Objectif :} modélisation \textbf{plus précise} de la décroissance du signal  
 \end{frame}
 
-\begin{frame}{Ajustement par morceaux}
-  Modélisation par une \textbf{somme de fonctions exponentielles} (bi-exponentielle)
+\begin{frame}{Papier}
+  \textbf{Contexte :} clustering de spectres dans une image MS.
 
-  Ajustement de \textbf{deux droites} sur le logarithme des intensités \textbf{par morceaux} :
-
+  Exemple sur images de cerveau de rat:
   \begin{figure}[ht]
     \centering
-    \begin{subfigure}[t]{0.5\textwidth}
+    \begin{subfigure}[t]{0.33\textwidth}
       \centering
-      \includegraphics<1-3>[width=0.95\textwidth]{fig/biexponential}%
-      \includegraphics<4>[width=0.95\textwidth]{fig/biexponential_fitted}%
-      \caption{Intensités}
-      \label{subfig:}
+      \includegraphics[width=0.9\textwidth]{fig/clustering_optical.pdf}
+      \caption{}
+      \label{subfig:clustering_optical.pdf}
     \end{subfigure}%
-    \onslide<2->
-    \begin{subfigure}[t]{0.5\textwidth}
+        \begin{subfigure}[t]{0.33\textwidth}
       \centering
-      \includegraphics<2>[width=0.95\textwidth]{fig/biexponential_log}%
-      \includegraphics<3->[width=0.95\textwidth]{fig/biexponential_log_piecewise}
-      \caption{Log des intensités}
-      \label{subfig:}
+      \includegraphics[width=0.9\textwidth]{fig/clustering_theoretical.pdf}
+      \caption{}
+      \label{subfig:clustering_th}
+    \end{subfigure}%
+        \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/clustering_kmeans.pdf}
+      \caption{}
+      \label{subfig:clustering_kmeans}
     \end{subfigure}%
   \end{figure}
 
+  $\Rightarrow$ Clustering classique insuffisant (cf. $k$-means, \textbf{(c)}).
+
+  
 \end{frame}
 
-\begin{frame}{Ajustement par morceaux}
-  \textbf{Problème :} profils \textbf{mono-exponentiels} dans la cavité $\Rightarrow$ surajustements
+\begin{frame}{Clustering avec information spatiale}
+
+  \textbf{Idée :} intégrer l'information spatiale des pixels dans un voisinage.
+  
+  \begin{itemize}
+  \item Distance \textbf{``classique''} entre deux spectres : distance euclidienne.
+  \item Distance \textbf{``au voisinage''} entre deux spectres : somme
+    \textbf{pondérée} des distances euclidiennes entre chaque paire de spectre dans un \textbf{voisinage}.
+  \end{itemize}
+
+
 
   \begin{figure}[ht]
     \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics<1>[width=0.9\textwidth]{fig/piecewise}%
-      \includegraphics<2->[width=0.9\textwidth]{fig/piecewise_circled}
-      \caption{Densité}
-      \label{subfig:piecewise}
-    \end{subfigure}%
-    \onslide<3>
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.9\textwidth]{fig/piecewise_defect}
-      \caption{Surajustement}
-      \label{subfig:piecewise_defect}
-    \end{subfigure}%
-
+    \includegraphics[width=0.45\textwidth]{fig/distance_pixels}
   \end{figure}
 
 \end{frame}
 
-\begin{frame}{Ajustement de fonction mono-exponentielle}
+% \begin{frame}{Représentation des données}
+  
+%   \textbf{Problème :} pour $n$ spectres: matrice de distances de taille $n^2$.
 
-  Deux approches:
+%   \textbf{Proposition :} représentation d'un spectre sous forme de vecteur comprenant son voisinage de rayon $r$, pondéré par la fonction $\alpha$:
+%   \[
+%     \Phi(s) = \left[ \alpha_{-r,-r} s(x-r, y-r),\ \dots,\ \alpha_{0,0} s(x, y),\ \dots,\ \alpha_{r,r} s(x+r, y+r) \right]
+%   \]
+
+%   $\Rightarrow$ la distance euclidienne entre deux vecteurs $\Phi(s_1)$ et $\Phi(s_2)$ correspond à la distance \textbf{``au voisinage''}.
+
+%   \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{fig/spectrum_projection}
+%   \end{figure}
+
+% \end{frame}
+
+\begin{frame}{Pondération}
+  Fonction de pondération : \textbf{fonction gaussienne}
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.35\textwidth]{fig/weights_gauss}
+  \end{figure}
+
+  \textbf{Structure de données :} on associe, à chaque point de l'image, son spectre et les spectres voisins pondérés.
+
+\end{frame}
+
+
+\begin{frame}{Algorithme}
+  
+
+  \textbf{Idée :} clustering en considérant les spectres et leur voisinage dans un espace réduit
   \begin{enumerate}
-  \item ajustement par \textbf{régression linéaire} sur le logarithme des intensités (avec pondération)
-  \item ajustement par \textbf{moindres carrés} sur les intensités (sans pondération)
+  \item Réduction de dimension des spectres par l'algorithme \textbf{FastMap}
+  \item \textbf{Clustering} par l'algorithme des $k$-moyennes
   \end{enumerate}
 
-  Exemples de pondérations:
+\vspace{0.4cm}  
+
+\textbf{FastMap} \cite{Faloutsos_1995} : transformation des points dans un espace réduit où les \textbf{distances sont préservées}.
+
+
+\end{frame}
+
+\begin{frame}{Importance de la normalisation}
+
+  Facteur d'échelle :
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig/clustering_norm}
+    \caption{}
+    \label{fig:clustering_norm}
+  \end{figure}
+  
+  \vspace{-0.5cm}
+  $\Rightarrow$ distance euclidienne élevée : spectres considérés comme différents.
+
+  Spectres \textbf{normalisés au préalable} : spectres considérés comme similaires.
+
+\end{frame}
+
+
+
+\begin{frame}{Résultats}
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/clustering_optical.pdf}
+      \caption{Image optique}
+      \label{subfig:clustering_optical.pdf}
+    \end{subfigure}%
+        \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/clustering_theoretical.pdf}
+      \caption{Théorique}
+      \label{subfig:clustering_th}
+    \end{subfigure}%
+        \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/clustering_kmeans.pdf}
+      \caption{$k$-means}
+      \label{subfig:clustering_kmeans}
+    \end{subfigure}
+    \begin{flushright}
+      \begin{subfigure}[t]{0.33\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{fig/clustering_sa}
+        \caption{$k$-means flou, gauss.}
+        \label{subfig:clustering_sa}
+      \end{subfigure}%
+      \begin{subfigure}[t]{0.33\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{fig/clustering_sasa}
+        \caption{$k$-means flou, gauss. tronq.}
+        \label{subfig:clustering_sasa}
+      \end{subfigure}%
+
+    \end{flushright}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Résultats sur le grain de blé}
+  \vspace{-0.2cm}
+  Sans normalisation ($k=7$):
 
   \begin{figure}[ht]
     \centering
-    \begin{subfigure}[t]{0.5\textwidth}
+    \begin{subfigure}[t]{0.25\textwidth}
       \centering
-      \includegraphics[width=0.7\textwidth]{fig/poids_sqrt}
-      \caption{Racines carrées des intensités}
-      \label{subfig:poids_sqrt}
+      \includegraphics[width=0.95\textwidth]{fig/peaksel_prominence75_r0_full_colors}
+      \caption{$r=0$}
+      \label{subfig:peaksel_prominence75_r0_full_colors}
     \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
+    \begin{subfigure}[t]{0.25\textwidth}
       \centering
-      \includegraphics[width=0.7\textwidth]{fig/poids_triangle}
-      \caption{Fonction triangulaire}
-      \label{subfig:poids_triangle}
+      \includegraphics[width=0.95\textwidth]{fig/peaksel_prominence75_r1_full_colors}
+      \caption{$r=1$}
+      \label{subfig:peaksel_prominence75_r1_full_colors}
     \end{subfigure}%
+    \begin{subfigure}[t]{0.25\textwidth}
+      \centering
+      \includegraphics[width=0.95\textwidth]{fig/peaksel_prominence75_r2_full_colors}
+      \caption{$r=2$}
+      \label{subfig:peaksel_prominence75_r2_full_colors}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.25\textwidth}
+      \centering
+      \includegraphics[width=0.95\textwidth]{fig/peaksel_prominence75_r3_full_colors}
+      \caption{$r=3$}
+      \label{subfig:peaksel_prominence75_r3_full_colors}
+    \end{subfigure}%
+    \begin{flushleft}
+      \vspace{-0.2cm}
+          Avec normalisation ($k=7$) :
+    \end{flushleft}%
+     \begin{subfigure}[t]{0.25\textwidth}
+      \centering
+      \includegraphics[width=0.95\textwidth]{fig/peaksel_prominence75_r0_full_norm_colors}
+      \caption{$r=0$}
+      \label{subfig:peaksel_prominence75_r0_full_norm_colors}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.25\textwidth}
+      \centering
+      \includegraphics[width=0.95\textwidth]{fig/peaksel_prominence75_r1_full_norm_colors}
+      \caption{$r=1$}
+      \label{subfig:peaksel_prominence75_r1_full_norm_colors}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.25\textwidth}
+      \centering
+      \includegraphics[width=0.95\textwidth]{fig/peaksel_prominence75_r2_full_norm_colors}
+      \caption{$r=2$}
+      \label{subfig:peaksel_prominence75_r2_full_norm_colors}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.25\textwidth}
+      \centering
+      \includegraphics[width=0.95\textwidth]{fig/peaksel_prominence75_r3_full_norm_colors}
+      \caption{$r=3$}
+      \label{subfig:peaksel_prominence75_r3_full_norm_colors}
+    \end{subfigure}
 
   \end{figure}
 
 \end{frame}
+
+
+
+\section{Bilan}
+
+\begin{frame}{Bilan}
+
+  Chaîne de traitement \textbf{ajustée} pour le \textbf{traitement automatique} d'images 3D.
+
+  Résultats \textbf{préliminaires} au stade 250 DJ: confirment les \textbf{résultats précédents}.
+
+  \vspace{0.4cm}
+
+  Perspectives:
+  \begin{itemize}
+  \item Recalage \textbf{3D non-rigide}.
+  \item Mise en corrélation sur l'ensemble des stades.
+  \end{itemize}
+
+
+\end{frame}
+
+
+
+
+\section{Papier}
+
+\begin{frame}{Papier soumis}
+  
+  Remarques du relecteur de \textit{Bioinformatics} :
+  \begin{enumerate}
+  \item Application à un seul jeu de données $\Rightarrow$ \textbf{généralisable} ?
+  \item \textbf{Validation} de la mise en corrélation.
+  \end{enumerate}
+
+  \underline{Généralisation} :
+
+   Les méthodes peuvent être appliquées sous réserve de satisfaire des \textit{a priori} assez larges.
+
+  \vspace{0.3cm}
+
+  Metaspace accepte depuis le 06/10 des \textbf{jeux de données imzML}.
+
+
+\end{frame}
+
+
+\begin{frame}{Mise en corrélation}
+  NMF appliquée aux images MALDI.
+  
+  \textbf{Reconstruction de l'image IRM} par NMF:
+  \begin{figure}[ht]
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.65\textwidth]{fig/mri_recital}
+      \caption{Image originale}
+      \label{subfig:}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.65\textwidth]{fig/mri_recital_reconstructed}
+      \caption{Reconstruction}
+      \label{subfig:mri_recital_reconstructed}
+    \end{subfigure}%
+  \end{figure}
+
+  \textbf{Différence moyenne d'intensité} = 20.7 $\pm$ 46.4
+\end{frame}
+
+\begin{frame}{Resoumission}
+  Journaux potentiels :
+  \begin{itemize}
+  \item \textit{BMC Bioinformatics} : \textbf{communauté} appropriée, problème du \textbf{prix} de l'open access.
+  \item \textit{Analytical Chemistry} : \textbf{travaux précédents} sur la fusion d'images MS.
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+\appendix
+\setbeamertemplate{headline}{%
+  % \nointerlineskip
+  % \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.5cm,ht=0pt,dp=0pt]{block title}%
+  %   \usebeamerfont{page number in head/foot}{\insertsection}
+  % \end{beamercolorbox}%
+  % \if@useTitleProgressBar
+  % \nointerlineskip
+  % % \vspace{-0.7cm}
+  % \begin{beamercolorbox}[wd=\paperwidth,ht=0pt,dp=5pt]{section}
+  %   \progressbar@titleprogressbar
+  % \end{beamercolorbox}
+  % \fi
+  % \nointerlineskip
+}
+
+% \setbeamertemplate{frametitle}{%
+%   \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.7cm,rightskip=0.3cm,ht=0pt,dp=0pt]{frametitle}
+%     \usebeamerfont{frametitle}\MakeLowercase{\protect\insertframetitle}
+%   \end{beamercolorbox}
+% }
+
+\begin{frame}[allowframebreaks]
+  \frametitle{Références}
+  \setbeamertemplate{bibliography item}{$\bullet$}
+  \bibliographystyle{apalike}
+  \scriptsize{
+    \bibliography{main}
+  }
+\end{frame}
+
+\section{Ajustement de fonctions exponentielles}
+% \begin{frame}{Ajustement de fonctions exponentielles}
+  
+%   \textbf{Précédemment}: trop peu d'échos $\Rightarrow$ surajustement, décroissance incomplète
+
+%   \begin{figure}[ht]
+%     \centering
+%     \begin{subfigure}[t]{0.5\textwidth}
+%       \centering
+%       \includegraphics[width=0.8\textwidth]{fig/wrongfit_overfitting}
+%       \caption{Surajustement}
+%       \label{subfig:wrongfit_overfitting}
+%     \end{subfigure}%
+%     \begin{subfigure}[t]{0.5\textwidth}
+%       \centering
+%       \includegraphics[width=0.8\textwidth]{fig/wrongfit_missing}
+%       \caption{Décroissance incomplète}
+%       \label{subfig:wrongfit_missing}
+%     \end{subfigure}%
+
+%   \end{figure}
+
+
+%   Nouvelles images: \textbf{plus d'échos} (8 $\rightarrow$ 16)
+
+%   \underline{Objectif :} modélisation \textbf{plus précise} de la décroissance du signal  
+% \end{frame}
+
+% \begin{frame}{Ajustement par morceaux}
+%   Modélisation par une \textbf{somme de fonctions exponentielles} (bi-exponentielle)
+
+%   Ajustement de \textbf{deux droites} sur le logarithme des intensités \textbf{par morceaux} :
+
+%   \begin{figure}[ht]
+%     \centering
+%     \begin{subfigure}[t]{0.5\textwidth}
+%       \centering
+%       \includegraphics<1-3>[width=0.95\textwidth]{fig/biexponential}%
+%       \includegraphics<4>[width=0.95\textwidth]{fig/biexponential_fitted}%
+%       \caption{Intensités}
+%       \label{subfig:}
+%     \end{subfigure}%
+%     \onslide<2->
+%     \begin{subfigure}[t]{0.5\textwidth}
+%       \centering
+%       \includegraphics<2>[width=0.95\textwidth]{fig/biexponential_log}%
+%       \includegraphics<3->[width=0.95\textwidth]{fig/biexponential_log_piecewise}
+%       \caption{Log des intensités}
+%       \label{subfig:}
+%     \end{subfigure}%
+%   \end{figure}
+
+% \end{frame}
+
+% \begin{frame}{Ajustement par morceaux}
+%   \textbf{Problème :} profils \textbf{mono-exponentiels} dans la cavité $\Rightarrow$ surajustements
+
+%   \begin{figure}[ht]
+%     \centering
+%     \begin{subfigure}[t]{0.5\textwidth}
+%       \centering
+%       \includegraphics<1>[width=0.9\textwidth]{fig/piecewise}%
+%       \includegraphics<2->[width=0.9\textwidth]{fig/piecewise_circled}
+%       \caption{Densité}
+%       \label{subfig:piecewise}
+%     \end{subfigure}%
+%     \onslide<3>
+%     \begin{subfigure}[t]{0.5\textwidth}
+%       \centering
+%       \includegraphics[width=0.9\textwidth]{fig/piecewise_defect}
+%       \caption{Surajustement}
+%       \label{subfig:piecewise_defect}
+%     \end{subfigure}%
+
+%   \end{figure}
+
+% \end{frame}
+
+% \begin{frame}{Ajustement de fonction mono-exponentielle}
+
+%   Deux approches:
+%   \begin{enumerate}
+%   \item ajustement par \textbf{régression linéaire} sur le logarithme des intensités (avec pondération)
+%   \item ajustement par \textbf{moindres carrés} sur les intensités (sans pondération)
+%   \end{enumerate}
+
+%   Exemples de pondérations:
+
+%   \begin{figure}[ht]
+%     \centering
+%     \begin{subfigure}[t]{0.5\textwidth}
+%       \centering
+%       \includegraphics[width=0.7\textwidth]{fig/poids_sqrt}
+%       \caption{Racines carrées des intensités}
+%       \label{subfig:poids_sqrt}
+%     \end{subfigure}%
+%     \begin{subfigure}[t]{0.5\textwidth}
+%       \centering
+%       \includegraphics[width=0.7\textwidth]{fig/poids_triangle}
+%       \caption{Fonction triangulaire}
+%       \label{subfig:poids_triangle}
+%     \end{subfigure}%
+
+%   \end{figure}
+
+% \end{frame}
 
 \begin{frame}{Ajustement : comparaison}
   \vspace{-0.4cm}
@@ -402,42 +862,42 @@
 
 \end{frame}
 
-\section{Correspondances entre les coupes MALDI et IRM}
-\begin{frame}{Correspondances entre les coupes}
+% \section{Correspondances entre les coupes MALDI et IRM}
+% \begin{frame}{Correspondances entre les coupes}
 
-  Deux approches :
-  \begin{itemize}
-  \item \textbf{manuelle}: à partir des métadonnées (espace inter-coupes, numéros de coupes)
-  \item \textbf{automatique}: à partir de la forme du grain dans les coupes
-  \end{itemize}
-\end{frame}
+%   Deux approches :
+%   \begin{itemize}
+%   \item \textbf{manuelle}: à partir des métadonnées (espace inter-coupes, numéros de coupes)
+%   \item \textbf{automatique}: à partir de la forme du grain dans les coupes
+%   \end{itemize}
+% \end{frame}
 
-\begin{frame}{Approche automatique}
-  \textbf{Idée :} associer les coupes où l'aire du grain est similaire en IRM et en MALDI.
+% \begin{frame}{Approche automatique}
+%   \textbf{Idée :} associer les coupes où l'aire du grain est similaire en IRM et en MALDI.
 
-  \textbf{Métrique :} aire normalisée par rapport à l'aire maximale.
+%   \textbf{Métrique :} aire normalisée par rapport à l'aire maximale.
 
-  \textbf{Méthode :} Dynamic Time Warping (DTW): aligne deux séries en minimisant la somme des différences de la métrique.
+%   \textbf{Méthode :} Dynamic Time Warping (DTW): aligne deux séries en minimisant la somme des différences de la métrique.
 
-  \begin{figure}[ht]
-    \centering
-    \includegraphics<1>[width=0.6\textwidth]{fig/correspondances1}%
-    \includegraphics<2>[width=0.6\textwidth]{fig/correspondances2}%
-    \includegraphics<3>[width=0.6\textwidth]{fig/correspondances3}
-    \caption{}
-    \label{fig:correspondances1}
-  \end{figure}
+%   \begin{figure}[ht]
+%     \centering
+%     \includegraphics<1>[width=0.6\textwidth]{fig/correspondances1}%
+%     \includegraphics<2>[width=0.6\textwidth]{fig/correspondances2}%
+%     \includegraphics<3>[width=0.6\textwidth]{fig/correspondances3}
+%     \caption{}
+%     \label{fig:correspondances1}
+%   \end{figure}
 
-\end{frame}
+% \end{frame}
 
 
-\begin{frame}{Approche automatique : problème}
-  Alignement \textbf{non-linéaire}: peut conduire à des compressions ou des expansions des coupes.
+% \begin{frame}{Approche automatique : problème}
+%   Alignement \textbf{non-linéaire}: peut conduire à des compressions ou des expansions des coupes.
 
   
-  En pratique, on opte pour une mise en \textbf{correspondance manuelle}.
+%   En pratique, on opte pour une mise en \textbf{correspondance manuelle}.
   
-\end{frame}
+% \end{frame}
 
 \section{Recalage 3D}
 
@@ -616,119 +1076,6 @@ $\Rightarrow$ Recalage \textbf{rigide entre coupes 2D} puis recalage \textbf{non
 
 \end{frame}
 
-
-
-
-\section{Bilan}
-
-\begin{frame}{Bilan}
-
-  Chaîne de traitement \textbf{ajustée} pour le \textbf{traitement automatique} d'images 3D.
-
-  Résultats \textbf{préliminaires} au stade 250 DJ: confirment les \textbf{résultats précédents}.
-
-  \vspace{0.4cm}
-
-  Perspectives:
-  \begin{itemize}
-  \item Recalage \textbf{3D non-rigide}.
-  \item Mise en corrélation sur l'ensemble des stades.
-  \end{itemize}
-
-
-\end{frame}
-
-
-
-
-\section{Papier}
-
-\begin{frame}{Papier soumis}
-  
-  Remarques du relecteur de \textit{Bioinformatics} :
-  \begin{enumerate}
-  \item Application à un seul jeu de données $\Rightarrow$ \textbf{généralisable} ?
-  \item \textbf{Validation} de la mise en corrélation.
-  \end{enumerate}
-
-  \underline{Généralisation} :
-
-   Les méthodes peuvent être appliquées sous réserve de satisfaire des \textit{a priori} assez larges.
-
-  \vspace{0.3cm}
-
-  Metaspace accepte depuis le 06/10 des \textbf{jeux de données imzML}.
-
-
-\end{frame}
-
-
-\begin{frame}{Mise en corrélation}
-  NMF appliquée aux images MALDI.
-  
-  \textbf{Reconstruction de l'image IRM} par NMF:
-  \begin{figure}[ht]
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.65\textwidth]{fig/mri_recital}
-      \caption{Image originale}
-      \label{subfig:}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.65\textwidth]{fig/mri_recital_reconstructed}
-      \caption{Reconstruction}
-      \label{subfig:mri_recital_reconstructed}
-    \end{subfigure}%
-  \end{figure}
-
-  \textbf{Différence moyenne d'intensité} = 20.7 $\pm$ 46.4
-\end{frame}
-
-\begin{frame}{Resoumission}
-  Journaux potentiels :
-  \begin{itemize}
-  \item \textit{BMC Bioinformatics} : \textbf{communauté} appropriée, problème du \textbf{prix} de l'open access.
-  \item \textit{Analytical Chemistry} : \textbf{travaux précédents} sur la fusion d'images MS.
-  \end{itemize}
-\end{frame}
-
-
-
-
-
-
-
-\appendix
-\setbeamertemplate{headline}{%
-  % \nointerlineskip
-  % \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.5cm,ht=0pt,dp=0pt]{block title}%
-  %   \usebeamerfont{page number in head/foot}{\insertsection}
-  % \end{beamercolorbox}%
-  % \if@useTitleProgressBar
-  % \nointerlineskip
-  % % \vspace{-0.7cm}
-  % \begin{beamercolorbox}[wd=\paperwidth,ht=0pt,dp=5pt]{section}
-  %   \progressbar@titleprogressbar
-  % \end{beamercolorbox}
-  % \fi
-  % \nointerlineskip
-}
-
-% \setbeamertemplate{frametitle}{%
-%   \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.7cm,rightskip=0.3cm,ht=0pt,dp=0pt]{frametitle}
-%     \usebeamerfont{frametitle}\MakeLowercase{\protect\insertframetitle}
-%   \end{beamercolorbox}
-% }
-
-\begin{frame}[allowframebreaks]
-  \frametitle{Références}
-  \setbeamertemplate{bibliography item}{$\bullet$}
-  \bibliographystyle{apalike}
-  \scriptsize{
-    \bibliography{main}
-  }
-\end{frame}
 
 
 

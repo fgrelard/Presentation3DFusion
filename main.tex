@@ -679,13 +679,13 @@
 
 \end{frame}
 
-\section{Résultats sur blé Bobwhite}
+\section{Traitement des images de blé Bobwhite}
 
 \begin{frame}{Données}
   IRM :
   \begin{itemize}
   \item \textbf{Six stades} : 250, 350, 420, 500, 500, 580, 650DJ.
-  \item \textbf{Six réplicats} par stade, en moyenne 14 coupes par stade.
+  \item \textbf{Six réplicats} par stade, en moyenne \textbf{14 coupes} par stade.
   \end{itemize}
 
 
@@ -696,7 +696,7 @@
   \item  \textbf{Deux enzymes} utilisées : xylanase et lichenase.
   \end{itemize}
 
-Ici : \textbf{un seul grain} étudié par stade.
+Ici : \textbf{un seul grain} étudié pour les stades 250, 500 et 650 DJ.
 
 \end{frame}
 
@@ -704,63 +704,563 @@ Ici : \textbf{un seul grain} étudié par stade.
 
   \begin{enumerate}
   \item \textbf{Débruitage}
-  \item Ajustement d'une fonction mono-exponentielle par moindres carrés $\Rightarrow$ \textbf{image en $T_2^*$}.
   \item \textbf{Image en densité} $\Rightarrow$ premier écho.
+  \item Ajustement d'une fonction mono-exponentielle par moindres carrés $\Rightarrow$ \textbf{image en $T_2^*$}.
   \item \textbf{Segmentation} : plus grande composante connexe
   \end{enumerate}
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/irm_250_density_s6}
+      \caption{}
+      \label{subfig:irm_250_density_s6}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/irm_500_density_s5}
+      \caption{}
+      \label{subfig:irm_500_density_s5}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/irm_650_density_s8}
+      \caption{}
+      \label{subfig:irm_650_density_s8}
+    \end{subfigure}%
+  \end{figure}
+
 
 \end{frame}
 
 \begin{frame}{Traitement des images MS}
   \begin{enumerate}
+  \item \textbf{Normalisation} par le SIC
   \item \textbf{Sélection de pics} basée sur la prominence locale
   \item \textbf{Réalignement} des pics
-  \item \textbf{Segmentation} par la mesure de cohérence spatiale
+  \item \textbf{Clustering} avec normalisation des spectres \cite{Alexandrov11}
+  \item[4b.] \textbf{Segmentation} par la mesure de cohérence spatiale
   \end{enumerate}
+
+        \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/maldi_250_density_s6}
+      \caption{}
+      \label{subfig:maldi_250_density_s6}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/maldi_500_density_s5}
+      \caption{}
+      \label{subfig:maldi_500_density_s5}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/maldi_650_density_s8}
+      \caption{}
+      \label{subfig:maldi_650_density_s8}
+    \end{subfigure}%
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Clustering des images MS}
-  Stade 250 DJ
-  \begin{itemize}
-  \item \textbf{Xylanase :}
+  
+  \textbf{Xylanase}, stade 250 DJ :
     \begin{itemize}
     \item \textbf{Haut du grain (brosse) }: arabinoxylanes (AX) avec un degré de polymérisation (DP) variable, proche de 10, sans modification.
     \item \textbf{Milieu--bas du grain (vers embryon)}
-      
-      Sur le pourtour du grain : AX avec faibles DP (5--10), avec acétylations (de 1 à 3).
-      
-      Dans le milieu du grain (proche cavité) : AX avec DP de 9 à 11,
-      sans modification.
-      
-      Embryon: AX 4--9 sans modification.
+      \begin{itemize}
+      \item Sur le pourtour du grain \textbf{(a)}: AX avec faibles DP (5--10), avec acétylations (de 1 à 3).
+      \item Proche cavité \textbf{(b)}: AX DP de 9 à 11, sans modification.
+      \item Embryon \textbf{(c)}: AX 4--9 sans modification.
+      \end{itemize}
     \end{itemize}
-  \item \textbf{Lichenase :} BG DP 3-4-5 (+6) répartis uniformément
-    dans le grain, quelle que soit la hauteur.
 
-  \end{itemize}
+    \begin{figure}[ht]
+      \centering
+      \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{fig/clustering_250Xyl_s1.png}
+        \caption{}
+        \label{subfig:clustering_250Xyl_s1.png}
+      \end{subfigure}%
+      \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{fig/clustering_250Xyl_s5.png}
+        \caption{}
+        \label{subfig:clustering_250Xyl_s5.png}
+      \end{subfigure}%
+      \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{fig/clustering_250Xyl_s12.png}
+        \caption{}
+        \label{subfig:clustering_250Xyl_s12.png}
+      \end{subfigure}%
+
+    \end{figure}
+
+
 
 
 \end{frame}
 
 
 \begin{frame}{Clustering des images MS}
-  Stades 500 et 650 DJ
-  \begin{itemize}
-  \item \textbf{Xylanase :} AX de DP 6 à 10, sans modification chimique, répartis uniformément dans le grain.
-  \item \textbf{Lichenase :} BG DP 3-4-5  (moins fréquemment BG 6 pour les deux stades, et BG 2 pour le stade 650DJ).
-  \end{itemize}
+  \begin{columns}
+    \begin{column}{.7\textwidth}
+       \textbf{Xylanase}, stades\textbf{ 500 et 650 DJ} \textbf{(a)}: AX de DP 6 à 10, sans modification chimique, répartis uniformément dans le grain.
+
+      \vspace{1.5cm}
+
+      \textbf{Lichenase,} stades \textbf{250, 500 et 650 DJ} \textbf{(b)}: BG DP 3-4-5  (moins fréquemment BG 6 pour les trois stades, et BG 2 pour le stade 650DJ).
+    \end{column}
+
+    \begin{column}{.3\textwidth}
+      \begin{figure}[ht] 
+       \centering
+        \begin{subfigure}[t]{0.99\textwidth}
+          \centering
+          \includegraphics[width=0.9\textwidth]{fig/clustering_500Xyl_s5.png}
+          \caption{}
+          \label{subfig:clustering500Xyl}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.99\textwidth}
+          \centering
+          \includegraphics[width=0.9\textwidth]{fig/clustering_250Lich_s6.png}
+          \caption{}
+          \label{subfig:clustering_250Lich_s6.png}
+        \end{subfigure}%
+
+      \end{figure}
+
+    \end{column}
+  \end{columns}
+
 
 \end{frame}
 
 \begin{frame}{Recalage}
 
+  Deux étapes :
+  \begin{enumerate}
+  \item \textbf{Affine} sur la transformée en distance
+  \item \textbf{Variationnel} sur la transformée en distance, sans prise en compte des structures sans correspondance
+  \end{enumerate}
+
+  $\Rightarrow$ La précision du recalage est \textbf{variable} en fonction de la coupe.
+\end{frame}
+
+\begin{frame}{Recalage}
+Proportions de pixels en commun (en \%):
+\begin{table}[]
+\begin{tabular}{lllllll}
+\hline
+                            & \multicolumn{2}{l}{250} & \multicolumn{2}{l}{500} & \multicolumn{2}{l}{650} \\ \hline
+       & Xyl        & Lich       & Xyl        & Lich       & Xyl        & Lich       \\ \hline
+Affine & 84.6      & 87.4      & 85.3      & 84.0      & 86.7      & 86.5      \\
+Variationnel                 & 91.4      & 92.8      & 91.9      & 89.2      & 92.0      & 92.8      \\ \hline
+\end{tabular}
+\end{table}
+
+\underline{Exemple :} Stade 500 DJ, Xylanase
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/recalage_500Xyl_0}
+      \caption{}
+      \label{subfig:recalage_500Xyl_0}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/recalage_500Xyl_2}
+      \caption{}
+      \label{subfig:recalage_500Xyl_2}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/recalage_500Xyl_8}
+      \caption{}
+      \label{subfig:recalage_500Xyl_8}
+    \end{subfigure}%
+  \end{figure}
+
+
 \end{frame}
 
 \begin{frame}{Analyse statistique}
+  
+  Deisotoping, puis réduction de dimension par NMF.
+  \begin{itemize}
+  \item 3 grains $\times$ 2 enzymes $\times$ 2 informations en IRM $\times$ 2 choix de dimensions (2D ou 3D) $\times$ 2 conditions d'analyse (rapports) = \textbf{48} sources de données à traiter.
+    
+    $\Rightarrow$ protocole pour une analyse rigoureuse.
+  \end{itemize}
+  
+  \textbf{Protocole d'analyse :}
+  \begin{enumerate}
+  \item Analyse \textbf{complète} des résultats en \textbf{3D}
+  \item Analyse \textbf{sélective} des résultats en \textbf{2D}: pertinence des coupes en fonction de :
+    \begin{enumerate}
+    \item la précision du recalage
+    \item la précision de la reconstruction de l'image IRM par les composantes de la NMF
+    \end{enumerate}
+  \end{enumerate}
 
 \end{frame}
 
 
+\begin{frame}{Stade 250 DJ, Xylanase}
+  \textbf{Densité}
+  
+  \textbf{En 3D :}
+    \vspace{-0.4cm}
+
+    \begin{table}[]
+    \centering
+    \begin{adjustbox}{max width=1\textwidth}
+      \begin{tabular}{llllllllllllllll}
+        \toprule
+        Ordre & 1       & 2       & 3       & 4       & 5       & 6       & 7       & 8       & 9       & 10       \\
+        \midrule
+        m/z & 701.3 & 611.26 & 609.38 & 653.24 & 743.3 & 785.32 & 650.55 & 875.33 & 1007.41 & 780.83 \\
+        Annotation & AX5 1.Ac & AX4 1.Ac & ? & AX4 2.Ac & AX 5 1.Ac & AX5 2.Ac & ? & AX6 1.Ac & ? & ? \\
+        \bottomrule
+      \end{tabular}
+    \end{adjustbox}
+  \end{table}
+
+  \textbf{En 2D :} résultats sensiblement identiques.
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_250Xyl_density_irm}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_250Xyl_density}
+    \end{subfigure}%
+    
+  \end{figure}
+
+  
+\end{frame}
+
+\begin{frame}{Stade 250 DJ, Xylanase}
+  \textbf{$T_2^*$}
+
+  \textbf{En 3D:}
+  \vspace{-0.4cm}
+  \begin{table}[]
+    \centering
+    \begin{adjustbox}{max width=1\textwidth}
+      \begin{tabular}{llllllllllllllll}
+        \toprule
+        Ordre & 1       & 2       & 3       & 4       & 5       & 6       & 7       & 8       & 9       & 10       \\
+        \midrule
+        m/z &    743.3 & 965.38 & 1097.44 & 1265.46 & 1223.45 & 963.65 & 1133.43 & 875.33 & 1139.41 & 1271.45 \\
+        Annotation & AX5 1.Ac & AX7 & AX8 & AX8 4.Ac & AX8 3.Ac & ? & AX7 4.Ac & AX6 1.Ac & AX8 1.Ac & AX9 1.Ac \\
+        \bottomrule
+      \end{tabular}
+    \end{adjustbox}
+  \end{table}
+
+  \textbf{En 2D :} résultats différents, similaires à ceux obtenus pour l'\textbf{image en densité}.
+
+    \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_250Xyl_t2_irm}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_250Xyl_t2}
+    \end{subfigure}%
+    
+  \end{figure}
+
+  
+\end{frame}
+
+\begin{frame}{Stade 250 DJ, Lichenase}
+    \textbf{Densité}
+  
+    \textbf{En 3D :}
+    \vspace{-0.4cm}
+    \begin{table}[]
+    \centering
+    \begin{adjustbox}{max width=1\textwidth}
+      \begin{tabular}{llllllllllllllll}
+        \toprule
+        Ordre & 1       & 2       & 3       & 4       & 5       & 6       & 7       & 8       & 9       & 10       \\
+        \midrule
+        m/z &   526.81 & 688.73 & 527.16 & 689.2 & 808.67 & 803.82 & 803.19 & 689.33 & 680.97 & 945.2 \\
+        Annotation &  ? & ? & BG3 & BG4 & ? & ? & ? & ? & ? & ?\\
+        \bottomrule
+      \end{tabular}
+    \end{adjustbox}
+  \end{table}
+
+
+
+  \textbf{En 2D :} BG2 et 3 principalement + AX (très variable selon coupe)
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_250Xyl_density_irm}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_250Lich_density}
+    \end{subfigure}%
+    
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Stade 250 DJ, Lichenase}
+  $T_2^*$
+
+  \textbf{En 3D :}
+  \vspace{-0.4cm}
+    \begin{table}[]
+    \centering
+    \begin{adjustbox}{max width=1\textwidth}
+      \begin{tabular}{llllllllllllllll}
+        \toprule
+        Ordre & 1       & 2       & 3       & 4       & 5       & 6       & 7       & 8       & 9       & 10       \\
+        \midrule
+        m/z &     1097.38 & 851.33 & 965.17 & 852.11 & 853.23 & 1097.28 & 1229.4 & 1013.36 & 689.33 & 1175.42 \\
+        Annotation &  BG6 2.Ac & BG5 & AX7 & ? & AX3 K+ MeGlcA 5.Ac & AX8 & AX9 & BG6 & BG4 & BG7\\
+        \bottomrule
+      \end{tabular}
+    \end{adjustbox}
+  \end{table}
+
+
+
+
+  \textbf{En 2D :} BG2 et 3 avec acétylations
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_250Xyl_density_irm}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_250Lich_t2}
+    \end{subfigure}%
+    
+  \end{figure}
+  
+\end{frame}
+
+\begin{frame}{Stade 500 DJ, Xylanase}
+  \textbf{Densité}
+
+  \textbf{En 3D :}
+  \vspace{-0.4cm}
+    \begin{table}[]
+    \centering
+    \begin{adjustbox}{max width=1\textwidth}
+      \begin{tabular}{llllllllllllllll}
+        \toprule
+        Ordre & 1       & 2       & 3       & 4       & 5       & 6       & 7       & 8       & 9       & 10       \\
+        \midrule
+        m/z &   611.21 & 735.35 & 743.23 & 732.68 & 732.75 & 569.18 & 875.41 & 1007.48 & 999.69 & 999.6 \\  
+        Annotation &  AX4 1.Ac & ? & AX5 1.Ac & ? & ? & AX4 & ? & ? & ? & ?\\
+        \bottomrule
+      \end{tabular}
+    \end{adjustbox}
+  \end{table}
+
+  \textbf{En 2D :} AX7 à 9, de 1 à 7 Ac
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_500Xyl_density_irm}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_500Xyl_density}
+    \end{subfigure}%
+    
+  \end{figure}
+  
+
+ 
+\end{frame}
+
+\begin{frame}{Stade 500 DJ, Xylanase}
+  $T_2^*$
+  
+  \textbf{En 3D :}
+  \vspace{-0.4cm}
+    \begin{table}[]
+    \centering
+    \begin{adjustbox}{max width=1\textwidth}
+      \begin{tabular}{llllllllllllllll}
+        \toprule
+        Ordre & 1       & 2       & 3       & 4       & 5       & 6       & 7       & 8       & 9       & 10       \\
+        \midrule
+        m/z &   611.21 & 735.35 & 743.23 & 732.68 & 732.75 & 999.69 & 999.6 & 1139.38 & 1259.56 & 1007.36 \\
+        Annotation &  AX4 1.Ac & ? & AX5 1.Ac & ? & ? & ? & ? & AX8 1.Ac & ? & AX7 1.Ac\\
+        \bottomrule
+      \end{tabular}
+    \end{adjustbox}
+  \end{table}
+
+
+
+
+  \textbf{En 2D :} similaire + AX5 à 7 avec DP $\geq 5$
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_500Xyl_t2}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_500Xyl_t2_irm}
+    \end{subfigure}%
+    
+  \end{figure}
+\end{frame}
+
+
+
+%% Lichenase 500 densité
+\begin{frame}{Stade 500 DJ, Lichenase}
+  \textbf{Densité}
+  
+  \textbf{En 3D :}
+  \vspace{-0.4cm}
+    \begin{table}[]
+    \centering
+    \begin{adjustbox}{max width=1\textwidth}
+      \begin{tabular}{llllllllllllllll}
+        \toprule
+        Ordre & 1       & 2       & 3       & 4       & 5       & 6       & 7       & 8       & 9       & 10       \\
+        \midrule
+        m/z &   831.14 & 951.18 & 2021.62 & 2021.83 & 2022.74 & 1889.78 & 1889.57 & 2153.81 & 1757.53 & 852.67 \\
+        Annotation &  BG4 K+ 3.Ac & BG5 K+ 2.Ac & AX15 & ? & ? & AX14 & ? & BG12 4.Ac & AX13 & ?\\
+        \bottomrule
+      \end{tabular}
+    \end{adjustbox}
+  \end{table}
+
+
+  \textbf{En 2D :} similaire
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_500Lich_density_irm}
+
+      
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_500Lich_density}
+
+    \end{subfigure}%
+    
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Stade 500 DJ, Lichenase}
+  \textbf{$T_2^*$}
+
+  
+  \textbf{En 3D :}
+  \vspace{-0.4cm}
+    \begin{table}[]
+    \centering
+    \begin{adjustbox}{max width=1\textwidth}
+      \begin{tabular}{llllllllllllllll}
+        \toprule
+        Ordre & 1       & 2       & 3       & 4       & 5       & 6       & 7       & 8       & 9       & 10       \\
+        \midrule
+        m/z &     2021.62 & 1889.57 & 1889.78 & 951.18 & 2021.83 & 1757.53 & 2022.74 & 2153.81 & 831.14 & 1757.73 \\
+        Annotation &  AX15 & AX14 & ? & BG5 K+ 2.Ac & ? & AX13 & ? & BG12 4.Ac & BG4 K+ 3Ac & AX13\\
+        \bottomrule
+      \end{tabular}
+    \end{adjustbox}
+  \end{table}
+
+
+  \textbf{En 2D :} BG 2--3, K+, 2.Ac
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_500Lich_t2_irm}
+
+      
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_500Lich_t2}
+
+    \end{subfigure}%
+    
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}{Stade 650 DJ, Xylanase}
+  \textbf{Densité}
+  
+  \textbf{En 3D :}
+  \vspace{-0.4cm}
+    \begin{table}[]
+    \centering
+    \begin{adjustbox}{max width=1\textwidth}
+      \begin{tabular}{llllllllllllllll}
+        \toprule
+        Ordre & 1       & 2       & 3       & 4       & 5       & 6       & 7       & 8       & 9       & 10       \\
+        \midrule
+        m/z &     701.22 & 965.3 & 834.09 & 965.51 & 965.09 & 833.26 & 1097.34 & 1098.1 & 827.56 & 1229.48 \\
+        Annotation &  AX5 & AX7 & ? & ? & ? & AX6 & AX8 & ?  & ? & AX9\\
+        \bottomrule
+      \end{tabular}
+    \end{adjustbox}
+  \end{table}
+
+
+  \textbf{En 2D :} similaire
+
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_500Lich_density_irm}
+
+      
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/stats_500Lich_density}
+
+    \end{subfigure}%
+    
+  \end{figure}
+\end{frame}
 
 
 
@@ -776,70 +1276,13 @@ Ici : \textbf{un seul grain} étudié par stade.
 
   Perspectives:
   \begin{itemize}
-  \item Recalage \textbf{3D non-rigide}.
-  \item Mise en corrélation sur l'ensemble des stades.
+  \item Amélioration du recalage : \textbf{vérification} de la segmentation + \textbf{structures sans correspondance}
+  \item Analyse statistique avec normalisation des spectres (\textbf{norme euclidienne})
+  \item \textbf{Automatiser} l'analyse sélective en 2D
   \end{itemize}
 
 
 \end{frame}
-
-
-
-
-\section{Papier}
-
-\begin{frame}{Papier soumis}
-  
-  Remarques du relecteur de \textit{Bioinformatics} :
-  \begin{enumerate}
-  \item Application à un seul jeu de données $\Rightarrow$ \textbf{généralisable} ?
-  \item \textbf{Validation} de la mise en corrélation.
-  \end{enumerate}
-
-  \underline{Généralisation} :
-
-   Les méthodes peuvent être appliquées sous réserve de satisfaire des \textit{a priori} assez larges.
-
-  \vspace{0.3cm}
-
-  Metaspace accepte depuis le 06/10 des \textbf{jeux de données imzML}.
-
-
-\end{frame}
-
-
-\begin{frame}{Mise en corrélation}
-  NMF appliquée aux images MALDI.
-  
-  \textbf{Reconstruction de l'image IRM} par NMF:
-  \begin{figure}[ht]
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.65\textwidth]{fig/mri_recital}
-      \caption{Image originale}
-      \label{subfig:}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.65\textwidth]{fig/mri_recital_reconstructed}
-      \caption{Reconstruction}
-      \label{subfig:mri_recital_reconstructed}
-    \end{subfigure}%
-  \end{figure}
-
-  \textbf{Différence moyenne d'intensité} = 20.7 $\pm$ 46.4
-\end{frame}
-
-\begin{frame}{Resoumission}
-  Journaux potentiels :
-  \begin{itemize}
-  \item \textit{BMC Bioinformatics} : \textbf{communauté} appropriée, problème du \textbf{prix} de l'open access.
-  \item \textit{Analytical Chemistry} : \textbf{travaux précédents} sur la fusion d'images MS.
-  \end{itemize}
-\end{frame}
-
-
-
 
 
 

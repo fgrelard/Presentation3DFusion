@@ -323,6 +323,8 @@
   
   $\Rightarrow$ utilisation de la \textbf{similarité cosinus}.
 
+  \vspace{0.4cm}
+
   \alert{Similarité cosinus :} mesure la corrélation entre les intensités de deux images.
 \end{frame}
 
@@ -412,7 +414,7 @@
     \begin{subfigure}[t]{0.33\textwidth}
       \centering
       \includegraphics[width=0.9\textwidth]{fig/cosine_diffweight}
-      \caption{Similarité pondérée}
+      \caption{Similarité pondérée ($\frac{\text{AX6}}{\text{AX5}}$)}
       \label{subfig:cosine_diffweight}
     \end{subfigure}%
 
@@ -427,19 +429,25 @@
 
     \begin{figure}[ht]
     \centering
-    \begin{subfigure}[t]{0.31\textwidth}
+    \begin{subfigure}[t]{0.25\textwidth}
       \centering
       \includegraphics[width=0.9\textwidth]{fig/mri_slice8_250}
       \caption{}
       \label{subfig:mri_slice8_250}
     \end{subfigure}%
-    \begin{subfigure}[t]{0.31\textwidth}
+     \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{fig/cosine_msi}%
+        \caption{Sans filtre\\($\frac{1097.44}{965.38}$)}
+        \label{subfig:cosine_msi}
+      \end{subfigure}%
+    \begin{subfigure}[t]{0.25\textwidth}
       \centering
       \includegraphics[width=0.9\textwidth]{fig/cosine_median}
       \caption{Filtre médian\\($\frac{714.06}{620.06}$)}
       \label{subfig:cosine_median}
     \end{subfigure}%
-    \begin{subfigure}[t]{0.31\textwidth}
+    \begin{subfigure}[t]{0.25\textwidth}
       \centering
       \includegraphics[width=0.9\textwidth]{fig/cosine_weight}
       \caption{Filtre médian + pondération\\($\frac{1404.34}{1181.42}$)}

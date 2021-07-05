@@ -79,7 +79,7 @@
 % Ombre aux blocks
 \setbeamertemplate{caption}{\insertcaption}
 
-\date{15 octobre 2020} % set the Date
+\date{07 juillet 2021} % set the Date
 % \renewcommand{\insertnavigation}[1]{}
 
 % \AtBeginSection[]{
@@ -98,31 +98,97 @@
   \titlepage
 \end{frame}
 
+\section{Contexte}
+\begin{frame}{Contexte}
+  Étude du développement du grain de blé.
+  
+  Molécules impliquées dans les transferts d'eau \cite{Fanuel18} :
+  
+  
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+      \centering
+      \includegraphics[width=0.6\textwidth]{fig/3Darabinoxylan}
+      \label{subfig:3Darabinoxylan}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.45\textwidth}
+      \centering
+      \includegraphics[width=0.35\textwidth]{fig/water_transfer}
+      \label{subfig:water_transfer}
+    \end{subfigure}%
+  \end{figure}
+
+   \underline{Objectif :} identifier de \textbf{nouvelles molécules} dont la distribution spatiale corrèle avec l'eau.\\
+
+\end{frame}
+
+\begin{frame}{Nouvelles données}
+  Nouvelles données : \textbf{variété Bobwhite}, 3 stades de
+  développement.
+  
+  \underline{Problèmes :}
+  \begin{itemize}
+  \item inhomogénéités d'intensité
+  \item orientations différentes
+  \end{itemize}
+
+
+   \begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics<1>[width=0.65\textwidth]{fig/3D_density_aligned_manual0000}%
+    \includegraphics<2>[width=0.65\textwidth]{fig/3D_density_aligned_manual0003}%
+    \includegraphics<3>[width=0.65\textwidth]{fig/3D_density_aligned_manual0006}%
+    \includegraphics<4->[width=0.65\textwidth]{fig/3D_density_aligned_manual0009}
+  \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics<1>[width=0.65\textwidth]{fig/3D_segmentation0000}%
+    \includegraphics<2>[width=0.65\textwidth]{fig/3D_segmentation0003}%
+    \includegraphics<3>[width=0.65\textwidth]{fig/3D_segmentation0006}%
+    \includegraphics<4->[width=0.65\textwidth]{fig/3D_segmentation0009}
+  \end{subfigure}%
+\end{figure}
+
+\visible<5> {
+  $\Rightarrow$ besoin de méthodes \textbf{répétables},
+  \textbf{génériques}.
+}
+
+
+
+
+    
+\end{frame}
+
+
+
 
 \begin{frame}{Chaîne de traitement 3D}
 
 
   \begin{enumerate}
-  \item<2-> IRM: ajustement de \textbf{fonctions exponentielles}
-  \item<3-> MALDI: \textbf{normalisation} des images
-  \item<4-> Détermination des \textbf{correspondances} et \textbf{recalage 3D}
-  \item<5-> \textbf{Visualisation} d'images MS en 3D
+  \item<2-> MALDI: \textbf{normalisation} des images
+  \item<3-> \textbf{Recalage 3D}
+  \item<4-> \textbf{Visualisation} d'images MS en 3D
+  \item<5-> Corrélations spatiales avec \textbf{incertitudes}
   \end{enumerate}
 
   \begin{figure}[ht]
     \centering
-    \includegraphics<1>[width=0.8\textwidth]{fig/workflow3D_0}%
-    \includegraphics<2>[width=0.8\textwidth]{fig/workflow3D_1}%
-    \includegraphics<3>[width=0.8\textwidth]{fig/workflow3D_2}%
-    \includegraphics<4>[width=0.8\textwidth]{fig/workflow3D_3}%
-    \includegraphics<5>[width=0.8\textwidth]{fig/workflow3D_4}%
+    \includegraphics<1>[width=0.76\textwidth]{fig/workflow3D_0}%
+    \includegraphics<2>[width=0.76\textwidth]{fig/workflow3D_1}%
+    \includegraphics<3>[width=0.76\textwidth]{fig/workflow3D_2}%
+    \includegraphics<4>[width=0.76\textwidth]{fig/workflow3D_3}%
+    \includegraphics<5>[width=0.76\textwidth]{fig/workflow3D_4}%
   \end{figure}
 \end{frame}
 
 
-\AtBeginSection[]{
-  \begingroup
-  \setbeamercolor{background canvas}{bg=mLightBlue}
+\AtBeginSection[]{ \begingroup \setbeamercolor{background
+    canvas}{bg=mLightBlue}
   
   \setbeamertemplate{subsection in toc}
   {\leavevmode\leftskip=2em$\bullet$\hskip1em\inserttocsubsection\par}
@@ -137,206 +203,10 @@
   \begin{frame}[noframenumbering,plain]
     \frametitle{\textcolor{paleGrey}{Table des matières}}
 
-    \tableofcontents[currentsection, sectionstyle=show/hide, hideothersubsections]
+    \tableofcontents[currentsection, sectionstyle=show/hide,
+    hideothersubsections]
   \end{frame}
-  \endgroup
-}
-
-\section{Ajustement de fonctions exponentielles}
-\begin{frame}{Ajustement de fonctions exponentielles}
-  
-  \textbf{Précédemment}: trop peu d'échos $\Rightarrow$ surajustement, décroissance incomplète
-
-  \begin{figure}[ht]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.8\textwidth]{fig/wrongfit_overfitting}
-      \caption{Surajustement}
-      \label{subfig:wrongfit_overfitting}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.8\textwidth]{fig/wrongfit_missing}
-      \caption{Décroissance incomplète}
-      \label{subfig:wrongfit_missing}
-    \end{subfigure}%
-
-  \end{figure}
-
-
-  Nouvelles images: \textbf{plus d'échos} (8 $\rightarrow$ 16)
-
-  \underline{Objectif :} modélisation \textbf{plus précise} de la décroissance du signal  
-\end{frame}
-
-\begin{frame}{Ajustement par morceaux}
-  Modélisation par une \textbf{somme de fonctions exponentielles} (bi-exponentielle)
-
-  Ajustement de \textbf{deux droites} sur le logarithme des intensités \textbf{par morceaux} :
-
-  \begin{figure}[ht]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics<1-3>[width=0.95\textwidth]{fig/biexponential}%
-      \includegraphics<4>[width=0.95\textwidth]{fig/biexponential_fitted}%
-      \caption{Intensités}
-      \label{subfig:}
-    \end{subfigure}%
-    \onslide<2->
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics<2>[width=0.95\textwidth]{fig/biexponential_log}%
-      \includegraphics<3->[width=0.95\textwidth]{fig/biexponential_log_piecewise}
-      \caption{Log des intensités}
-      \label{subfig:}
-    \end{subfigure}%
-  \end{figure}
-
-\end{frame}
-
-\begin{frame}{Ajustement par morceaux}
-  \textbf{Problème :} profils \textbf{mono-exponentiels} dans la cavité $\Rightarrow$ surajustements
-
-  \begin{figure}[ht]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics<1>[width=0.9\textwidth]{fig/piecewise}%
-      \includegraphics<2->[width=0.9\textwidth]{fig/piecewise_circled}
-      \caption{Densité}
-      \label{subfig:piecewise}
-    \end{subfigure}%
-    \onslide<3>
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.9\textwidth]{fig/piecewise_defect}
-      \caption{Surajustement}
-      \label{subfig:piecewise_defect}
-    \end{subfigure}%
-
-  \end{figure}
-
-\end{frame}
-
-\begin{frame}{Ajustement de fonction mono-exponentielle}
-
-  Deux approches:
-  \begin{enumerate}
-  \item ajustement par \textbf{régression linéaire} sur le logarithme des intensités (avec pondération)
-  \item ajustement par \textbf{moindres carrés} sur les intensités (sans pondération)
-  \end{enumerate}
-
-  Exemples de pondérations:
-
-  \begin{figure}[ht]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.7\textwidth]{fig/poids_sqrt}
-      \caption{Racines carrées des intensités}
-      \label{subfig:poids_sqrt}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.7\textwidth]{fig/poids_triangle}
-      \caption{Fonction triangulaire}
-      \label{subfig:poids_triangle}
-    \end{subfigure}%
-
-  \end{figure}
-
-\end{frame}
-
-\begin{frame}{Ajustement : comparaison}
-  \vspace{-0.4cm}
-  \begin{columns}
-    \begin{column}[c]{0.2\textwidth}
-      \begin{figure}[ht]
-        \centering
-        Premier écho
-        \includegraphics[width=0.9\linewidth]{fig/firstecho}
-      \end{figure}
-    \end{column}
-    
-    \begin{column}[c]{0.8\textwidth}
-      \begin{figure}[ht]
-    \begin{flushleft}
-      Régression ($\sqrt{I})$
-      \vspace{-0.1cm}
-    \end{flushleft}
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.5\textwidth]{fig/linear_regression_old}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.5\textwidth]{fig/linear_regression_old_t2}
-    \end{subfigure}%
-    \begin{flushleft}
-      Régression (triangulaire)
-      \vspace{-0.25cm}
-    \end{flushleft}
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.5\textwidth]{fig/linear_regression_new}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.5\textwidth]{fig/linear_regression_new_t2}
-    \end{subfigure}
-    \begin{flushleft}
-      Moindres carrés
-      \vspace{-0.25cm}
-    \end{flushleft}
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.5\textwidth]{fig/nnls}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
-      \centering
-      \includegraphics[width=0.5\textwidth]{fig/nnls_t2}
-    \end{subfigure}%
-      \end{figure}
-
-    \end{column}
-  \end{columns}
-  
-
-
-\end{frame}
-
-
-\begin{frame}{Ajustement : évaluation quantitative}
-
-  Erreurs résiduelles moyennes et temps de calcul:
-  \vspace{-0.4cm}
-
-  
-  \begin{table}[]
-    \begin{adjustbox}{max width=1\textwidth}
-      \begin{tabular}{lllll}
-        \hline
-        & Par morceaux & \begin{tabular}[c]{@{}l@{}}Régression\\ ($\sqrt{I}$)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Régression\\ (triangulaire)\end{tabular} & Moindres carrés \\ \hline
-        Résidus (\%) & 1.09         & 1.21                                                            & 0.986                                                               & \textbf{0.941 }          \\
-        t (s)   & 171          & \textbf{34}                                                              & \textbf{35}                                                                  & 261             \\ \hline
-      \end{tabular}
-  \end{adjustbox}
-\end{table}
-
-\vspace{0.2cm}
-
-\textbf{Régression linéaire} : bonne approximation, temps de calcul court
-
-\textbf{Moindres carrés} : plus précis, temps de calcul long
-
-
-\end{frame}
-
-
-
-
+  \endgroup }
 
 
 \section{Normalisation d'images de spectrométrie de masse}
@@ -351,12 +221,14 @@
 
   \vspace{0.2cm}
 
-  Généralement, utilisation du \textbf{TIC}: compense les différences de mesure entre deux spectres
+  Généralement, utilisation du \textbf{TIC}: compense les différences
+  de mesure entre deux spectres
 \end{frame}
 
 
 \begin{frame}{TIC: problème}
-  Variation d'intensité de pics entre deux spectres $\Rightarrow$ facteurs TIC différents
+  Variation d'intensité de pics entre deux spectres $\Rightarrow$
+  facteurs TIC différents
   
   \begin{figure}[ht]
     \centering
@@ -369,7 +241,8 @@
 
 \begin{frame}{TIC: problème}
 
-  \underline{Exemple:} intensité très élevée du pic d'insuline dans le pancréas de souris \cite{Deininger_2011}.
+  \underline{Exemple:} intensité très élevée du pic d'insuline dans le
+  pancréas de souris \cite{Deininger_2011}.
 
   \begin{figure}[ht]
     \centering
@@ -381,11 +254,12 @@
 \end{frame}
 
 
-\begin{frame}{Selective Ion Count}
+\begin{frame}{Noise Ion Count}
 
-  \textbf{Idée :} enlever la contribution des pics dans le facteur de normalisation.
+  \textbf{Idée :} enlever la contribution des pics dans le facteur de
+  normalisation.
 
-  \textbf{Calcul :} SIC = TIC - $\sum I_{\text{pics}}$
+  \textbf{Calcul :} NIC = TIC - $\sum I_{\text{pics}}$
 
   \vspace{0.4cm}
 
@@ -402,81 +276,37 @@
 
 \end{frame}
 
-\section{Correspondances entre les coupes MALDI et IRM}
-\begin{frame}{Correspondances entre les coupes}
-
-  Deux approches :
-  \begin{itemize}
-  \item \textbf{manuelle}: à partir des métadonnées (espace inter-coupes, numéros de coupes)
-  \item \textbf{automatique}: à partir de la forme du grain dans les coupes
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Approche automatique}
-  \textbf{Idée :} associer les coupes où l'aire du grain est similaire en IRM et en MALDI.
-
-  \textbf{Métrique :} aire normalisée par rapport à l'aire maximale.
-
-  \textbf{Méthode :} Dynamic Time Warping (DTW): aligne deux séries en minimisant la somme des différences de la métrique.
-
-  \begin{figure}[ht]
-    \centering
-    \includegraphics<1>[width=0.6\textwidth]{fig/correspondances1}%
-    \includegraphics<2>[width=0.6\textwidth]{fig/correspondances2}%
-    \includegraphics<3>[width=0.6\textwidth]{fig/correspondances3}
-    \caption{}
-    \label{fig:correspondances1}
-  \end{figure}
-
-\end{frame}
-
-
-\begin{frame}{Approche automatique : problème}
-  Alignement \textbf{non-linéaire}: peut conduire à des compressions ou des expansions des coupes.
-
-  
-  En pratique, on opte pour une mise en \textbf{correspondance manuelle}.
-  
-\end{frame}
 
 \section{Recalage 3D}
 
-
 \begin{frame}{Recalage}
-  Deux images 3D non alignées.
 
-  \begin{figure}[ht]
-  \centering
-  \begin{subfigure}[t]{0.5\textwidth}
-    \centering
-    \includegraphics<1>[width=0.65\textwidth]{fig/3D_density_aligned_manual0000}%
-    \includegraphics<2>[width=0.65\textwidth]{fig/3D_density_aligned_manual0003}%
-    \includegraphics<3>[width=0.65\textwidth]{fig/3D_density_aligned_manual0006}%
-    \includegraphics<4>[width=0.65\textwidth]{fig/3D_density_aligned_manual0009}
-  \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
-    \centering
-    \includegraphics<1>[width=0.65\textwidth]{fig/3D_segmentation0000}%
-    \includegraphics<2>[width=0.65\textwidth]{fig/3D_segmentation0003}%
-    \includegraphics<3>[width=0.65\textwidth]{fig/3D_segmentation0006}%
-    \includegraphics<4>[width=0.65\textwidth]{fig/3D_segmentation0009}
-  \end{subfigure}%
-\end{figure}
+  Méthodes de recalage définies par trois composantes :
+  \begin{enumerate}
+  \item La \textbf{transformation géométrique} : rigide, affine, non-rigide
+  \item La \textbf{métrique} : mesure la similarité entre l'image fixe et mobile, en termes d'intensité ou de géométrie
+  \item L'\textbf{optimisation} : méthode pour la détermination du minimum de la métrique \vspace{0.3cm}
+  \end{enumerate}
+  \vspace{-0.4cm}
+  
+   \begin{figure}[ht]
+    \includegraphics<1>[width=0.6\textwidth]{fig/registration1}%
+    \includegraphics<2>[width=0.6\textwidth]{fig/registration2}%
+    \includegraphics<3>[width=0.6\textwidth]{fig/registration3}%
+    \includegraphics<4>[width=0.6\textwidth]{fig/registration4}%
+  \end{figure}
 
-Images MALDI avec des orientations non-homogènes.
-
-$\Rightarrow$ Recalage \textbf{rigide entre coupes 2D} puis recalage \textbf{non-rigide en 3D}.
+  
 
 \end{frame}
 
 
-\begin{frame}{Problèmes}
-  \begin{enumerate}
-  \item Différences d'\textbf{intensités} dans certaines parties du grain
-  \item Différences d'\textbf{orientation}
-  \end{enumerate}
 
-  \begin{figure}[ht]
+\begin{frame}{Recalage}
+
+  \textbf{Problèmes :} différences d'intensités, orientations très différentes
+
+   \begin{figure}[ht]
     \centering
     \begin{subfigure}[t]{0.5\textwidth}
       \centering
@@ -492,9 +322,31 @@ $\Rightarrow$ Recalage \textbf{rigide entre coupes 2D} puis recalage \textbf{non
   \onslide<2->{
   $\Rightarrow$ Difficile de choisir des \textbf{paramètres appropriés} pour recaler l'ensemble des coupes.
   }
+ 
+
 \end{frame}
 
-\begin{frame}{Recalage robuste}
+\begin{frame}{Approche pour le recalage}
+  
+  Approche en deux étapes :
+  \begin{enumerate}
+  \item recalage affine \textbf{exhaustif} en \textbf{2D}
+  \item recalage \textbf{non-rigide} en \textbf{3D}
+  \end{enumerate}
+
+  \alert{Recalage exhaustif} : paramètres de transformation \textbf{prédéfinis} $\Rightarrow$ évite de converger vers un \textbf{minimum local}.
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.4\textwidth]{fig/exhaustive_registration}
+    \caption{}
+    \label{fig:exhaustive_registration}
+  \end{figure}
+
+  
+\end{frame}
+
+\begin{frame}{Métrique de similarité}
 
   Abstraction des intensités : \textbf{transformée en distance}.
 
@@ -521,65 +373,169 @@ $\Rightarrow$ Recalage \textbf{rigide entre coupes 2D} puis recalage \textbf{non
   
 \end{frame}
 
-\begin{frame}{Recalage robuste}
-  Abstraction des différences d'orientation : recalage \textbf{exhaustif}, suivi du recalage habituel.
+\begin{frame}{Recalage exhaustif}
 
-  \alert{Recalage exhaustif} : paramètres de transformation \textbf{prédéfinis} $\Rightarrow$ évite de converger vers un \textbf{minimum local}.
+  Transformation initialisée en alignant les centres de gravité
 
-  \begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.4\textwidth]{fig/exhaustive_registration}
-    \caption{}
-    \label{fig:exhaustive_registration}
-  \end{figure}
-
-  
-\end{frame}
-
-\begin{frame}{Résultats}
-
-  \vspace{-0.3cm}
-  Proportion de pixels en commun:
   \begin{itemize}
-  \item \textbf{(c)} \textbf{simple} sans transformée en distance: \textbf{77.9\%}
-  \item \textbf{(d)} \textbf{exhaustif} avec transformée en distance: \textbf{84.6\%}
+  \item La transformation géométrique : espace de paramètres pour rotation et homothétie
+  \item La métrique : DT, \textbf{information mutuelle} de Mattes
+  \item L'optimisation : \textbf{exhaustive}
   \end{itemize}
-  
+
+  \vspace{-0.2cm}
   \begin{figure}[ht]
     \centering
-    \begin{subfigure}[t]{0.33\textwidth}
-      \centering
-      \includegraphics[width=0.65\textwidth]{fig/mri_slice6}
-      \caption{}
-      \label{subfig:mri_slice6}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.33\textwidth}
-      \centering
-      \includegraphics[width=0.7\textwidth]{fig/maldi_slice6}
-      \caption{}
-      \label{subfig:maldi_slice6}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.33\textwidth}
-      \centering
-      \includegraphics[width=0.65\textwidth]{fig/registration_overlay_slice6.png}
-      \caption{}
-      \label{subfig:}
-    \end{subfigure}
-    \vspace{-0.4cm}
-    \begin{flushright}
-      \begin{subfigure}[t]{0.33\textwidth}
-        \centering
-        \includegraphics[width=0.65\textwidth]{fig/registration_overlay_slice6_dt}
-        \caption{}
-        \label{subfig:registration_overlay_slice6}
-      \end{subfigure}%
-
-    \end{flushright}
+    \includegraphics<1>[width=0.65\textwidth]{fig/metric_exh_0}%
+    \includegraphics<2>[width=0.65\textwidth]{fig/metric_exh_1}%
+    \includegraphics<3>[width=0.65\textwidth]{fig/metric_exh_2}
+    \label{fig:metric_2}
   \end{figure}
-
 
 \end{frame}
 
+\begin{frame}{Recalage non-rigide}
+  Déformations $\Rightarrow$ valeurs de transformée en distance
+
+  \vspace{0.4cm}
+  
+  \textbf{Nouvelle métrique}: somme des moindres carrés avec mise
+  à jour de la transformée en distance.
+
+  \begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.2\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/registration_reference}
+    \caption{}
+    \label{subfig:registration_reference}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.2\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/registration_target}
+    \caption{}
+    \label{subfig:registration_target}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.2\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/registration_reference_dt}
+    \caption{}
+    \label{subfig:registration_dt_reference}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.2\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/registration_target_dt_interpol.png}
+    \caption{}
+    \label{subfig:registration_dt_target_interpol}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.2\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/registration_target_dt}
+    \caption{}
+    \label{subfig:registration_dt_target}
+  \end{subfigure}%
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Recalage non-rigide}
+  
+  \begin{columns}
+    \begin{column}[t]{0.6\textwidth}
+      \textbf{Méthodes variationnelles} : modélisation d'une force d'attraction des pixels, sous la forme d'un \textbf{champ de vecteurs}. \vspace{0.2cm}
+
+      \begin{enumerate}
+      \item Forces externes : métrique $\textcolor{red}{\mathcal{D}}$ : somme moindres carrés avec MÀJ
+      \item Forces internes : terme de \textbf{régularisation} $\textcolor{blue}{\mathcal{S}}$
+      \end{enumerate}
+
+      \[
+        \mathcal{J}[y] = \textcolor{red}{\mathcal{D}[\mathcal{T}[y], \mathcal{R}]} + \textcolor{blue}{\mathcal{S}[y]} \xrightarrow{y} \min
+      \]
+      
+      % \[
+      %   \mathcal{J}[y] = \textcolor{red}{\mathcal{D}[\mathcal{T}[y], \mathcal{R}]} + \textcolor{blue}{\mathcal{S}[y]} \xrightarrow{y} \min
+      % \]
+    \end{column}
+    \begin{column}[t]{0.4\textwidth}
+      \begin{figure}[ht]
+        \centering
+        \includegraphics<1>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield_2}%
+        \includegraphics<2>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield_10}%
+        \includegraphics<3>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield_30}%
+        \includegraphics<4>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield}%
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+
+\begin{frame}{Analyse statistique}
+  
+  \begin{columns}
+    \begin{column}[t]{0.6\textwidth}
+      \begin{enumerate}
+      \item Réduction de la dimension des images 2D par \textbf{NMF} 
+      \item \textbf{Projection} de l'image IRM sur les axes de la NMF
+      \item Sélection des images MALDI \textbf{les plus proches} de la projection
+        de l'image IRM 
+      \end{enumerate}
+    \end{column}
+    \begin{column}[t]{0.4\textwidth}
+      \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.95\textwidth]{fig/pca_big3}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Analyse statistique}
+  Identification des \textbf{molécules en MALDI corrélant avec les images IRM}.
+
+  \textbf{Problème :} les régions apparentes dans les deux modalités ne sont pas nécessairement alignées.
+
+  \begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.33\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig/t2_6_original}
+    \caption{}
+    \label{subfig:t2_6_original}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.33\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig/msi_6_original}
+    \caption{}
+    \label{subfig:msi_6_original}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.33\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig/overlay_t2_6_original}
+    \caption{}
+    \label{subfig:overlay_t2_6_original}
+  \end{subfigure}%
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}{Analyse statistique}
+  \textbf{Contribution :} Recalage exhaustif impliquant des translations des images de composantes
+
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics<1>[width=0.9\textwidth]{fig/translation_nmf_0}%
+    \includegraphics<2>[width=0.9\textwidth]{fig/translation_nmf_1}%
+    \includegraphics<3>[width=0.9\textwidth]{fig/translation_nmf_2}%
+    \includegraphics<4>[width=0.9\textwidth]{fig/translation_nmf_3}%
+  \end{figure}
+
+  
+\end{frame}
 
 
 
@@ -592,7 +548,13 @@ $\Rightarrow$ Recalage \textbf{rigide entre coupes 2D} puis recalage \textbf{non
 
 \begin{frame}{Visualisation 3D}
   Outil pour la visualisation de fichiers imzML 3D:
+  \begin{itemize}
+  \item Python3
+  \item Bibliothèques \texttt{vedo}, \texttt{vtk} et \texttt{pyqt5}
+  \end{itemize}
 
+  \vspace{-0.2cm}
+  
   \begin{figure}[ht]
     \centering
     \includegraphics<1>[width=0.95\textwidth]{fig/visu}%
@@ -616,6 +578,128 @@ $\Rightarrow$ Recalage \textbf{rigide entre coupes 2D} puis recalage \textbf{non
 
 \end{frame}
 
+\section{Résultats}
+\begin{frame}{Normalisation}
+
+  Compensation de certains artefacts de normalisation:
+  
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.3\textwidth}
+      \centering \includegraphics[width=0.9\textwidth]{fig/real_tic}
+      \caption{TIC}
+      \label{subfig:real_tic}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.3\textwidth}
+      \centering \includegraphics[width=0.9\textwidth]{fig/real_sic}
+      \caption{NIC}
+      \label{subfig:real_sic}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.35\textwidth}
+      \centering \includegraphics[width=0.9\textwidth]{fig/real_defect}
+      \caption{}
+      \label{subfig:real_defect}
+    \end{subfigure}%
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Recalage}
+
+  \vspace{-0.3cm}
+  Proportion de pixels en commun:
+  \begin{itemize}
+  \item \textbf{simple} sans transformée en distance: \textbf{77.9\%}
+  \item \textbf{(b)} \textbf{exhaustif} avec transformée en distance: \textbf{84.6\%}
+  \item \textbf{(c)} \textbf{variationnel} sans mise à jour de la DT : \textbf{90.2\%}
+  \item \textbf{(d)} \textbf{variationnel} avec mise à jour de la DT : \textbf{93.2\%}
+  \end{itemize}
+
+  \begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.25\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/registration_wheat_mri}
+    \caption{}
+    \label{subfig:registration_wheat_mri}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.25\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/registration_wheat_affine}
+    \caption{}
+    \label{subfig:registration_wheat_affine}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.25\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/registration_wheat_ssd}
+    \caption{}
+    \label{subfig:registration_wheat_ssd}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.25\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/registration_wheat_dtssd}
+    \caption{}
+    \label{subfig:registration_wheat_dtssd}
+  \end{subfigure}%
+\end{figure}
+\end{frame}
+
+\begin{frame}{Analyse statistique}
+  Meilleure fidélité à l'image IRM originale avec \textbf{(b)}
+  \textbf{translation} des composantes, plutôt que \textbf{(c) sans}.
+    \begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/t2_6_original}
+    \caption{}
+    \label{subfig:t2_6_original}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/reconstruction_t2_translated.png}
+    \caption{}
+    \label{subfig:reconstruction_t2_translated.png}
+  \end{subfigure}%
+    \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig/msi_6_original.png}
+    \caption{}
+    \label{subfig:reconstruction_t2_translated.png}
+  \end{subfigure}%
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Mise en corrélation}
+
+  Résultats sur la \textbf{variété Bobwhite} (stade 250 DJ):
+
+    \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/mri_slice8_250}
+      \caption{IRM $T_2^*$}
+      \label{subfig:mri_slice8_250}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig/zonetir_2}
+      \caption{$\dfrac{\text{AX6}}{\text{AX5}}$}
+      \label{subfig:zonetir_0}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+      \centering
+      \includegraphics[width=0.7\textwidth]{fig/3D_250DJ}
+      \caption{$\dfrac{\text{AX6}}{\text{AX5}}$ (en 3D)}
+      \label{subfig:3D_250DJ}
+    \end{subfigure}%
+
+  \end{figure}
+
+   $\Rightarrow$ Rapport $\dfrac{\text{AX6}}{\text{AX5}}$ : lien entre \textbf{degré de substitution} des AX et \textbf{mobilité de l'eau} \cite{Fanuel18}.
+
+\end{frame}
 
 
 
@@ -623,76 +707,74 @@ $\Rightarrow$ Recalage \textbf{rigide entre coupes 2D} puis recalage \textbf{non
 
 \begin{frame}{Bilan}
 
-  Chaîne de traitement \textbf{ajustée} pour le \textbf{traitement automatique} d'images 3D.
+  Chaîne de traitement \textbf{ajustée} pour le \textbf{traitement
+    automatique} d'images 3D.
 
-  Résultats \textbf{préliminaires} au stade 250 DJ: confirment les \textbf{résultats précédents}.
+  Résultats au stade 250 DJ: confirment les \textbf{résultats
+    précédents}.
 
   \vspace{0.4cm}
 
   Perspectives:
   \begin{itemize}
-  \item Recalage \textbf{3D non-rigide}.
-  \item Mise en corrélation sur l'ensemble des stades.
+  \item Recalage avec des \textbf{variations locales d'échelle}.
+  \item Analyse statistique \textbf{complète en 3D}.
   \end{itemize}
 
 
 \end{frame}
 
+\begin{frame}{Variations locales d'échelle}
 
+  La transformation en distance est sensible aux variations d'échelle.
 
-
-\section{Papier}
-
-\begin{frame}{Papier soumis}
+  \visible<3->{
+    \textbf{Idée : } normaliser les valeurs de transformée en distance
+    par les valeurs d'\textbf{échelle locale} (rayon de l'objet).
+  }
   
-  Remarques du relecteur de \textit{Bioinformatics} :
-  \begin{enumerate}
-  \item Application à un seul jeu de données $\Rightarrow$ \textbf{généralisable} ?
-  \item \textbf{Validation} de la mise en corrélation.
-  \end{enumerate}
 
-  \underline{Généralisation} :
-
-   Les méthodes peuvent être appliquées sous réserve de satisfaire des \textit{a priori} assez larges.
-
-  \vspace{0.3cm}
-
-  Metaspace accepte depuis le 06/10 des \textbf{jeux de données imzML}.
-
-
-\end{frame}
-
-
-\begin{frame}{Mise en corrélation}
-  NMF appliquée aux images MALDI.
-  
-  \textbf{Reconstruction de l'image IRM} par NMF:
   \begin{figure}[ht]
-    \begin{subfigure}[t]{0.5\textwidth}
+    \flushleft
+    \begin{subfigure}[t]{0.2\textwidth}
       \centering
-      \includegraphics[width=0.65\textwidth]{fig/mri_recital}
-      \caption{Image originale}
-      \label{subfig:}
+      \includegraphics[width=0.95\textwidth]{fig/prospect_reference}
+      \caption{}
+      \label{subfig:prospect_reference}
     \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
+    \begin{subfigure}[t]{0.2\textwidth}
       \centering
-      \includegraphics[width=0.65\textwidth]{fig/mri_recital_reconstructed}
-      \caption{Reconstruction}
-      \label{subfig:mri_recital_reconstructed}
+      \includegraphics[width=0.95\textwidth]{fig/prospect_target}
+      \caption{}
+      \label{subfig:prospect_target}
     \end{subfigure}%
+    \only<2->{%
+    \begin{subfigure}[t]{0.2\textwidth}
+      \centering
+      \includegraphics[width=0.95\textwidth]{fig/prospect_registered_target}
+      \caption{}
+      \label{subfig:prospect_registered_target}
+    \end{subfigure}%
+    }%
+    \only<3->{%
+      \begin{subfigure}[t]{0.2\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{fig/prospect_normalized_dt}
+        \caption{}
+        \label{subfig:prospect_normalized_dt}
+      \end{subfigure}%
+    }%
+    \only<4->{%
+      \begin{subfigure}[t]{0.2\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{fig/prospect_registered_target_normalized}
+        \caption{}
+        \label{subfig:prospect_registered_target_normalized}
+      \end{subfigure}%
+    }
   \end{figure}
 
-  \textbf{Différence moyenne d'intensité} = 20.7 $\pm$ 46.4
 \end{frame}
-
-\begin{frame}{Resoumission}
-  Journaux potentiels :
-  \begin{itemize}
-  \item \textit{BMC Bioinformatics} : \textbf{communauté} appropriée, problème du \textbf{prix} de l'open access.
-  \item \textit{Analytical Chemistry} : \textbf{travaux précédents} sur la fusion d'images MS.
-  \end{itemize}
-\end{frame}
-
 
 
 

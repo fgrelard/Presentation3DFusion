@@ -4,7 +4,7 @@
 
 \documentclass[10pt]{beamer}
 % \includeonlyframes{yy}
-\usepackage[french]{babel}
+\usepackage[english]{babel}
 \usepackage{color, colortbl}
 \definecolor{Gray}{gray}{0.9}
 \newcolumntype{g}{>{\columncolor{Gray}}c}
@@ -40,13 +40,16 @@
 % \addtobeamertemplate{background canvas}{\transfade[duration=0.05]}{}
 
 
-\title{Fusion d'images IRM et MALDI en 3D}
-\subtitle{Dernières avancées}
-
+\title{Fusion of Three-Dimensional Mass Spectrometry and Magnetic Resonance Images}
+\subtitle{\normalsize Application to the wheat grain}
+\institute{OurCon 2021}
 \author{{Florent \textsc{Grélard}\\
-    David \textsc{Legland}, Mathieu \textsc{Fanuel}, Loïc \textsc{Foucat}, Hélène \textsc{Rogniaux}}} \titlegraphic{\hspace*{0.18\textwidth}~%
-  \includegraphics[width=0.26\textwidth]{fig/logo-inrae}\hspace*{0.18\textwidth}~%
-  \includegraphics[width=0.26\textwidth]{fig/logo-bibs.png}\hspace*{0.1\textwidth}~%
+    David \textsc{Legland}, Mathieu \textsc{Fanuel}, Loïc \textsc{Foucat}, Hélène \textsc{Rogniaux}}}
+\titlegraphic{\hspace*{0.01\textwidth}~%
+  \includegraphics[width=0.2\textwidth]{fig/logo-inrae}\hspace*{0.075\textwidth}~%
+  \includegraphics[width=0.2\textwidth]{fig/logo-bibs.png}\hspace*{0.075\textwidth}~%
+  \includegraphics[width=0.2\textwidth]{fig/logo-biogenouest}\hspace*{0.075\textwidth}~%
+  \includegraphics[width=0.2\textwidth]{fig/logo-region}\hspace*{0.01\textwidth}~%
 } \setbeamercolor{bbb}{fg=red}
 
 \let\oldfootnotesize\footnotesize
@@ -79,7 +82,7 @@
 % Ombre aux blocks
 \setbeamertemplate{caption}{\insertcaption}
 
-\date{07 juillet 2021} % set the Date
+\date{\vspace{0.2cm}13 October 2021} % set the Date
 % \renewcommand{\insertnavigation}[1]{}
 
 % \AtBeginSection[]{
@@ -98,11 +101,11 @@
   \titlepage
 \end{frame}
 
-\section{Contexte}
-\begin{frame}{Contexte}
-  Étude du développement du grain de blé.
+\section{Context}
+\begin{frame}{Context}
+  Study of wheat grain development.
   
-  Molécules impliquées dans les transferts d'eau \cite{Fanuel18} :
+  Molecules involved in water transfers \cite{Fanuel18} :
   
   
   \begin{figure}[ht]
@@ -119,18 +122,17 @@
     \end{subfigure}%
   \end{figure}
 
-   \underline{Objectif :} identifier de \textbf{nouvelles molécules} dont la distribution spatiale corrèle avec l'eau.\\
+   \underline{Aim :} to identify \textbf{new molecules} whose spatial distribution correlate with water.\\
 
 \end{frame}
 
-\begin{frame}{Nouvelles données}
-  Nouvelles données : \textbf{variété Bobwhite}, 3 stades de
-  développement.
+\begin{frame}{New data}
+  New data : \textbf{Bobwhite}, 3 stages of development.
   
-  \underline{Problèmes :}
+  \underline{Problem :}
   \begin{itemize}
-  \item inhomogénéités d'intensité
-  \item orientations différentes
+  \item intensity inhomogeneities
+  \item different orientations
   \end{itemize}
 
 
@@ -153,8 +155,8 @@
 \end{figure}
 
 \visible<5> {
-  $\Rightarrow$ besoin de méthodes \textbf{répétables},
-  \textbf{génériques}.
+  $\Rightarrow$ need for \textbf{reproducible} and
+  \textbf{generic} methods.
 }
 
 
@@ -166,14 +168,15 @@
 
 
 
-\begin{frame}{Chaîne de traitement 3D}
+\begin{frame}{3D workflow}
 
 
   \begin{enumerate}
-  \item<2-> MALDI: \textbf{normalisation} des images
-  \item<3-> \textbf{Recalage 3D}
-  \item<4-> \textbf{Visualisation} d'images MS en 3D
-  \item<5-> Corrélations spatiales avec \textbf{incertitudes}
+  \item<2-> MALDI: spectra \textbf{normalization}
+  \item<3-> \textbf{3D registration}
+  \item<4-> Spatial correlations with \textbf{uncertainties}
+  \item<5-> \textbf{Visualization} of 3D MS images
+
   \end{enumerate}
 
   \begin{figure}[ht]
@@ -209,26 +212,25 @@
   \endgroup }
 
 
-\section{Normalisation d'images de spectrométrie de masse}
-\begin{frame}{Normalisation}
+\section{Normalization of MS images}
+\begin{frame}{Normalization}
 
-  Facteurs de normalisation :
+  Normalization factors:
   \begin{enumerate}
-  \item Total ion count (TIC) : somme des intensités du spectre
-  \item Intensité d'une espèce de référence
-  \item Médiane
+  \item Total ion count (TIC) : sum of spectra intensities
+  \item Intensity of a standard molecule
+  \item Median
   \end{enumerate}
 
   \vspace{0.2cm}
 
-  Généralement, utilisation du \textbf{TIC}: compense les différences
-  de mesure entre deux spectres
+  Usually, the \textbf{TIC} is used: compensates for differences in the detected signals.
 \end{frame}
 
 
-\begin{frame}{TIC: problème}
-  Variation d'intensité de pics entre deux spectres $\Rightarrow$
-  facteurs TIC différents
+\begin{frame}{TIC: problem}
+  Intensity variation between two spectra $\Rightarrow$
+  different TIC factors.
   
   \begin{figure}[ht]
     \centering
@@ -239,10 +241,9 @@
 
 \end{frame}
 
-\begin{frame}{TIC: problème}
+\begin{frame}{TIC: problem}
 
-  \underline{Exemple:} intensité très élevée du pic d'insuline dans le
-  pancréas de souris \cite{Deininger_2011}.
+  \underline{Example:} high intensity of the insulin peak in mouse pancreas \cite{Deininger_2011}.
 
   \begin{figure}[ht]
     \centering
@@ -256,10 +257,9 @@
 
 \begin{frame}{Noise Ion Count}
 
-  \textbf{Idée :} enlever la contribution des pics dans le facteur de
-  normalisation.
+  \textbf{Idea :} remove peak contribution from the normalization factor.
 
-  \textbf{Calcul :} NIC = TIC - $\sum I_{\text{pics}}$
+  \textbf{Calcul :} NIC = TIC - $\sum I_{\text{peaks}}$
 
   \vspace{0.4cm}
 
@@ -277,15 +277,15 @@
 \end{frame}
 
 
-\section{Recalage 3D}
+\section{3D Registration}
 
-\begin{frame}{Recalage}
+\begin{frame}{Registration}
 
-  Méthodes de recalage définies par trois composantes :
+  Registration methods defined by three components:
   \begin{enumerate}
-  \item La \textbf{transformation géométrique} : rigide, affine, non-rigide
-  \item La \textbf{métrique} : mesure la similarité entre l'image fixe et mobile, en termes d'intensité ou de géométrie
-  \item L'\textbf{optimisation} : méthode pour la détermination du minimum de la métrique \vspace{0.3cm}
+  \item The \textbf{geometrical transformation} : rigid, affine, deformable
+  \item The \textbf{metric} : estimates the similarity between the reference and target images, using intensity or geometrical criteria
+  \item The \textbf{optimization} : to find the minimum of the metric \vspace{0.3cm}
   \end{enumerate}
   \vspace{-0.4cm}
   
@@ -302,9 +302,9 @@
 
 
 
-\begin{frame}{Recalage}
+\begin{frame}{Registration}
 
-  \textbf{Problèmes :} différences d'intensités, orientations très différentes
+  \textbf{Problems :} intensity discrepancies, different orientations
 
    \begin{figure}[ht]
     \centering
@@ -320,21 +320,21 @@
   \end{figure}
 
   \onslide<2->{
-  $\Rightarrow$ Difficile de choisir des \textbf{paramètres appropriés} pour recaler l'ensemble des coupes.
+  $\Rightarrow$ Hard to choose  \textbf{appropriate parameters} in order to register all slices.
   }
  
 
 \end{frame}
 
-\begin{frame}{Approche pour le recalage}
+\begin{frame}{Registration approach}
   
-  Approche en deux étapes :
+  Two steps:
   \begin{enumerate}
-  \item recalage affine \textbf{exhaustif} en \textbf{2D}
-  \item recalage \textbf{non-rigide} en \textbf{3D}
+  \item \textbf{2D exhaustive} affine registration
+  \item \textbf{3D deformable} registration
   \end{enumerate}
 
-  \alert{Recalage exhaustif} : paramètres de transformation \textbf{prédéfinis} $\Rightarrow$ évite de converger vers un \textbf{minimum local}.
+  \alert{Exhaustive registration} : \textbf{predefined} transformation parameters  $\Rightarrow$ avoids converging towards a \textbf{local minimum}.
 
   \begin{figure}[ht]
     \centering
@@ -346,11 +346,11 @@
   
 \end{frame}
 
-\begin{frame}{Métrique de similarité}
+\begin{frame}{Similarity metric}
 
-  Abstraction des intensités : \textbf{transformée en distance}.
+  Geometrical metric : \textbf{distance transform} (DT)
 
-  \alert{Transformée en distance} : on associe à chaque pixel sa distance au bord de l'objet.
+  \alert{Distance transform} : maps each pixel of an object to its distance to the border.
 
   \begin{figure}[ht]
     \centering
@@ -373,14 +373,14 @@
   
 \end{frame}
 
-\begin{frame}{Recalage exhaustif}
+\begin{frame}{Exhaustive registration}
 
-  Transformation initialisée en alignant les centres de gravité
+  Transformation initialized by aligning the centers of mass of the shapes.
 
   \begin{itemize}
-  \item La transformation géométrique : espace de paramètres pour rotation et homothétie
-  \item La métrique : DT, \textbf{information mutuelle} de Mattes
-  \item L'optimisation : \textbf{exhaustive}
+  \item Transformation : parameter space for rotation and scaling
+  \item Metric : Mutual information on the \textbf{DT of the object}
+  \item Optimization : \textbf{exhaustive}
   \end{itemize}
 
   \vspace{-0.2cm}
@@ -394,13 +394,12 @@
 
 \end{frame}
 
-\begin{frame}{Recalage non-rigide}
-  Déformations $\Rightarrow$ valeurs de transformée en distance
+\begin{frame}{Deformable registration}
+  Local deformations change distance transformation values
 
   \vspace{0.4cm}
   
-  \textbf{Nouvelle métrique}: somme des moindres carrés avec mise
-  à jour de la transformée en distance.
+  \textbf{New metric}: sum of squared differences with an update on DT values.
 
   \begin{figure}[ht]
   \centering
@@ -438,15 +437,15 @@
 \end{frame}
 
 
-\begin{frame}{Recalage non-rigide}
+\begin{frame}{Deformable registration}
   
   \begin{columns}
     \begin{column}[t]{0.6\textwidth}
-      \textbf{Méthodes variationnelles} : modélisation d'une force d'attraction des pixels, sous la forme d'un \textbf{champ de vecteurs}. \vspace{0.2cm}
+      \textbf{Variational methods} : displacements modelled by a \textbf{vector field}. The vector field is guided by pixel similarity. \vspace{0.2cm}
 
       \begin{enumerate}
-      \item Forces externes : métrique $\textcolor{red}{\mathcal{D}}$ : somme moindres carrés avec MÀJ
-      \item Forces internes : terme de \textbf{régularisation} $\textcolor{blue}{\mathcal{S}}$
+      \item External forces : metric $\textcolor{red}{\mathcal{D}}$ : sum of squared differences with DT update
+      \item Internal forces : \textbf{regularization} term $\textcolor{blue}{\mathcal{S}}$
       \end{enumerate}
 
       \[
@@ -472,15 +471,14 @@
 
 
 
-\begin{frame}{Analyse statistique}
+\begin{frame}{Statistical analysis}
   
   \begin{columns}
     \begin{column}[t]{0.6\textwidth}
       \begin{enumerate}
-      \item Réduction de la dimension des images 2D par \textbf{NMF} 
-      \item \textbf{Projection} de l'image IRM sur les axes de la NMF
-      \item Sélection des images MALDI \textbf{les plus proches} de la projection
-        de l'image IRM 
+      \item Dimension reduction of the MS image by \textbf{NMF} 
+      \item \textbf{Projection} of the MR image onto the NMF axes
+      \item Selection of ion images which are \textbf{the closest} to the MR projection
       \end{enumerate}
     \end{column}
     \begin{column}[t]{0.4\textwidth}
@@ -492,10 +490,10 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Analyse statistique}
-  Identification des \textbf{molécules en MALDI corrélant avec les images IRM}.
+\begin{frame}{Statistical analysis}
+  Identification of molecules in MALDI which \textbf{correlate with MR images}:
 
-  \textbf{Problème :} les régions apparentes dans les deux modalités ne sont pas nécessairement alignées.
+  \textbf{Problem :} similar regions in both images might not be aligned.
 
   \begin{figure}[ht]
   \centering
@@ -522,8 +520,8 @@
 \end{frame}
 
 
-\begin{frame}{Analyse statistique}
-  \textbf{Contribution :} Recalage exhaustif impliquant des translations des images de composantes
+\begin{frame}{Statistical analysis}
+  \textbf{Contribution :} exhaustive registration of individual NMF component images
 
 
   \begin{figure}[ht]
@@ -543,32 +541,11 @@
 
 
 
-\section{Visualisation}
-
-
-\begin{frame}{Visualisation 3D}
-  Outil pour la visualisation de fichiers imzML 3D:
-  \begin{itemize}
-  \item Python3
-  \item Bibliothèques \texttt{vedo}, \texttt{vtk} et \texttt{pyqt5}
-  \end{itemize}
-
-  \vspace{-0.2cm}
-  
-  \begin{figure}[ht]
-    \centering
-    \includegraphics<1>[width=0.95\textwidth]{fig/visu}%
-    \includegraphics<2>[width=0.95\textwidth]{fig/visu2}%
-    \includegraphics<3>[width=0.95\textwidth]{fig/visu3}
-    \caption{}
-    \label{fig:visu}
-  \end{figure}
-
-\end{frame}
+\section{Visualization}
 
 \begin{frame}{Visualisation 3D}
   
-  Rendu volumique :
+  3D volumetric rendering :
   \begin{figure}[ht]
     \centering
     \includegraphics[width=0.5\textwidth]{fig/visu_3d.png}
@@ -578,40 +555,17 @@
 
 \end{frame}
 
-\section{Résultats}
-\begin{frame}{Normalisation}
+\section{Results}
 
-  Compensation de certains artefacts de normalisation:
-  
-  \begin{figure}[ht]
-    \centering
-    \begin{subfigure}[t]{0.3\textwidth}
-      \centering \includegraphics[width=0.9\textwidth]{fig/real_tic}
-      \caption{TIC}
-      \label{subfig:real_tic}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.3\textwidth}
-      \centering \includegraphics[width=0.9\textwidth]{fig/real_sic}
-      \caption{NIC}
-      \label{subfig:real_sic}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.35\textwidth}
-      \centering \includegraphics[width=0.9\textwidth]{fig/real_defect}
-      \caption{}
-      \label{subfig:real_defect}
-    \end{subfigure}%
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Recalage}
+\begin{frame}{Registration}
 
   \vspace{-0.3cm}
-  Proportion de pixels en commun:
+  Percentage of shared pixels between the MS and MR images:
   \begin{itemize}
-  \item \textbf{simple} sans transformée en distance: \textbf{77.9\%}
-  \item \textbf{(b)} \textbf{exhaustif} avec transformée en distance: \textbf{84.6\%}
-  \item \textbf{(c)} \textbf{variationnel} sans mise à jour de la DT : \textbf{90.2\%}
-  \item \textbf{(d)} \textbf{variationnel} avec mise à jour de la DT : \textbf{93.2\%}
+  \item \textbf{simple} with a intensity-based metric: \textbf{77.9\%}
+  \item \textbf{(b)} \textbf{exhaustive} with DT: \textbf{84.6\%}
+  \item \textbf{(c)} \textbf{variational} without DT update : \textbf{90.2\%}
+  \item \textbf{(d)} \textbf{variational} with DT update : \textbf{93.2\%}
   \end{itemize}
 
   \begin{figure}[ht]
@@ -643,9 +597,13 @@
 \end{figure}
 \end{frame}
 
-\begin{frame}{Analyse statistique}
-  Meilleure fidélité à l'image IRM originale avec \textbf{(b)}
-  \textbf{translation} des composantes, plutôt que \textbf{(c) sans}.
+\begin{frame}{Statistical analysis}
+  Mean squared error of the standard deviation between the \textbf{(a)} original and the \textbf{(b-c)} projected MR images:
+  \begin{itemize}
+  \item \textbf{without} NMF component image registration: \textbf{12.4}
+  \item \textbf{with} NMF component image registration: \textbf{11.5}
+  \end{itemize}
+
     \begin{figure}[ht]
   \centering
   \begin{subfigure}[t]{0.3\textwidth}
@@ -670,9 +628,9 @@
 
 \end{frame}
 
-\begin{frame}{Mise en corrélation}
+\begin{frame}{Correlative analysis}
 
-  Résultats sur la \textbf{variété Bobwhite} (stade 250 DJ):
+  Results on the \textbf{Bobwhite} wheat grain family (250 DAA stage):
 
     \begin{figure}[ht]
     \centering
@@ -697,40 +655,41 @@
 
   \end{figure}
 
-   $\Rightarrow$ Rapport $\dfrac{\text{AX6}}{\text{AX5}}$ : lien entre \textbf{degré de substitution} des AX et \textbf{mobilité de l'eau} \cite{Fanuel18}.
+   $\Rightarrow$ $\dfrac{\text{AX6}}{\text{AX5}}$ ratio: link between AX \textbf{substitution} and \textbf{water mobility} \cite{Fanuel18}.
 
 \end{frame}
 
 
 
-\section{Bilan}
+\section{Conclusion}
 
-\begin{frame}{Bilan}
+\begin{frame}{Conclusion}
 
-  Chaîne de traitement \textbf{ajustée} pour le \textbf{traitement
-    automatique} d'images 3D.
+  Adjusted workflow for the \textbf{automatic} processing and analysis of 3D MS images.
 
-  Résultats au stade 250 DJ: confirment les \textbf{résultats
-    précédents}.
+  Suited for 3D MS image fusion with homogeneous or inhomogeneous intensities.
+
+  Results at the 250 DAA stage confirm \textbf{previous results}.
 
   \vspace{0.4cm}
 
-  Perspectives:
+  Prospects:
   \begin{itemize}
-  \item Recalage avec des \textbf{variations locales d'échelle}.
-  \item Analyse statistique \textbf{complète en 3D}.
+  \item \textbf{Full 3D} statistical analysis.
+  \item Registration with \textbf{local scale variations}.
   \end{itemize}
 
 
 \end{frame}
 
-\begin{frame}{Variations locales d'échelle}
+\begin{frame}{Local scale variations}
 
-  La transformation en distance est sensible aux variations d'échelle.
+  \visible<2->{
+    The distance transform values are dependent on the local scale of the object.
+    }
 
   \visible<3->{
-    \textbf{Idée : } normaliser les valeurs de transformée en distance
-    par les valeurs d'\textbf{échelle locale} (rayon de l'objet).
+    \textbf{Idea :} normalize the DT values by the \textbf{local scale} of the object, taken as e.g. the object's radius.
   }
   
 

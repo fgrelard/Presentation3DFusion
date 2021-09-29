@@ -179,11 +179,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5"
-     inkscape:cx="854.80075"
-     inkscape:cy="389.56492"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="-432.16336"
+     inkscape:cy="380.73708"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer10"
+     inkscape:current-layer="layer5"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
@@ -738,7 +738,69 @@
        preserveAspectRatio="none"
        height="26.458334"
        width="26.458334" />
-  </g>
+    <rect
+       style="opacity:1;fill:#3a5b00;fill-opacity:0.13861389;stroke:#030303;stroke-width:0.26458332;stroke-opacity:0.96039584"
+       id="rect7360"
+       width="66.674995"
+       height="23.8125"
+       x="61.117855"
+       y="149.41943"
+       ry="2.9947658" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot7362"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-6.6631571,10.021846)"><flowRegion
+         id="flowRegion7364"><rect
+           id="rect7366"
+           width="262"
+           height="162"
+           x="302"
+           y="548.27124" /></flowRegion><flowPara
+         id="flowPara7368"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans'">Processing</flowPara></flowRoot>    <rect
+       ry="2.9947658"
+       y="149.41943"
+       x="146.62285"
+       height="23.8125"
+       width="66.674995"
+       id="rect7370"
+       style="opacity:1;fill:#3a5b00;fill-opacity:0.13861389;stroke:#030303;stroke-width:0.26458332;stroke-opacity:0.96039584" />
+    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,75.848453,9.9576473)"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       id="flowRoot7378"
+       xml:space="preserve"><flowRegion
+         id="flowRegion7374"><rect
+           y="548.27124"
+           x="302"
+           height="162"
+           width="262"
+           id="rect7372" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans'"
+         id="flowPara7376">Registration</flowPara></flowRoot>    <rect
+       style="opacity:1;fill:#3a5b00;fill-opacity:0.13861389;stroke:#030303;stroke-width:0.26879355;stroke-opacity:0.96039584"
+       id="rect7390"
+       width="53.906239"
+       height="30.683184"
+       x="222.24426"
+       y="149.42154"
+       ry="3.0908337" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot7388"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,136.46056,9.8026573)"><flowRegion
+         id="flowRegion7384"
+         style="line-height:1"><rect
+           id="rect7382"
+           width="241.98279"
+           height="197.33093"
+           x="302"
+           y="548.27124"
+           style="line-height:1" /></flowRegion><flowPara
+         id="flowPara7386"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1;font-family:'Fira Sans';-inkscape-font-specification:'Fira Sans';text-align:center;text-anchor:middle">Statistical analysis</flowPara></flowRoot>  </g>
   <g
      inkscape:groupmode="layer"
      id="layer6"
@@ -1354,7 +1416,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="next_frame1"
-     style="display:inline"
+     style="display:none"
      transform="translate(0,2.2519109)">
     <rect
        style="display:inline;opacity:1;vector-effect:none;fill:#ffb88c;fill-opacity:0.38613862;stroke:#ffb200;stroke-width:0.53009516;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -1368,7 +1430,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="next_frame2"
-     style="display:inline"
+     style="display:none"
      transform="translate(0,2.2519109)">
     <rect
        y="34.570988"
@@ -1396,7 +1458,7 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="next_frame3"
-     style="display:inline"
+     style="display:none"
      transform="translate(0,2.2519109)">
     <path
        style="fill:none;stroke:#000000;stroke-width:3.7650001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Sstart);marker-end:url(#marker1458)"

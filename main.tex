@@ -102,34 +102,160 @@
 \end{frame}
 
 \section{Context}
-\begin{frame}{Context}
-  Study of wheat grain development.
-  
-  Molecules involved in water transfers \cite{Fanuel18} :
-  
-  
+\begin{frame}{Wheat grain}
+  Study of \textbf{wheat grain development}.
+
   \begin{figure}[ht]
     \centering
-    \begin{subfigure}[t]{0.45\textwidth}
-      \centering
-      \includegraphics[width=0.6\textwidth]{fig/3Darabinoxylan}
-      \label{subfig:3Darabinoxylan}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.45\textwidth}
-      \centering
-      \includegraphics[width=0.35\textwidth]{fig/water_transfer}
-      \label{subfig:water_transfer}
-    \end{subfigure}%
+    \includegraphics[width=0.9\textwidth]{fig/stages}
   \end{figure}
 
-   \underline{Aim :} to identify \textbf{new molecules} whose spatial distribution correlate with water.\\
+  
+  \textbf{Cell walls}:
+  \begin{itemize}
+  \item specific mechanical properties for growth.
+  \item layered polymers involving \textbf{celluloses}, \textbf{hemicelluloses}.
+  \end{itemize}
+
+  
 
 \end{frame}
 
-\begin{frame}{New data}
-  New data : \textbf{Bobwhite}, 3 stages of development.
+\begin{frame}{Arabinoxylans and water transfers}
+
+  \alert{Arabinoxylans (AX)}: cell wall polysaccharides.
+  \vspace{-0.2cm}
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig/AX}
+  \end{figure}
+
+
+ 
   
-  \underline{Problem :}
+
+  \begin{columns}[totalwidth=\textwidth]
+    \begin{column}[t]{0.5\linewidth}
+        {AX localized in \textbf{highly hydrated} regions \cite{Fanuel18}:}
+    \end{column}
+    \begin{column}[c]{0.5\linewidth}
+      \hfill
+      \begin{figure}[ht]
+        \centering
+        \begin{subfigure}[t]{0.45\textwidth}
+          \centering
+          \includegraphics[width=0.6\textwidth]{fig/3DAX}
+          \label{subfig:3Darabinoxylan}
+        \end{subfigure}%
+        \begin{subfigure}[t]{0.45\textwidth}
+          \centering
+          \includegraphics[width=0.6\textwidth]{fig/water_transfer}
+          \label{subfig:water_transfer}
+        \end{subfigure}%
+      \end{figure}
+    \end{column}
+  \end{columns}
+  
+
+     \underline{Aim:} to identify \textbf{new molecules} whose spatial distribution correlate with water.\\
+
+   \end{frame}
+
+
+\begin{frame}{From images to molecule identification}
+  \textbf{(a)} \textbf{IRM :} images enclosing the water distribution
+   \vspace{0.1cm}
+
+  \textbf{(b)} \textbf{MSI (MALDI):} hyperspectral image: spectrum associated to each pixel location.
+
+  $\rightarrow$ Automatic image \alert{fusion}
+
+  \underline{Problem:} differences between imaging modalities and resulting images.
+
+  \vspace{-0.2cm}
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.4\textwidth}
+      \centering \includegraphics[width=0.65\textwidth]{fig/mri_slice11}
+      \caption{}
+      \label{subfig:mri}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.4\textwidth}
+      \centering \includegraphics[width=0.7\textwidth]{fig/maldi}
+      \caption{}
+      \label{subfig:maldi}
+    \end{subfigure}%
+    \label{fig:irm_vs_maldi}
+  \end{figure}
+  
+\end{frame}
+
+\begin{frame}{MR and MS imaging}
+
+  \underline{\textbf{MRI:}} \hspace{0.5\textwidth} \underline{\textbf{MSI} (MALDI--TOF):}
+
+  \begin{columns}
+    \begin{column}[t]{.5\textwidth}
+      \begin{itemize}
+      \item \textbf{Whole} grain
+      \item \textbf{4D images}:  \alert{multi-pulse} sequence (gradient echo)
+      \item \textbf{Resolution}: $50 \mu m \times 50 \mu m \times 500 \mu m$
+      \end{itemize}
+      \vspace{1cm}
+      \begin{figure}[ht]
+        \centering
+        \begin{subfigure}[t]{0.33\textwidth}
+          \centering \includegraphics[width=0.9\textwidth]{fig/echo2_1}
+        \end{subfigure}%
+        \begin{subfigure}[t]{0.33\textwidth}
+          \centering \includegraphics[width=0.9\textwidth]{fig/echo2_2}
+        \end{subfigure}%
+        \begin{subfigure}[t]{0.33\textwidth}
+          \centering \includegraphics[width=0.9\textwidth]{fig/echo2_3}
+        \end{subfigure}%
+      \end{figure}
+    \end{column}
+    \begin{column}[t]{.5\textwidth}
+      \begin{itemize}
+      \item \textbf{Sample preparation}: cut, enzymatic digestion, matrix spraying
+      \item \textbf{Datacube}: spectral dimension (m/z ratios)
+      \item \textbf{Resolution}: $25 \mu m \times 25 \mu m \times 80 \mu m$
+      \end{itemize}
+      \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.5\linewidth]{fig/maldi_cube}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+% \begin{frame}{Workflow in 2D}
+
+%   Joint analysis of \textbf{water} distribution (MRI) with \textbf{individual molecules} (MSI).
+
+%   Previously described workflow \textbf{in 2D} \cite{Grelard_2021}.
+
+
+%   \begin{figure}[ht]
+%     \centering
+%     \includegraphics<1>[width=0.5\textwidth]{fig/maldi_corr1}%
+%     \includegraphics<2->[width=0.5\textwidth]{fig/maldi_corr2}%
+%   \end{figure}
+
+%   \visible<3->{
+
+%     $\Rightarrow$ \textbf{mathematical} and \textbf{computational} methods: signal and image processing, statistical analysis.
+  
+%   }
+% \end{frame}
+
+
+
+\begin{frame}{3D data}
+  Wheat grain from the \textbf{Bobwhite} variety, 3 stages of development.
+  
+  \underline{Problem:}
   \begin{itemize}
   \item intensity inhomogeneities
   \item different orientations
@@ -156,7 +282,7 @@
 
 \visible<5> {
   $\Rightarrow$ need for \textbf{reproducible} and
-  \textbf{generic} methods.
+  \textbf{generic} computational methods.
 }
 
 
@@ -166,126 +292,172 @@
 \end{frame}
 
 
-
-
-\begin{frame}{3D workflow}
-
-
-  \begin{enumerate}
-  \item<2-> MALDI: spectra \textbf{normalization}
-  \item<3-> \textbf{3D registration}
-  \item<4-> Spatial correlations with \textbf{uncertainties}
-  \item<5-> \textbf{Visualization} of 3D MS images
-
-  \end{enumerate}
-
-  \begin{figure}[ht]
-    \centering
-    \includegraphics<1>[width=0.76\textwidth]{fig/workflow3D_0}%
-    \includegraphics<2>[width=0.76\textwidth]{fig/workflow3D_1}%
-    \includegraphics<3>[width=0.76\textwidth]{fig/workflow3D_2}%
-    \includegraphics<4>[width=0.76\textwidth]{fig/workflow3D_3}%
-    \includegraphics<5>[width=0.76\textwidth]{fig/workflow3D_4}%
-  \end{figure}
-\end{frame}
-
-
-\AtBeginSection[]{ \begingroup \setbeamercolor{background
-    canvas}{bg=mLightBlue}
+%\ begingroup \setbeamercolor{background
+%     canvas}{bg=mLightBlue}
   
+%   \setbeamertemplate{subsection in toc}
+%   {\leavevmode\leftskip=2em$\bullet$\hskip1em\inserttocsubsection\par}
+%   \setbeamercolor{section in toc}{fg=paleGrey, bg=mLightBlue}
+%   \setbeamercolor{local structure}{fg=mLightBlueLighter,bg=mLightBlue}
+%   \setbeamercolor{section in toc shaded}{fg=mLightBlue, bg=mLightBlue}
+%   \setbeamertemplate{section in toc}[circle]
+%   \setbeamertemplate{section in toc shaded}[default][80]
+%   \setbeamertemplate{section in toc}{\hspace*{1em}\inserttocsection}
+
+%   \setbeamercolor{subsection in toc}{fg=paleGrey, bg=mLightBlue}
+%   \begin{frame}[noframenumbering,plain]
+%     \frametitle{\textcolor{paleGrey}{Table des matières}}
+
+%     \tableofcontents[currentsection, sectionstyle=show/hide,
+%     hideothersubsections]
+%   \end{frame}
+%   \endgroup }
+
+
+
+\AtBeginSection[]{
+  \begingroup
+  \setbeamercolor{background canvas}{bg=mLightBlue}
+
   \setbeamertemplate{subsection in toc}
   {\leavevmode\leftskip=2em$\bullet$\hskip1em\inserttocsubsection\par}
+
+  % \setbeamercolor{section in toc shaded}{bg=paleGrey}
+
+
   \setbeamercolor{section in toc}{fg=paleGrey, bg=mLightBlue}
   \setbeamercolor{local structure}{fg=mLightBlueLighter,bg=mLightBlue}
   \setbeamercolor{section in toc shaded}{fg=mLightBlue, bg=mLightBlue}
-  \setbeamertemplate{section in toc}[circle]
-  \setbeamertemplate{section in toc shaded}[default][80]
-  \setbeamertemplate{section in toc}{\hspace*{1em}\inserttocsection}
+  \setbeamertemplate{section in toc}[circle] \setbeamertemplate{section
+    in toc shaded}[default][80]
+    \setbeamertemplate{section in toc}{\hspace*{1em}\inserttocsection}
+
+
 
   \setbeamercolor{subsection in toc}{fg=paleGrey, bg=mLightBlue}
-  \begin{frame}[noframenumbering,plain]
-    \frametitle{\textcolor{paleGrey}{Table des matières}}
+  \begin{frame}[plain,noframenumbering]
+      \frametitle{\textcolor{paleGrey}{Contents}}
+      \tableofcontents[currentsection, hideothersubsections]
+    \end{frame}
+    \endgroup
+}
+\section{3D workflow}
+\begin{frame}{3D workflow}
 
-    \tableofcontents[currentsection, sectionstyle=show/hide,
-    hideothersubsections]
-  \end{frame}
-  \endgroup }
-
-
-\section{Normalization of MS images}
-\begin{frame}{Normalization}
-
-  Normalization factors:
+  Extension of our \textbf{2D} workflow \cite{Grelard_2021}.
   \begin{enumerate}
-  \item Total ion count (TIC) : sum of spectra intensities
-  \item Intensity of a standard molecule
-  \item Median
+  \item<2-> \textbf{3D registration}
+  \item<3-> Spatial correlations with \textbf{uncertainties}
+  \item<4-> \textbf{Visualization} of 3D MS images
+
   \end{enumerate}
 
-  \vspace{0.2cm}
-
-  Usually, the \textbf{TIC} is used: compensates for differences in the detected signals.
+  \begin{figure}[ht]
+    \centering
+    \includegraphics<1>[width=0.7\textwidth]{fig/workflow3D_0}%
+    \includegraphics<2>[width=0.7\textwidth]{fig/workflow3D_2}%
+    \includegraphics<3>[width=0.7\textwidth]{fig/workflow3D_3}%
+    \includegraphics<4>[width=0.7\textwidth]{fig/workflow3D_4}%
+  \end{figure}
 \end{frame}
 
 
-\begin{frame}{TIC: problem}
-  Intensity variation between two spectra $\Rightarrow$
-  different TIC factors.
+% \AtBeginSection[]{ \begingroup \setbeamercolor{background
+%     canvas}{bg=mLightBlue}
   
-  \begin{figure}[ht]
-    \centering
-    \includegraphics<1>[width=0.7\textwidth]{fig/normalization1}%
-    \includegraphics<2>[width=0.7\textwidth]{fig/normalization2}%
-    \includegraphics<3>[width=0.7\textwidth]{fig/normalization3}%
-  \end{figure}
+%   \setbeamertemplate{subsection in toc}
+%   {\leavevmode\leftskip=2em$\bullet$\hskip1em\inserttocsubsection\par}
+%   \setbeamercolor{section in toc}{fg=paleGrey, bg=mLightBlue}
+%   \setbeamercolor{local structure}{fg=mLightBlueLighter,bg=mLightBlue}
+%   \setbeamercolor{section in toc shaded}{fg=mLightBlue, bg=mLightBlue}
+%   \setbeamertemplate{section in toc}[circle]
+%   \setbeamertemplate{section in toc shaded}[default][80]
+%   \setbeamertemplate{section in toc}{\hspace*{1em}\inserttocsection}
 
-\end{frame}
+%   \setbeamercolor{subsection in toc}{fg=paleGrey, bg=mLightBlue}
+%   \begin{frame}[noframenumbering,plain]
+%     \frametitle{\textcolor{paleGrey}{Table des matières}}
 
-\begin{frame}{TIC: problem}
-
-  \underline{Example:} high intensity of the insulin peak in mouse pancreas \cite{Deininger_2011}.
-
-  \begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.7\textwidth]{fig/normalization_defect}
-    \caption{}
-    \label{fig:normalization_defect}
-  \end{figure}
-
-\end{frame}
+%     \tableofcontents[currentsection, sectionstyle=show/hide,
+%     hideothersubsections]
+%   \end{frame}
+%   \endgroup }
 
 
-\begin{frame}{Noise Ion Count}
+% \section{Normalization of MS images}
+% \begin{frame}{Normalization}
 
-  \textbf{Idea :} remove peak contribution from the normalization factor.
+%   Normalization factors:
+%   \begin{enumerate}
+%   \item Total ion count (TIC): sum of spectra intensities
+%   \item Intensity of a standard molecule
+%   \item Median
+%   \end{enumerate}
 
-  \textbf{Calcul :} NIC = TIC - $\sum I_{\text{peaks}}$
+%   \vspace{0.2cm}
 
-  \vspace{0.4cm}
-
-  \begin{figure}[ht]
-    \centering
-    \includegraphics<1>[width=0.7\textwidth]{fig/normalization2}%
-    \includegraphics<2>[width=0.7\textwidth]{fig/normalization_sic1}%
-    \includegraphics<3>[width=0.7\textwidth]{fig/normalization_sic2}%
-    \includegraphics<4>[width=0.7\textwidth]{fig/normalization_sic3}%
-    \caption{}
-    \label{fig:normalization_sic1}
-  \end{figure}
+%   Usually, the \textbf{TIC} is used: compensates for differences in the detected signals.
+% \end{frame}
 
 
-\end{frame}
+% \begin{frame}{TIC: problem}
+%   Intensity variation between two spectra $\Rightarrow$
+%   different TIC factors.
+  
+%   \begin{figure}[ht]
+%     \centering
+%     \includegraphics<1>[width=0.7\textwidth]{fig/normalization1}%
+%     \includegraphics<2>[width=0.7\textwidth]{fig/normalization2}%
+%     \includegraphics<3>[width=0.7\textwidth]{fig/normalization3}%
+%   \end{figure}
+
+% \end{frame}
+
+% \begin{frame}{TIC: problem}
+
+%   \underline{Example:} high intensity of the insulin peak in mouse pancreas \cite{Deininger_2011}.
+
+%   \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{fig/normalization_defect}
+%     \caption{}
+%     \label{fig:normalization_defect}
+%   \end{figure}
+
+% \end{frame}
 
 
-\section{3D Registration}
+% \begin{frame}{Noise Ion Count}
+
+%   \textbf{Idea:} remove peak contribution from the normalization factor.
+
+%   \textbf{Calcul:} NIC = TIC - $\sum I_{\text{peaks}}$
+
+%   \vspace{0.4cm}
+
+%   \begin{figure}[ht]
+%     \centering
+%     \includegraphics<1>[width=0.7\textwidth]{fig/normalization2}%
+%     \includegraphics<2>[width=0.7\textwidth]{fig/normalization_sic1}%
+%     \includegraphics<3>[width=0.7\textwidth]{fig/normalization_sic2}%
+%     \includegraphics<4>[width=0.7\textwidth]{fig/normalization_sic3}%
+%     \caption{}
+%     \label{fig:normalization_sic1}
+%   \end{figure}
+
+
+% \end{frame}
+
+
+% \section{3D Registration}
 
 \begin{frame}{Registration}
 
   Registration methods defined by three components:
   \begin{enumerate}
-  \item The \textbf{geometrical transformation} : rigid, affine, deformable
-  \item The \textbf{metric} : estimates the similarity between the reference and target images, using intensity or geometrical criteria
-  \item The \textbf{optimization} : to find the minimum of the metric \vspace{0.3cm}
+  \item The \textbf{geometrical transformation}: rigid, affine, deformable
+  \item The \textbf{metric}: estimates the similarity between the reference and target images, using intensity or geometrical criteria
+  \item The \textbf{optimization}: to find the minimum of the metric \vspace{0.3cm}
   \end{enumerate}
   \vspace{-0.4cm}
   
@@ -304,7 +476,7 @@
 
 \begin{frame}{Registration}
 
-  \textbf{Problems :} intensity discrepancies, different orientations
+  \textbf{Problems:} intensity discrepancies, different orientations
 
    \begin{figure}[ht]
     \centering
@@ -334,7 +506,7 @@
   \item \textbf{3D deformable} registration
   \end{enumerate}
 
-  \alert{Exhaustive registration} : \textbf{predefined} transformation parameters  $\Rightarrow$ avoids converging towards a \textbf{local minimum}.
+  \alert{Exhaustive registration}: \textbf{predefined} transformation parameters  $\Rightarrow$ avoids converging towards a \textbf{local minimum}.
 
   \begin{figure}[ht]
     \centering
@@ -348,9 +520,9 @@
 
 \begin{frame}{Similarity metric}
 
-  Geometrical metric : \textbf{distance transform} (DT)
+  Geometrical metric: \textbf{distance transform} (DT)
 
-  \alert{Distance transform} : maps each pixel of an object to its distance to the border.
+  \alert{Distance transform}: maps each pixel of an object to its distance to the border.
 
   \begin{figure}[ht]
     \centering
@@ -378,9 +550,9 @@
   Transformation initialized by aligning the centers of mass of the shapes.
 
   \begin{itemize}
-  \item Transformation : parameter space for rotation and scaling
-  \item Metric : Mutual information on the \textbf{DT of the object}
-  \item Optimization : \textbf{exhaustive}
+  \item Transformation: parameter space for rotation and scaling
+  \item Metric: Mutual information on the \textbf{DT of the object}
+  \item Optimization: \textbf{exhaustive}
   \end{itemize}
 
   \vspace{-0.2cm}
@@ -395,11 +567,11 @@
 \end{frame}
 
 \begin{frame}{Deformable registration}
-  Local deformations change distance transformation values
+  Local deformations change distance transformation values.
 
   \vspace{0.4cm}
   
-  \textbf{New metric}: sum of squared differences with an update on DT values.
+  \textbf{New metric}: sum of squared differences with an \textbf{update} on DT values.
 
   \begin{figure}[ht]
   \centering
@@ -441,11 +613,11 @@
   
   \begin{columns}
     \begin{column}[t]{0.6\textwidth}
-      \textbf{Variational methods} : displacements modelled by a \textbf{vector field}. The vector field is guided by pixel similarity. \vspace{0.2cm}
+      \textbf{Variational methods}: displacements modelled by a \textbf{vector field}. The vector field is guided by pixel similarity. \vspace{0.2cm}
 
       \begin{enumerate}
-      \item External forces : metric $\textcolor{red}{\mathcal{D}}$ : sum of squared differences with DT update
-      \item Internal forces : \textbf{regularization} term $\textcolor{blue}{\mathcal{S}}$
+      \item External forces: metric $\textcolor{red}{\mathcal{D}}$: sum of squared differences with DT update
+      \item Internal forces: \textbf{regularization} term $\textcolor{blue}{\mathcal{S}}$
       \end{enumerate}
 
       \[
@@ -493,7 +665,7 @@
 \begin{frame}{Statistical analysis}
   Identification of molecules in MALDI which \textbf{correlate with MR images}:
 
-  \textbf{Problem :} similar regions in both images might not be aligned.
+  \textbf{Problem:} similar regions in both images might not be aligned.
 
   \begin{figure}[ht]
   \centering
@@ -521,7 +693,7 @@
 
 
 \begin{frame}{Statistical analysis}
-  \textbf{Contribution :} exhaustive registration of individual NMF component images
+  \textbf{Contribution:} exhaustive registration of individual NMF component images
 
 
   \begin{figure}[ht]
@@ -541,19 +713,19 @@
 
 
 
-\section{Visualization}
+% \section{Visualization}
 
-\begin{frame}{Visualisation 3D}
+% \begin{frame}{Visualisation 3D}
   
-  3D volumetric rendering :
-  \begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{fig/visu_3d.png}
-    \caption{}
-    \label{fig:visu_3d.png}
-  \end{figure}
+%   3D volumetric rendering:
+%   \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{fig/visu_3d.png}
+%     \caption{}
+%     \label{fig:visu_3d.png}
+%   \end{figure}
 
-\end{frame}
+% \end{frame}
 
 \section{Results}
 
@@ -564,8 +736,8 @@
   \begin{itemize}
   \item \textbf{simple} with a intensity-based metric: \textbf{77.9\%}
   \item \textbf{(b)} \textbf{exhaustive} with DT: \textbf{84.6\%}
-  \item \textbf{(c)} \textbf{variational} without DT update : \textbf{90.2\%}
-  \item \textbf{(d)} \textbf{variational} with DT update : \textbf{93.2\%}
+  \item \textbf{(c)} \textbf{variational} without DT update: \textbf{90.2\%}
+  \item \textbf{(d)} \textbf{variational} with DT update: \textbf{93.2\%}
   \end{itemize}
 
   \begin{figure}[ht]
@@ -630,14 +802,14 @@
 
 \begin{frame}{Correlative analysis}
 
-  Results on the \textbf{Bobwhite} wheat grain family (250 DAA stage):
+  Results on the \textbf{Bobwhite} wheat grain variety (250 DAA stage):
 
     \begin{figure}[ht]
     \centering
     \begin{subfigure}[t]{0.33\textwidth}
       \centering
       \includegraphics[width=0.9\textwidth]{fig/mri_slice8_250}
-      \caption{IRM $T_2^*$}
+      \caption{$T_2^*$ MR image}
       \label{subfig:mri_slice8_250}
     \end{subfigure}%
     \begin{subfigure}[t]{0.33\textwidth}
@@ -649,13 +821,18 @@
     \begin{subfigure}[t]{0.33\textwidth}
       \centering
       \includegraphics[width=0.7\textwidth]{fig/3D_250DJ}
-      \caption{$\dfrac{\text{AX6}}{\text{AX5}}$ (en 3D)}
+      \caption{$\dfrac{\text{AX6}}{\text{AX5}}$ (in 3D)}
       \label{subfig:3D_250DJ}
     \end{subfigure}%
 
   \end{figure}
 
-   $\Rightarrow$ $\dfrac{\text{AX6}}{\text{AX5}}$ ratio: link between AX \textbf{substitution} and \textbf{water mobility} \cite{Fanuel18}.
+  Distribution similar to that of water:
+  \begin{itemize}
+  \item $\frac{\text{AX6}}{\text{AX5}}$ ratio
+  \item AX with high number of \textbf{acetyl groups}.
+  \end{itemize}
+
 
 \end{frame}
 
@@ -665,11 +842,12 @@
 
 \begin{frame}{Conclusion}
 
-  Adjusted workflow for the \textbf{automatic} processing and analysis of 3D MS images.
-
-  Suited for 3D MS image fusion with homogeneous or inhomogeneous intensities.
+  Workflow suited for 3D MS image with \textbf{homogeneous or inhomogeneous intensities}.
 
   Results at the 250 DAA stage confirm \textbf{previous results}.
+
+  \textbf{Esmraldi}: tools for the fusion of 3D MS images\footnote{\url{https://github.com/fgrelard/Esmraldi}}.
+
 
   \vspace{0.4cm}
 
@@ -682,58 +860,84 @@
 
 \end{frame}
 
-\begin{frame}{Local scale variations}
-
-  \visible<2->{
-    The distance transform values are dependent on the local scale of the object.
-    }
-
-  \visible<3->{
-    \textbf{Idea :} normalize the DT values by the \textbf{local scale} of the object, taken as e.g. the object's radius.
-  }
-  
-
+\section{}
+\begin{frame}[plain]{Acknowledgments}
   \begin{figure}[ht]
-    \flushleft
-    \begin{subfigure}[t]{0.2\textwidth}
       \centering
-      \includegraphics[width=0.95\textwidth]{fig/prospect_reference}
-      \caption{}
-      \label{subfig:prospect_reference}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.2\textwidth}
-      \centering
-      \includegraphics[width=0.95\textwidth]{fig/prospect_target}
-      \caption{}
-      \label{subfig:prospect_target}
-    \end{subfigure}%
-    \only<2->{%
-    \begin{subfigure}[t]{0.2\textwidth}
-      \centering
-      \includegraphics[width=0.95\textwidth]{fig/prospect_registered_target}
-      \caption{}
-      \label{subfig:prospect_registered_target}
-    \end{subfigure}%
-    }%
-    \only<3->{%
-      \begin{subfigure}[t]{0.2\textwidth}
-        \centering
-        \includegraphics[width=0.95\textwidth]{fig/prospect_normalized_dt}
-        \caption{}
-        \label{subfig:prospect_normalized_dt}
-      \end{subfigure}%
-    }%
-    \only<4->{%
-      \begin{subfigure}[t]{0.2\textwidth}
-        \centering
-        \includegraphics[width=0.95\textwidth]{fig/prospect_registered_target_normalized}
-        \caption{}
-        \label{subfig:prospect_registered_target_normalized}
-      \end{subfigure}%
-    }
-  \end{figure}
+      \includegraphics[width=0.7\textwidth]{fig/photoequipe}
+    \end{figure}
+    
+    {\scriptsize
+  \begin{itemize}
+  \item \textbf{BIBS platform} : David Legland, Mathieu Fanuel, Loïc Foucat, Hélène Rogniaux
+  \item \textbf{Former members}: Bastien Arnaud
+  \item \textbf{Cell Walls team}: Luc Saulnier, Fabienne Guillon, Camille Alvarado, Anne--Laure Chateigner--Boutin
+  \end{itemize}
+}
+\vspace{-0.5cm}
+  \hspace*{0.01\textwidth}~%
+  \includegraphics[width=0.2\textwidth]{fig/logo-inrae}\hspace*{0.075\textwidth}~%
+  \includegraphics[width=0.2\textwidth]{fig/logo-bibs.png}\hspace*{0.075\textwidth}~%
+  \includegraphics[width=0.2\textwidth]{fig/logo-biogenouest}\hspace*{0.075\textwidth}~%
+  \includegraphics[width=0.2\textwidth]{fig/logo-region}\hspace*{0.01\textwidth}~%
 
 \end{frame}
+
+
+
+
+% \begin{frame}{Local scale variations}
+
+%   \visible<2->{
+%     The distance transform values are dependent on the local scale of the object.
+%     }
+
+%   \visible<3->{
+%     \textbf{Idea:} normalize the DT values by the \textbf{local scale} of the object, taken as e.g. the object's radius.
+%   }
+  
+
+%   \begin{figure}[ht]
+%     \flushleft
+%     \begin{subfigure}[t]{0.2\textwidth}
+%       \centering
+%       \includegraphics[width=0.95\textwidth]{fig/prospect_reference}
+%       \caption{}
+%       \label{subfig:prospect_reference}
+%     \end{subfigure}%
+%     \begin{subfigure}[t]{0.2\textwidth}
+%       \centering
+%       \includegraphics[width=0.95\textwidth]{fig/prospect_target}
+%       \caption{}
+%       \label{subfig:prospect_target}
+%     \end{subfigure}%
+%     \only<2->{%
+%     \begin{subfigure}[t]{0.2\textwidth}
+%       \centering
+%       \includegraphics[width=0.95\textwidth]{fig/prospect_registered_target}
+%       \caption{}
+%       \label{subfig:prospect_registered_target}
+%     \end{subfigure}%
+%     }%
+%     \only<3->{%
+%       \begin{subfigure}[t]{0.2\textwidth}
+%         \centering
+%         \includegraphics[width=0.95\textwidth]{fig/prospect_normalized_dt}
+%         \caption{}
+%         \label{subfig:prospect_normalized_dt}
+%       \end{subfigure}%
+%     }%
+%     \only<4->{%
+%       \begin{subfigure}[t]{0.2\textwidth}
+%         \centering
+%         \includegraphics[width=0.95\textwidth]{fig/prospect_registered_target_normalized}
+%         \caption{}
+%         \label{subfig:prospect_registered_target_normalized}
+%       \end{subfigure}%
+%     }
+%   \end{figure}
+
+% \end{frame}
 
 
 

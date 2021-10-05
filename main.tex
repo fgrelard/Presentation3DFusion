@@ -566,8 +566,42 @@
 
 \end{frame}
 
+
 \begin{frame}{Deformable registration}
-  Local deformations change distance transformation values.
+  
+  \begin{columns}
+    \begin{column}[t]{0.6\textwidth}
+      \textbf{Variational methods}: displacements modelled by a \textbf{vector field}. The vector field is guided by pixel similarity. \vspace{0.2cm}
+
+      \begin{enumerate}
+      \item External forces: metric $\textcolor{red}{\mathcal{D}}$
+      \item Internal forces: \textbf{regularization} term $\textcolor{blue}{\mathcal{S}}$
+      \end{enumerate}
+
+      \[
+        \mathcal{J}[y] = \textcolor{red}{\mathcal{D}[\mathcal{T}[y], \mathcal{R}]} + \textcolor{blue}{\mathcal{S}[y]} \xrightarrow{y} \min
+      \]
+      
+      % \[
+      %   \mathcal{J}[y] = \textcolor{red}{\mathcal{D}[\mathcal{T}[y], \mathcal{R}]} + \textcolor{blue}{\mathcal{S}[y]} \xrightarrow{y} \min
+      % \]
+    \end{column}
+    \begin{column}[t]{0.4\textwidth}
+      \begin{figure}[ht]
+        \centering
+        \includegraphics<1>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield_2}%
+        \includegraphics<2>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield_10}%
+        \includegraphics<3>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield_30}%
+        \includegraphics<4>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield}%
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Deformable registration: metric}
+
+  During registration, the shape is modified locally $\Rightarrow$
+  distance transformation values should be updated.
 
   \vspace{0.4cm}
   
@@ -606,38 +640,6 @@
     \label{subfig:registration_dt_target}
   \end{subfigure}%
 \end{figure}
-\end{frame}
-
-
-\begin{frame}{Deformable registration}
-  
-  \begin{columns}
-    \begin{column}[t]{0.6\textwidth}
-      \textbf{Variational methods}: displacements modelled by a \textbf{vector field}. The vector field is guided by pixel similarity. \vspace{0.2cm}
-
-      \begin{enumerate}
-      \item External forces: metric $\textcolor{red}{\mathcal{D}}$: sum of squared differences with DT update
-      \item Internal forces: \textbf{regularization} term $\textcolor{blue}{\mathcal{S}}$
-      \end{enumerate}
-
-      \[
-        \mathcal{J}[y] = \textcolor{red}{\mathcal{D}[\mathcal{T}[y], \mathcal{R}]} + \textcolor{blue}{\mathcal{S}[y]} \xrightarrow{y} \min
-      \]
-      
-      % \[
-      %   \mathcal{J}[y] = \textcolor{red}{\mathcal{D}[\mathcal{T}[y], \mathcal{R}]} + \textcolor{blue}{\mathcal{S}[y]} \xrightarrow{y} \min
-      % \]
-    \end{column}
-    \begin{column}[t]{0.4\textwidth}
-      \begin{figure}[ht]
-        \centering
-        \includegraphics<1>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield_2}%
-        \includegraphics<2>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield_10}%
-        \includegraphics<3>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield_30}%
-        \includegraphics<4>[width=0.95\textwidth]{fig/registration_nonrigid_vectorfield}%
-      \end{figure}
-    \end{column}
-  \end{columns}
 \end{frame}
 
 

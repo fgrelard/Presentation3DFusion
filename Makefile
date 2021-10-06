@@ -17,4 +17,4 @@ $(PDF): clean $(AUX) $(SRC)
 
 clean:
 	@rm -f $(AUX) $(PDF)
-	@git clean -Xf
+	# @git clean -Xf

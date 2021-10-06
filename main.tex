@@ -32,9 +32,12 @@
 \usepackage{multicol} \usepackage{array} \usepackage{pbox}
 \usepackage{mathtools}
 \usepackage{adjustbox}
+\usepackage{setspace}
 \definecolor{darkred}{HTML}{D38989}
-\definecolor{darkgreen}{HTML}{66D191}
-\PassOptionsToPackage{enumerate}{shortlabels} \newcommand\ExtraSep
+\definecolor{darkgreen}{HTML}{008866}
+\PassOptionsToPackage{enumerate}{shortlabels}
+
+\newcommand\ExtraSep
 {\dimexpr\cmidrulewidth\relax}
 \captionsetup{font=scriptsize,labelfont=scriptsize}
 % \addtobeamertemplate{background canvas}{\transfade[duration=0.05]}{}
@@ -56,6 +59,9 @@
 \renewcommand*{\footnotesize}{\oldfootnotesize\tiny}
 \newcommand\labelitemi{$\bullet$}
 \renewcommand{\thefootnote}{[\arabic{footnote}]}
+\let\oldfootnote\footnote
+\renewcommand\footnote[2][]{{\linespread{0.1}\oldfootnote[#1]{#2}}}
+
 % \newrobustcmd*{\footlessfullcite}{\AtNextCite{\renewbibmacro{in:}{}\renewbibmacro{year:}{}}\footfullcite}
 % \newrobustcmd*{\lessfullcite}{\AtNextCite{\renewbibmacro{in:}{}\renewbibmacro{year:}{}}\fullcite}
 
@@ -108,6 +114,7 @@
   \begin{figure}[ht]
     \centering
     \includegraphics[width=0.9\textwidth]{fig/stages}
+    \caption{Evolution of the size and shape of the wheat grain over time.}
   \end{figure}
 
   
@@ -115,6 +122,7 @@
   \begin{itemize}
   \item specific mechanical properties for growth.
   \item layered polymers involving \textbf{celluloses}, \textbf{hemicelluloses}.
+  \item regulate \textbf{water transfers}.
   \end{itemize}
 
   
@@ -127,29 +135,29 @@
   \vspace{-0.2cm}
   \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.9\textwidth]{fig/AX}
+    \includegraphics[width=0.8\textwidth]{fig/AX}
   \end{figure}
 
 
- 
+  \vspace{-0.4cm}
   
 
   \begin{columns}[totalwidth=\textwidth]
-    \begin{column}[t]{0.5\linewidth}
-        {AX localized in \textbf{highly hydrated} regions \cite{Fanuel18}:}
+    \begin{column}[t]{0.6\linewidth}
+        {Varying spatial distribution of highly substituted AX \cite{Fanuel18}:}
     \end{column}
-    \begin{column}[c]{0.5\linewidth}
+    \begin{column}[c]{0.4\linewidth}
       \hfill
       \begin{figure}[ht]
         \centering
         \begin{subfigure}[t]{0.45\textwidth}
           \centering
-          \includegraphics[width=0.6\textwidth]{fig/3DAX}
+          \includegraphics[width=0.65\textwidth]{fig/3DAX}
           \label{subfig:3Darabinoxylan}
         \end{subfigure}%
         \begin{subfigure}[t]{0.45\textwidth}
           \centering
-          \includegraphics[width=0.6\textwidth]{fig/water_transfer}
+          \includegraphics[width=0.65\textwidth]{fig/water_transfer}
           \label{subfig:water_transfer}
         \end{subfigure}%
       \end{figure}
@@ -157,8 +165,16 @@
   \end{columns}
   
 
-     \underline{Aim:} to identify \textbf{new molecules} whose spatial distribution correlate with water.\\
+  \underline{Aim:} to find spatial correlations between \textbf{molecules} and \textbf{water}.\\
 
+  \vspace{0.5cm}
+  \hrule width0.3\textwidth
+  {
+    \footnotesize
+    Fanuel, M. et al. (2018).
+    \textit{Distribution of cell wall hemicelluloses in the wheat grain endosperm: a 3D perspective}.
+    Planta, 248(6):1505–1513.
+  }
    \end{frame}
 
 
@@ -198,7 +214,7 @@
     \begin{column}[t]{.5\textwidth}
       \begin{itemize}
       \item \textbf{Whole} grain
-      \item \textbf{4D images}:  \alert{multi-pulse} sequence (gradient echo)
+      \item \textbf{3D+t images}:  \alert{multi-echo} sequence
       \item \textbf{Resolution}: $50 \mu m \times 50 \mu m \times 500 \mu m$
       \end{itemize}
       \vspace{1cm}
@@ -213,6 +229,7 @@
         \begin{subfigure}[t]{0.33\textwidth}
           \centering \includegraphics[width=0.9\textwidth]{fig/echo2_3}
         \end{subfigure}%
+        \caption{Different echoes}
       \end{figure}
     \end{column}
     \begin{column}[t]{.5\textwidth}
@@ -252,35 +269,51 @@
 
 
 
-\begin{frame}{3D data}
-  Wheat grain from the \textbf{Bobwhite} variety, 3 stages of development.
+\begin{frame}{3D issue}
   
-  \underline{Problem:}
+  \underline{MS images:}
   \begin{itemize}
   \item intensity inhomogeneities
   \item different orientations
   \end{itemize}
 
-
+  \vspace{-0.3cm}
    \begin{figure}[ht]
-  \centering
-  \begin{subfigure}[t]{0.5\textwidth}
-    \centering
-    \includegraphics<1>[width=0.65\textwidth]{fig/3D_density_aligned_manual0000}%
-    \includegraphics<2>[width=0.65\textwidth]{fig/3D_density_aligned_manual0003}%
-    \includegraphics<3>[width=0.65\textwidth]{fig/3D_density_aligned_manual0006}%
-    \includegraphics<4->[width=0.65\textwidth]{fig/3D_density_aligned_manual0009}
-  \end{subfigure}%
-    \begin{subfigure}[t]{0.5\textwidth}
-    \centering
-    \includegraphics<1>[width=0.65\textwidth]{fig/3D_segmentation0000}%
-    \includegraphics<2>[width=0.65\textwidth]{fig/3D_segmentation0003}%
-    \includegraphics<3>[width=0.65\textwidth]{fig/3D_segmentation0006}%
-    \includegraphics<4->[width=0.65\textwidth]{fig/3D_segmentation0009}
-  \end{subfigure}%
-\end{figure}
+     \centering
+     \begin{subfigure}[b]{0.15\textwidth}  
+       \textbf{MRI:}
+     \end{subfigure}%
+     \begin{subfigure}[c]{0.3\textwidth}
+       \centering
+       \includegraphics[width=0.65\textwidth]{fig/3D_density_aligned_manual0000}%
+     \end{subfigure}%
+     \begin{subfigure}[c]{0.3\textwidth}
+       \centering
+       \includegraphics[width=0.65\textwidth]{fig/3D_density_aligned_manual0003}%
+     \end{subfigure}%
+     \begin{subfigure}[c]{0.3\textwidth}
+       \centering
+       \includegraphics[width=0.65\textwidth]{fig/3D_density_aligned_manual0006}%
+     \end{subfigure}
+     \begin{subfigure}[b]{0.15\textwidth}  
+       \textbf{MSI \\ (average):}%
+     \end{subfigure}%
+     \begin{subfigure}[c]{0.3\textwidth}
+       \centering
+       \includegraphics[width=0.65\textwidth]{fig/3D_segmentation0000}%
+     \end{subfigure}%
+     \begin{subfigure}[c]{0.3\textwidth}
+       \centering
+       \includegraphics[width=0.65\textwidth]{fig/3D_segmentation0003}%
+     \end{subfigure}%
+     \begin{subfigure}[c]{0.3\textwidth}
+       \centering
+       \includegraphics[width=0.65\textwidth]{fig/3D_segmentation0006}%
+     \end{subfigure}
+     
+   \end{figure}
 
-\visible<5> {
+\visible<2-> {
   $\Rightarrow$ need for \textbf{reproducible} and
   \textbf{generic} computational methods.
 }
@@ -344,6 +377,8 @@
 \section{3D workflow}
 \begin{frame}{3D workflow}
 
+  \vspace{-0.2cm}
+
   Extension of our \textbf{2D} workflow \cite{Grelard_2021}.
   \begin{enumerate}
   \item<2-> \textbf{3D registration}
@@ -354,11 +389,21 @@
 
   \begin{figure}[ht]
     \centering
-    \includegraphics<1>[width=0.7\textwidth]{fig/workflow3D_0}%
-    \includegraphics<2>[width=0.7\textwidth]{fig/workflow3D_2}%
-    \includegraphics<3>[width=0.7\textwidth]{fig/workflow3D_3}%
-    \includegraphics<4>[width=0.7\textwidth]{fig/workflow3D_4}%
+    \includegraphics<1>[width=0.65\textwidth]{fig/workflow3D_0}%
+    \includegraphics<2>[width=0.65\textwidth]{fig/workflow3D_2}%
+    \includegraphics<3>[width=0.65\textwidth]{fig/workflow3D_3}%
+    \includegraphics<4>[width=0.65\textwidth]{fig/workflow3D_4}%
   \end{figure}
+
+  
+  \hrule width0.3\textwidth
+  \begin{spacing}{0.5}
+     \footnotesize
+    Grélard, F. et al. (2021).
+    \textit{Esmraldi: efficient methods for the fusion of mass spectrometry and magnetic resonance
+      images}. BMC Bioinformatics, 22(1).
+  \end{spacing}
+
 \end{frame}
 
 
@@ -461,11 +506,14 @@
   \end{enumerate}
   \vspace{-0.4cm}
   
-   \begin{figure}[ht]
-    \includegraphics<1>[width=0.6\textwidth]{fig/registration1}%
-    \includegraphics<2>[width=0.6\textwidth]{fig/registration2}%
-    \includegraphics<3>[width=0.6\textwidth]{fig/registration3}%
-    \includegraphics<4>[width=0.6\textwidth]{fig/registration4}%
+
+    \begin{figure}[ht]
+    \centering
+    \includegraphics<1>[width=0.9\textwidth]{fig/metric_1}%
+    \includegraphics<2>[width=0.9\textwidth]{fig/metric_3}%
+    \includegraphics<3>[width=0.9\textwidth]{fig/metric_7}%
+    \includegraphics<4>[width=0.9\textwidth]{fig/metric_18}
+    \label{fig:metric_1}
   \end{figure}
 
   
@@ -496,27 +544,7 @@
 %   }
  
 
-% \end{frame}
-
-\begin{frame}{Registration approach}
-  
-  Two steps:
-  \begin{enumerate}
-  \item \textbf{2D exhaustive} affine registration
-  \item \textbf{3D deformable} registration
-  \end{enumerate}
-
-  \alert{Exhaustive registration}: \textbf{predefined} transformation parameters  $\Rightarrow$ avoids converging towards a \textbf{local minimum}.
-
-  \begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.4\textwidth]{fig/exhaustive_registration}
-    \caption{}
-    \label{fig:exhaustive_registration}
-  \end{figure}
-
-  
-\end{frame}
+%   \end{frame}
 
 \begin{frame}{Similarity metric}
 
@@ -545,26 +573,26 @@
   
 \end{frame}
 
-\begin{frame}{Exhaustive registration}
+\begin{frame}{Registration approach}
+  
+  Two steps:
+  \begin{enumerate}
+  \item \textbf{2D exhaustive affine} registration
+  \item \textbf{3D deformable} registration
+  \end{enumerate}
 
-  Transformation initialized by aligning the centers of mass of the shapes.
+  \alert{Exhaustive registration}: \textbf{predefined} transformation parameters  $\Rightarrow$ avoids converging towards a \textbf{local minimum}.
 
-  \begin{itemize}
-  \item Transformation: parameter space for rotation and scaling
-  \item Metric: Mutual information on the \textbf{DT of the object}
-  \item Optimization: \textbf{exhaustive}
-  \end{itemize}
-
-  \vspace{-0.2cm}
   \begin{figure}[ht]
     \centering
-    \includegraphics<1>[width=0.65\textwidth]{fig/metric_exh_0}%
-    \includegraphics<2>[width=0.65\textwidth]{fig/metric_exh_1}%
-    \includegraphics<3>[width=0.65\textwidth]{fig/metric_exh_2}
-    \label{fig:metric_2}
+    \includegraphics[width=0.4\textwidth]{fig/exhaustive_registration}
+    \caption{}
+    \label{fig:exhaustive_registration}
   \end{figure}
 
+  
 \end{frame}
+
 
 
 \begin{frame}{Deformable registration}
@@ -574,12 +602,12 @@
       \textbf{Variational methods}: displacements modelled by a \textbf{vector field}. The vector field is guided by pixel similarity. \vspace{0.2cm}
 
       \begin{enumerate}
-      \item External forces: metric $\textcolor{red}{\mathcal{D}}$
-      \item Internal forces: \textbf{regularization} term $\textcolor{blue}{\mathcal{S}}$
+      \item External forces: metric $\textcolor{darkgreen}{\mathcal{D}}$
+      \item Internal forces: \textbf{regularization} term $\textcolor{purple}{\mathcal{S}}$
       \end{enumerate}
 
       \[
-        \mathcal{J}[y] = \textcolor{red}{\mathcal{D}[\mathcal{T}[y], \mathcal{R}]} + \textcolor{blue}{\mathcal{S}[y]} \xrightarrow{y} \min
+        \mathcal{J}[y] = \textcolor{darkgreen}{\mathcal{D}[\mathcal{T}[y], \mathcal{R}]} + \textcolor{purple}{\mathcal{S}[y]} \xrightarrow{y} \min
       \]
       
       % \[
@@ -598,49 +626,49 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Deformable registration: metric}
+% \begin{frame}{Deformable registration: metric}
 
-  During registration, the shape is modified locally $\Rightarrow$
-  distance transformation values should be updated.
+%   During registration, the shape is modified locally $\Rightarrow$
+%   distance transformation values should be updated.
 
-  \vspace{0.4cm}
+%   \vspace{0.4cm}
   
-  \textbf{New metric}: sum of squared differences with an \textbf{update} on DT values.
+%   \textbf{New metric}: sum of squared differences with an \textbf{update} on DT values.
 
-  \begin{figure}[ht]
-  \centering
-  \begin{subfigure}[t]{0.2\textwidth}
-    \centering
-    \includegraphics[width=0.95\textwidth]{fig/registration_reference}
-    \caption{}
-    \label{subfig:registration_reference}
-  \end{subfigure}%
-  \begin{subfigure}[t]{0.2\textwidth}
-    \centering
-    \includegraphics[width=0.95\textwidth]{fig/registration_target}
-    \caption{}
-    \label{subfig:registration_target}
-  \end{subfigure}%
-  \begin{subfigure}[t]{0.2\textwidth}
-    \centering
-    \includegraphics[width=0.95\textwidth]{fig/registration_reference_dt}
-    \caption{}
-    \label{subfig:registration_dt_reference}
-  \end{subfigure}%
-  \begin{subfigure}[t]{0.2\textwidth}
-    \centering
-    \includegraphics[width=0.95\textwidth]{fig/registration_target_dt_interpol.png}
-    \caption{}
-    \label{subfig:registration_dt_target_interpol}
-  \end{subfigure}%
-  \begin{subfigure}[t]{0.2\textwidth}
-    \centering
-    \includegraphics[width=0.95\textwidth]{fig/registration_target_dt}
-    \caption{}
-    \label{subfig:registration_dt_target}
-  \end{subfigure}%
-\end{figure}
-\end{frame}
+%   \begin{figure}[ht]
+%   \centering
+%   \begin{subfigure}[t]{0.2\textwidth}
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{fig/registration_reference}
+%     \caption{}
+%     \label{subfig:registration_reference}
+%   \end{subfigure}%
+%   \begin{subfigure}[t]{0.2\textwidth}
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{fig/registration_target}
+%     \caption{}
+%     \label{subfig:registration_target}
+%   \end{subfigure}%
+%   \begin{subfigure}[t]{0.2\textwidth}
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{fig/registration_reference_dt}
+%     \caption{}
+%     \label{subfig:registration_dt_reference}
+%   \end{subfigure}%
+%   \begin{subfigure}[t]{0.2\textwidth}
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{fig/registration_target_dt_interpol.png}
+%     \caption{}
+%     \label{subfig:registration_dt_target_interpol}
+%   \end{subfigure}%
+%   \begin{subfigure}[t]{0.2\textwidth}
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{fig/registration_target_dt}
+%     \caption{}
+%     \label{subfig:registration_dt_target}
+%   \end{subfigure}%
+% \end{figure}
+% \end{frame}
 
 
 
@@ -671,23 +699,21 @@
 
   \begin{figure}[ht]
   \centering
-  \begin{subfigure}[t]{0.33\textwidth}
-    \centering
-    \includegraphics[width=0.9\textwidth]{fig/t2_6_original}
-    \caption{}
-    \label{subfig:t2_6_original}
-  \end{subfigure}%
-  \begin{subfigure}[t]{0.33\textwidth}
-    \centering
-    \includegraphics[width=0.9\textwidth]{fig/msi_6_original}
-    \caption{}
-    \label{subfig:msi_6_original}
-  \end{subfigure}%
+  % \begin{subfigure}[t]{0.33\textwidth}
+  %   \centering
+  %   \includegraphics[width=0.9\textwidth]{fig/t2_6_original}
+  %   \caption{}
+  %   \label{subfig:t2_6_original}
+  % \end{subfigure}%
+  % \begin{subfigure}[t]{0.33\textwidth}
+  %   \centering
+  %   \includegraphics[width=0.9\textwidth]{fig/msi_6_original}
+  %   \caption{}
+  %   \label{subfig:msi_6_original}
+  % \end{subfigure}%
   \begin{subfigure}[t]{0.33\textwidth}
     \centering
     \includegraphics[width=0.9\textwidth]{fig/overlay_t2_6_original}
-    \caption{}
-    \label{subfig:overlay_t2_6_original}
   \end{subfigure}%
 \end{figure}
 
@@ -736,10 +762,10 @@
   \vspace{-0.3cm}
   Percentage of shared pixels between the MS and MR images:
   \begin{itemize}
-  \item \textbf{simple} with a intensity-based metric: \textbf{77.9\%}
+  \item \textbf{simple} with an intensity-based metric: \textbf{77.9\%}
   \item \textbf{(b)} \textbf{exhaustive} with DT: \textbf{84.6\%}
-  \item \textbf{(c)} \textbf{variational} without DT update: \textbf{90.2\%}
-  \item \textbf{(d)} \textbf{variational} with DT update: \textbf{93.2\%}
+  % \item \textbf{(c)} \textbf{variational} without DT update: \textbf{90.2\%}
+  \item \textbf{(c)} \textbf{variational} with DT update: \textbf{93.2\%}
   \end{itemize}
 
   \begin{figure}[ht]
@@ -756,12 +782,12 @@
     \caption{}
     \label{subfig:registration_wheat_affine}
   \end{subfigure}%
-  \begin{subfigure}[t]{0.25\textwidth}
-    \centering
-    \includegraphics[width=0.95\textwidth]{fig/registration_wheat_ssd}
-    \caption{}
-    \label{subfig:registration_wheat_ssd}
-  \end{subfigure}%
+  % \begin{subfigure}[t]{0.25\textwidth}
+  %   \centering
+  %   \includegraphics[width=0.95\textwidth]{fig/registration_wheat_ssd}
+  %   \caption{}
+  %   \label{subfig:registration_wheat_ssd}
+  % \end{subfigure}%
   \begin{subfigure}[t]{0.25\textwidth}
     \centering
     \includegraphics[width=0.95\textwidth]{fig/registration_wheat_dtssd}
@@ -771,69 +797,70 @@
 \end{figure}
 \end{frame}
 
-\begin{frame}{Statistical analysis}
-  Mean squared error of the standard deviation between the \textbf{(a)} original and the \textbf{(b-c)} projected MR images:
-  \begin{itemize}
-  \item \textbf{without} NMF component image registration: \textbf{12.4}
-  \item \textbf{with} NMF component image registration: \textbf{11.5}
-  \end{itemize}
+% \begin{frame}{Statistical analysis}
+%   Mean squared error of the standard deviation between the \textbf{(a)} original and the \textbf{(b-c)} projected MR images:
+%   \begin{itemize}
+%   \item \textbf{without} NMF component image registration: \textbf{12.4}
+%   \item \textbf{with} NMF component image registration: \textbf{11.5}
+%   \end{itemize}
 
-    \begin{figure}[ht]
-  \centering
-  \begin{subfigure}[t]{0.3\textwidth}
-    \centering
-    \includegraphics[width=0.95\textwidth]{fig/t2_6_original}
-    \caption{}
-    \label{subfig:t2_6_original}
-  \end{subfigure}%
-  \begin{subfigure}[t]{0.3\textwidth}
-    \centering
-    \includegraphics[width=0.95\textwidth]{fig/reconstruction_t2_translated.png}
-    \caption{}
-    \label{subfig:reconstruction_t2_translated.png}
-  \end{subfigure}%
-    \begin{subfigure}[t]{0.3\textwidth}
-    \centering
-    \includegraphics[width=0.95\textwidth]{fig/msi_6_original.png}
-    \caption{}
-    \label{subfig:reconstruction_t2_translated.png}
-  \end{subfigure}%
-\end{figure}
+%     \begin{figure}[ht]
+%   \centering
+%   \begin{subfigure}[t]{0.3\textwidth}
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{fig/t2_6_original}
+%     \caption{}
+%     \label{subfig:t2_6_original}
+%   \end{subfigure}%
+%   \begin{subfigure}[t]{0.3\textwidth}
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{fig/reconstruction_t2_translated.png}
+%     \caption{}
+%     \label{subfig:reconstruction_t2_translated.png}
+%   \end{subfigure}%
+%     \begin{subfigure}[t]{0.3\textwidth}
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{fig/msi_6_original.png}
+%     \caption{}
+%     \label{subfig:reconstruction_t2_translated.png}
+%   \end{subfigure}%
+% \end{figure}
 
-\end{frame}
+% \end{frame}
 
 \begin{frame}{Correlative analysis}
 
-  Results on the \textbf{Bobwhite} wheat grain variety (250 DAA stage):
+  Spatial correlations (sample 2D images):
 
     \begin{figure}[ht]
     \centering
     \begin{subfigure}[t]{0.33\textwidth}
       \centering
-      \includegraphics[width=0.9\textwidth]{fig/mri_slice8_250}
-      \caption{$T_2^*$ MR image}
+      \includegraphics[width=0.9\textwidth]{fig/mri_slice8_250_2}
+      \caption{MR image}
       \label{subfig:mri_slice8_250}
     \end{subfigure}%
     \begin{subfigure}[t]{0.33\textwidth}
       \centering
-      \includegraphics[width=0.9\textwidth]{fig/ax14_4ac}
-      \caption{AX14.4Ac}
-      \label{subfig:zonetir_0}
+      \includegraphics[width=0.9\textwidth]{fig/t2_sic_n10_rapports_8_13.png}
+      \caption{Highly subst. AX}
+      \label{subfig:3D_250DJ}
     \end{subfigure}%
     \begin{subfigure}[t]{0.33\textwidth}
       \centering
-      \includegraphics[width=0.7\textwidth]{fig/3D_250DJ}
-      \caption{$\dfrac{\text{AX6}}{\text{AX5}}$ (in 3D)}
-      \label{subfig:3D_250DJ}
+      \includegraphics[width=0.9\textwidth]{fig/t2_sic_n10_7_6.png}
+      \caption{Acetylated AX}
+      \label{subfig:zonetir_0}
     \end{subfigure}%
+
 
   \end{figure}
   \vspace{-0.2cm}
 
   Distribution similar to that of water:
   \begin{itemize}
+  \item AX with high number of \textbf{arabinosyl substitutions} ($\frac{\text{AX6}}{\text{AX5}}$ ratio)
   \item AX with a high number of \textbf{acetyl groups}.
-  \item $\frac{\text{AX6}}{\text{AX5}}$ ratio
   \end{itemize}
 
 
@@ -845,11 +872,25 @@
 
 \begin{frame}{Conclusion}
 
-  Workflow suited for 3D MS image with \textbf{homogeneous or inhomogeneous intensities}.
+  \begin{columns}
+    \begin{column}{.8\textwidth}
+      Workflow suited for 3D MS image with \textbf{homogeneous or inhomogeneous intensities}.
 
-  Results at the 250 DAA stage confirm \textbf{previous results}.
+      Results hint at the role of \textbf{AX in water transfers}.
 
-  \textbf{Esmraldi}: tools for the fusion of 3D MS images\footnote{\url{https://github.com/fgrelard/Esmraldi}}.
+      \textbf{Esmraldi}: tools for the fusion of 3D MS images\footnotemark.
+    \end{column}
+
+    \begin{column}{.2\textwidth}
+      \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.9\textwidth]{fig/3D_250DJ}
+      \end{figure}
+
+    \end{column}
+  \end{columns}
+
+ 
 
 
   \vspace{0.4cm}
@@ -859,6 +900,8 @@
   \item \textbf{Full 3D} statistical analysis.
   \item Registration with \textbf{local scale variations}.
   \end{itemize}
+
+  \footnotetext{\url{https://github.com/fgrelard/Esmraldi}}
 
 
 \end{frame}

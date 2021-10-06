@@ -32,7 +32,25 @@
 \usepackage{multicol} \usepackage{array} \usepackage{pbox}
 \usepackage{mathtools}
 \usepackage{adjustbox}
+
+
+\makeatletter
+% save the meaning of \@footnotetext
+\let\BEAMER@footnotetext\@footnotetext
+\makeatother
+
 \usepackage{setspace}
+
+\makeatletter
+% restore the meaning of \@footnotetext
+\let\@footnotetext\BEAMER@footnotetext
+% patch the relevant command to do single spacing in footnotes
+\expandafter\patchcmd\csname beamerx@\string\beamer@framefootnotetext\endcsname
+  {\reset@font}
+  {\def\baselinestretch{\setspace@singlespace}\reset@font}
+  {}{}
+  \makeatother
+  
 \definecolor{darkred}{HTML}{D38989}
 \definecolor{darkgreen}{HTML}{008866}
 \PassOptionsToPackage{enumerate}{shortlabels}
@@ -62,7 +80,7 @@
 \let\oldfootnote\footnote
 \renewcommand\footnote[2][]{{\linespread{0.1}\oldfootnote[#1]{#2}}}
 
-% \newrobustcmd*{\footlessfullcite}{\AtNextCite{\renewbibmacro{in:}{}\renewbibmacro{year:}{}}\footfullcite}
+\newrobustcmd*{\footlessfullcite}{\AtNextCite{\renewbibmacro{in:}{}\renewbibmacro{year:}{}}\footfullcite}
 % \newrobustcmd*{\lessfullcite}{\AtNextCite{\renewbibmacro{in:}{}\renewbibmacro{year:}{}}\fullcite}
 
 \newcommand{\cfbox}[2]{%
@@ -674,6 +692,8 @@
 
 
 \begin{frame}{Statistical analysis}
+
+  Done iteratively on each pair of corresponding 2D slices.
   
   \begin{columns}
     \begin{column}[t]{0.6\textwidth}
@@ -874,11 +894,14 @@
 
   \begin{columns}
     \begin{column}{.8\textwidth}
-      Workflow suited for 3D MS image with \textbf{homogeneous or inhomogeneous intensities}.
 
-      Results hint at the role of \textbf{AX in water transfers}.
+      Workflow suited for 3D MS images with \textbf{homogeneous or inhomogeneous intensities}. \\
+      \begin{spacing}{1.5}
 
-      \textbf{Esmraldi}: tools for the fusion of 3D MS images\footnotemark.
+        Results hint at the role of \textbf{AX in water transfers}.\\
+
+        \textbf{Esmraldi}: tools for the fusion of 3D MS images\footnotemark.
+      \end{spacing}
     \end{column}
 
     \begin{column}{.2\textwidth}
@@ -893,7 +916,7 @@
  
 
 
-  \vspace{0.4cm}
+  \vspace{0.2cm}
 
   Prospects:
   \begin{itemize}

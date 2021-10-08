@@ -139,8 +139,8 @@
   \textbf{Cell walls}:
   \begin{itemize}
   \item specific mechanical properties for growth.
-  \item layered polymers involving \textbf{celluloses}, \textbf{hemicelluloses}.
   \item regulate \textbf{water transfers}.
+  \item layered polymers involving \textbf{celluloses}, \textbf{hemicelluloses}.
   \end{itemize}
 
   
@@ -224,16 +224,25 @@
   
 \end{frame}
 
+\begin{frame}{Workflow}
+  On the \textbf{same grain}:
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.99\textwidth]{fig/ms_workflow}
+  \end{figure}
+
+\end{frame}
+
 \begin{frame}{MR and MS imaging}
 
   \underline{\textbf{MRI:}} \hspace{0.5\textwidth} \underline{\textbf{MSI} (MALDI--TOF):}
-
   \begin{columns}
     \begin{column}[t]{.5\textwidth}
       \begin{itemize}
-      \item \textbf{Whole} grain
+      \item \textbf{Formats}: RAW $\rightarrow$ NiFTI, tif.
       \item \textbf{3D+t images}:  \alert{multi-echo} sequence
-      \item \textbf{Resolution}: $50 \mu m \times 50 \mu m \times 500 \mu m$
+      \item \textbf{Voxel size}: $50 \mu m \times 50 \mu m \times 500 \mu m$
       \end{itemize}
       \vspace{1cm}
       \begin{figure}[ht]
@@ -252,9 +261,9 @@
     \end{column}
     \begin{column}[t]{.5\textwidth}
       \begin{itemize}
-      \item \textbf{Sample preparation}: cut, enzymatic digestion, matrix spraying
-      \item \textbf{Datacube}: spectral dimension (m/z ratios)
-      \item \textbf{Resolution}: $25 \mu m \times 25 \mu m \times 80 \mu m$
+      \item \textbf{Formats}: fid $\rightarrow$ imzML.
+      \item \textbf{Datacube}: spectral dimension (\textit{m/z} ratios)
+      \item \textbf{Pixel size}: $25 \mu m \times 25 \mu m$, $80 \mu m$ inter-slice
       \end{itemize}
       \begin{figure}[ht]
         \centering
@@ -290,10 +299,24 @@
 \begin{frame}{3D issue}
   
   \underline{MS images:}
-  \begin{itemize}
-  \item intensity inhomogeneities
-  \item different orientations
-  \end{itemize}
+  \begin{columns}
+    \begin{column}[t]{0.9\textwidth}
+      \begin{itemize}
+      \item intensity inhomogeneities
+      \item different orientations
+      \end{itemize}
+    \end{column}
+    \begin{column}[t]{0.1\textwidth}
+      \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.9\textwidth]{fig/cutwheatgrain}
+        \caption{}
+        \label{fig:cutwheatgrain}
+      \end{figure}
+
+    \end{column}
+  \end{columns}
+  
 
   \vspace{-0.3cm}
    \begin{figure}[ht]
@@ -780,12 +803,12 @@
 \begin{frame}{Registration}
 
   \vspace{-0.3cm}
-  Percentage of shared pixels between the MS and MR images:
+  Percentage of shared pixels between the \textbf{(a)} MR and \textbf{(b-c)} MS images:
   \begin{itemize}
-  \item \textbf{simple} with an intensity-based metric: \textbf{77.9\%}
-  \item \textbf{(b)} \textbf{exhaustive} with DT: \textbf{84.6\%}
+  \item \textbf{affine} with an intensity-based metric: \textbf{77.9\%}
+  \item \textbf{(b)} \textbf{affine} registration with DT: \textbf{84.6\%}
   % \item \textbf{(c)} \textbf{variational} without DT update: \textbf{90.2\%}
-  \item \textbf{(c)} \textbf{variational} with DT update: \textbf{93.2\%}
+  \item \textbf{(c)} \textbf{deformable} registration with DT: \textbf{93.2\%}
   \end{itemize}
 
   \begin{figure}[ht]
@@ -921,7 +944,7 @@
   Prospects:
   \begin{itemize}
   \item \textbf{Full 3D} statistical analysis.
-  \item Registration with \textbf{local scale variations}.
+  \item On-going projects at \textbf{CBMN}, Bordeaux.
   \end{itemize}
 
   \footnotetext{\url{https://github.com/fgrelard/Esmraldi}}

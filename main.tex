@@ -298,30 +298,19 @@
 
 \begin{frame}{3D issue}
   
-  \underline{MS images:}
-  \begin{columns}
-    \begin{column}[t]{0.9\textwidth}
+  \underline{MS images:}%
       \begin{itemize}
       \item intensity inhomogeneities
       \item different orientations
       \end{itemize}
-    \end{column}
-    \begin{column}[t]{0.1\textwidth}
-      \begin{figure}[ht]
-        \centering
-        \includegraphics[width=0.9\textwidth]{fig/cutwheatgrain}
-        \caption{}
-        \label{fig:cutwheatgrain}
-      \end{figure}
 
-    \end{column}
-  \end{columns}
   
 
   \vspace{-0.3cm}
-   \begin{figure}[ht]
-     \centering
-     \begin{subfigure}[b]{0.15\textwidth}  
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}[b]{0.15\textwidth}
+      \includegraphics[width=0.5\textwidth]{fig/cutwheatgrain}
        \textbf{MRI:}
      \end{subfigure}%
      \begin{subfigure}[c]{0.3\textwidth}
@@ -336,7 +325,8 @@
        \centering
        \includegraphics[width=0.65\textwidth]{fig/3D_density_aligned_manual0006}%
      \end{subfigure}
-     \begin{subfigure}[b]{0.15\textwidth}  
+     \begin{subfigure}[b]{0.15\textwidth}
+       \includegraphics[width=0.5\textwidth]{fig/cutwheatgrain}
        \textbf{MSI \\ (average):}%
      \end{subfigure}%
      \begin{subfigure}[c]{0.3\textwidth}
@@ -550,10 +540,10 @@
 
     \begin{figure}[ht]
     \centering
-    \includegraphics<1>[width=0.9\textwidth]{fig/metric_1}%
-    \includegraphics<2>[width=0.9\textwidth]{fig/metric_3}%
-    \includegraphics<3>[width=0.9\textwidth]{fig/metric_7}%
-    \includegraphics<4>[width=0.9\textwidth]{fig/metric_18}
+    \includegraphics<1>[width=0.9\textwidth]{fig/metric_1_2}%
+    \includegraphics<2>[width=0.9\textwidth]{fig/metric_3_2}%
+    \includegraphics<3>[width=0.9\textwidth]{fig/metric_7_2}%
+    \includegraphics<4>[width=0.9\textwidth]{fig/metric_18_2}
     \label{fig:metric_1}
   \end{figure}
 
@@ -918,12 +908,18 @@
   \begin{columns}
     \begin{column}{.8\textwidth}
 
-      Workflow suited for 3D MS images with \textbf{homogeneous or inhomogeneous intensities}. \\
+      Workflow suited for 3D MS images with \textbf{homogeneous or inhomogeneous intensities}.
+
+      \vspace{0.2cm}
       \begin{spacing}{1.5}
 
-        Results hint at the role of \textbf{AX in water transfers}.\\
+        \textbf{Esmraldi}: tools for the fusion of MS images.
+        \begin{itemize}
+        \item Open Source
+        \item Python 3, supports \texttt{imzML}
+        \item \url{https://github.com/fgrelard/Esmraldi}
+        \end{itemize}
 
-        \textbf{Esmraldi}: tools for the fusion of 3D MS images\footnotemark.
       \end{spacing}
     \end{column}
 
@@ -947,7 +943,6 @@
   \item On-going projects at \textbf{CBMN}, Bordeaux.
   \end{itemize}
 
-  \footnotetext{\url{https://github.com/fgrelard/Esmraldi}}
 
 
 \end{frame}

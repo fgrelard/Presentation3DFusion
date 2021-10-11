@@ -608,18 +608,16 @@
   
   Two steps:
   \begin{enumerate}
-  \item \textbf{2D exhaustive affine} registration
+  \item \textbf{2D affine} registration
   \item \textbf{3D deformable} registration
   \end{enumerate}
 
-  \alert{Exhaustive registration}: \textbf{predefined} transformation parameters  $\Rightarrow$ avoids converging towards a \textbf{local minimum}.
-
   \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.4\textwidth]{fig/exhaustive_registration}
-    \caption{}
-    \label{fig:exhaustive_registration}
+    \includegraphics<1>[width=0.8\textwidth]{fig/affine}%
+    \includegraphics<2>[width=0.8\textwidth]{fig/affine2}
   \end{figure}
+
 
   
 \end{frame}
@@ -630,7 +628,9 @@
   
   \begin{columns}
     \begin{column}[t]{0.6\textwidth}
-      \textbf{Variational methods}: displacements modelled by a \textbf{vector field}. The vector field is guided by pixel similarity. \vspace{0.2cm}
+      \textbf{Variational methods}: displacements modelled by a \textbf{vector field}.
+
+      Two forces: \vspace{0.2cm}
 
       \begin{enumerate}
       \item External forces: metric $\textcolor{darkgreen}{\mathcal{D}}$
@@ -908,7 +908,7 @@
   \begin{columns}
     \begin{column}{.8\textwidth}
 
-      Workflow suited for 3D MS images with \textbf{homogeneous or inhomogeneous intensities}.
+      Workflow suited for 3D MS images.
 
       \vspace{0.2cm}
       \begin{spacing}{1.5}
@@ -948,7 +948,7 @@
 \end{frame}
 
 \section{}
-\begin{frame}[plain]{Acknowledgments}
+\begin{frame}[plain, noframenumbering]{Acknowledgments}
   \begin{figure}[ht]
       \centering
       \includegraphics[width=0.7\textwidth]{fig/photoequipe}
